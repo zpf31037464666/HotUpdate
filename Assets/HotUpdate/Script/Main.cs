@@ -10,6 +10,7 @@ using UnityEngine.UI; // 确保包含 UI 命名空间
 
 public class Main : MonoBehaviour
 {
+    [Header("test")]
     [SerializeField] Text nameText;
     [SerializeField] Button nextLevelButton;
     [SerializeField] Button exitButton;

@@ -46,8 +46,6 @@ extern void AudioListener_GetOutputData_m296DA3768E887CCD587D5BDD55A3D9AB1ADECA9
 extern void AudioListener_GetSpectrumData_m63364D81841D7FC8EAB015C441E92394236A646B (void);
 extern void AudioListener_GetSpectrumData_m66A3A04DD3DF8A2CBE8DE16ED2CBD9AA42EBFABC (void);
 extern void AudioListener__ctor_m428A6CC2CFA95A7D6065D33098191569A7412EE4 (void);
-extern void AudioSource_GetSpectrumDataHelper_m64E105A054751BD5E7477C7E309992EC0BF274EB (void);
-extern void AudioSource_GetSpectrumData_m0F3872A4C6B41EFD5A23BA24322B08367BFF0CFE (void);
 extern void AudioClipPlayable_GetHandle_mEA1D664328FF9B08E4F7D5EBCD4B51A754D97C44 (void);
 extern void AudioClipPlayable_Equals_m9C1C75ACBB74FE06AD02BE4643F6EB39413EFF83 (void);
 extern void AudioMixerPlayable_GetHandle_m6C182D9794E901D123223BB57738A302BEAB41FD (void);
@@ -56,7 +54,7 @@ extern void AudioSampleProvider_InvokeSampleFramesAvailable_mEB16F7230AB65A3576B
 extern void AudioSampleProvider_InvokeSampleFramesOverflow_m66593173A527981F5EB2A5EF77B0C9119DAB5E15 (void);
 extern void SampleFramesHandler__ctor_m7DDE0BAD439CD80791140C7D42D661B598A7663A (void);
 extern void SampleFramesHandler_Invoke_m478D5645634B8C734E58B59CF7750797FC54F1BC (void);
-static Il2CppMethodPointer s_methodPointers[44] = 
+static Il2CppMethodPointer s_methodPointers[42] = 
 {
 	AudioSettings_InvokeOnAudioConfigurationChanged_m8273D3AEB24F4C3E374238B6F699BE6696808E85,
 	AudioSettings_InvokeOnAudioSystemShuttingDown_m1B9895D60B3267EBDEC69B9169730DBAD8325E90,
@@ -92,8 +90,6 @@ static Il2CppMethodPointer s_methodPointers[44] =
 	AudioListener_GetSpectrumData_m63364D81841D7FC8EAB015C441E92394236A646B,
 	AudioListener_GetSpectrumData_m66A3A04DD3DF8A2CBE8DE16ED2CBD9AA42EBFABC,
 	AudioListener__ctor_m428A6CC2CFA95A7D6065D33098191569A7412EE4,
-	AudioSource_GetSpectrumDataHelper_m64E105A054751BD5E7477C7E309992EC0BF274EB,
-	AudioSource_GetSpectrumData_m0F3872A4C6B41EFD5A23BA24322B08367BFF0CFE,
 	AudioClipPlayable_GetHandle_mEA1D664328FF9B08E4F7D5EBCD4B51A754D97C44,
 	AudioClipPlayable_Equals_m9C1C75ACBB74FE06AD02BE4643F6EB39413EFF83,
 	AudioMixerPlayable_GetHandle_m6C182D9794E901D123223BB57738A302BEAB41FD,
@@ -109,27 +105,27 @@ extern void AudioMixerPlayable_GetHandle_m6C182D9794E901D123223BB57738A302BEAB41
 extern void AudioMixerPlayable_Equals_mDFB945EB48199A338BAD00D40FB8EEC34CF64D57_AdjustorThunk (void);
 static Il2CppTokenAdjustorThunkPair s_adjustorThunks[4] = 
 {
-	{ 0x06000025, AudioClipPlayable_GetHandle_mEA1D664328FF9B08E4F7D5EBCD4B51A754D97C44_AdjustorThunk },
-	{ 0x06000026, AudioClipPlayable_Equals_m9C1C75ACBB74FE06AD02BE4643F6EB39413EFF83_AdjustorThunk },
-	{ 0x06000027, AudioMixerPlayable_GetHandle_m6C182D9794E901D123223BB57738A302BEAB41FD_AdjustorThunk },
-	{ 0x06000028, AudioMixerPlayable_Equals_mDFB945EB48199A338BAD00D40FB8EEC34CF64D57_AdjustorThunk },
+	{ 0x06000023, AudioClipPlayable_GetHandle_mEA1D664328FF9B08E4F7D5EBCD4B51A754D97C44_AdjustorThunk },
+	{ 0x06000024, AudioClipPlayable_Equals_m9C1C75ACBB74FE06AD02BE4643F6EB39413EFF83_AdjustorThunk },
+	{ 0x06000025, AudioMixerPlayable_GetHandle_m6C182D9794E901D123223BB57738A302BEAB41FD_AdjustorThunk },
+	{ 0x06000026, AudioMixerPlayable_Equals_mDFB945EB48199A338BAD00D40FB8EEC34CF64D57_AdjustorThunk },
 };
-static const int32_t s_InvokerIndices[44] = 
+static const int32_t s_InvokerIndices[42] = 
 {
-	7236,
-	7389,
-	7389,
-	7335,
-	7335,
+	7235,
+	7388,
+	7388,
+	7334,
+	7334,
 	2341,
 	4125,
-	7335,
-	7236,
-	7335,
-	7236,
-	7335,
-	7389,
-	7389,
+	7334,
+	7235,
+	7334,
+	7235,
+	7334,
+	7388,
+	7388,
 	4206,
 	4179,
 	2341,
@@ -139,10 +135,10 @@ static const int32_t s_InvokerIndices[44] =
 	5122,
 	6769,
 	6276,
-	7373,
-	7254,
-	7335,
-	7236,
+	7372,
+	7253,
+	7334,
+	7235,
 	4990,
 	4179,
 	6586,
@@ -150,8 +146,6 @@ static const int32_t s_InvokerIndices[44] =
 	6071,
 	6276,
 	5122,
-	5840,
-	1256,
 	5027,
 	2956,
 	5027,
@@ -165,7 +159,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_UnityEngine_AudioModule_CodeGenModul
 const Il2CppCodeGenModule g_UnityEngine_AudioModule_CodeGenModule = 
 {
 	"UnityEngine.AudioModule.dll",
-	44,
+	42,
 	s_methodPointers,
 	4,
 	s_adjustorThunks,
