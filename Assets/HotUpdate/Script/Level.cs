@@ -26,7 +26,7 @@ public class Level : MonoBehaviour
 
     private void LoadMainScene()
     {
-        var handle = Addressables.LoadSceneAsync("Main", LoadSceneMode.Single);
+        var handle = Addressables.LoadSceneAsync("Game", LoadSceneMode.Single);
         handle.Completed += OnSenceLoad;
     }
 

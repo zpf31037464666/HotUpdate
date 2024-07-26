@@ -17,7 +17,7 @@ public class Main : MonoBehaviour
 
     private void OnEnable()
     {
-        nameText.text="更新";
+        nameText.text="MotherFuck";
     }
     private void Start()
     {
