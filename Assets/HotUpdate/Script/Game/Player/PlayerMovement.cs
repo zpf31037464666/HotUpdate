@@ -41,11 +41,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (joystick.Direction.x>0.1)
         {
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            animator. transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
         else if (joystick.Direction.x<-0.1)
         {
-            transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            animator.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
         }
     }
     void Move()
@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                var dirction = transform.rotation.y==0?Vector2.right:Vector2.left;
+                var dirction =animator.transform.rotation.y==0?Vector2.right:Vector2.left;
 
                 StartCoroutine(DashCoroutine(dirction.normalized));
             }

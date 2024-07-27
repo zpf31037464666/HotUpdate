@@ -3,12 +3,16 @@
     <type fullname="ConsoleToScreen" preserve="all" />
   </assembly>
   <assembly fullname="HotUpdate, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="AutoHide" preserve="all" />
+    <type fullname="Bullet" preserve="all" />
     <type fullname="Enemy" preserve="all" />
+    <type fullname="Gun" preserve="all" />
     <type fullname="Level" preserve="all" />
     <type fullname="Main" preserve="all" />
     <type fullname="Player" preserve="all" />
     <type fullname="PlayerMovement" preserve="all" />
     <type fullname="PlayerUI" preserve="all" />
+    <type fullname="PlayerWorldUI" preserve="all" />
     <type fullname="Test" preserve="all" />
   </assembly>
   <assembly fullname="Plus, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">

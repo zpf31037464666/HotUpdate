@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -47,7 +48,21 @@ public class PlayerUI : MonoBehaviour
         SetNameText("张三");
 
     }
+    private void OnEnable()
+    {
+        Player.OnTakeDamageEvent+=onTakeDamageEvent;
+    }
 
+
+
+    private void OnDisable()
+    {
+        Player.OnTakeDamageEvent-=onTakeDamageEvent;
+    }
+    private void onTakeDamageEvent(Player player)
+    {
+        SetHealth(player.Health, player.MaxHealth);
+    }
 
     public void SetDashImageFill(float value)
     {
@@ -89,7 +104,7 @@ public class PlayerUI : MonoBehaviour
         fillImagefront.fillAmount=currentFillAmount;
     }
     //数值持续更新
-    public void UpdateHpState(float currentValue, float maxValue)
+    private void UpdateHpState(float currentValue, float maxValue)
     {
         targetFillAmount=currentValue/maxValue;
         if (bufferedFillingCoroutine !=null)

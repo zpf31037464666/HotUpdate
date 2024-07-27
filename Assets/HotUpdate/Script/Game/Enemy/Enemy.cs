@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] LayerMask raycastLayerMask;
     [SerializeField] protected bool enemyIsDead = false;
 
+    public float backForce;
+
     new protected Rigidbody2D rigidbody2D;  // 角色刚体
     protected Animator animator;  // 角色动画控制器
     protected SpriteRenderer spriteRenderer;  // 角色精灵渲染器
@@ -23,12 +25,13 @@ public class Enemy : MonoBehaviour
     protected Vector2 moveDirection;  // 角色移动方向
 
     new CircleCollider2D collider2D;
-    WaitForSeconds waitForDie = new WaitForSeconds(1f);
 
     protected GameObject target;
     Ray ray;
     bool isBlocked;
-    bool isTouchPlayer;
+    bool isHurt;
+
+    Coroutine hurtCoroutine;
 
     protected virtual void Awake()
     {
@@ -40,7 +43,6 @@ public class Enemy : MonoBehaviour
         collider2D = GetComponent<CircleCollider2D>();
         target = GameObject.FindGameObjectWithTag("Player");
     }
-
     protected virtual void OnEnable()
     {
         health = maxHealth;
@@ -51,19 +53,15 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         SimpleMove();
-    }
-    protected virtual void FixedUpdate()
-    {
-       
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent(out Player player))
         {
+            Debug.Log("碰到玩家");
+
             player.TakeDamage(damage);
-            isTouchPlayer=true;
-            Debug.Log(isTouchPlayer+"isTouchPlayer");
-            Debug.Log("开始到玩家");
         }
     }
     private void OnCollisionStay2D(Collision2D collision)
@@ -71,26 +69,10 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out Player player))
         {
             player.TakeDamage(damage);
-            isTouchPlayer=true;
-
-            Debug.Log("停留到玩家");
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.TryGetComponent(out Player player))
-        {
-            isTouchPlayer=false;
-            Debug.Log("离开玩家");
-            Debug.Log(isTouchPlayer+"isTouchPlayer");
         }
     }
     public virtual void FlipCharacter()
     {
-        if (isTouchPlayer)
-        {
-            return;
-        }
         if (moveDirection.x>0.1)
         {
             transform.localScale=new Vector3(-1,1, 1);
@@ -101,33 +83,45 @@ public class Enemy : MonoBehaviour
         }
 
     }
+    public virtual void TakeDamageDiction(float damage, Vector2 knockbackDirection, float knockbackForce, Vector2 hitPos)
+    {
+        Debug.Log("受到击退"+"Diction"+knockbackDirection+"force"+knockbackForce);
 
+        rigidbody2D.velocity=knockbackDirection*knockbackForce;
+        TakeDamage(damage);
+    }
     public virtual void TakeDamage(float damage)
     {
         if (health == 0) return;  // 先判断这个会消除下面的 bug
         health -= damage;
-
         if (health <= 0f)
         {
             health = 0f;
             Die();
+        }
+
+        if (hurtCoroutine!=null)
+        {
+            StopCoroutine(hurtCoroutine);
+            hurtCoroutine=StartCoroutine(HurtCoroutine());
+        }
+        else
+        {
+            hurtCoroutine=StartCoroutine(HurtCoroutine());
         }
     }
     public virtual void Die()
     {
         gameObject.SetActive(false);
     }
-
     #region Move
-
     protected virtual void SimpleMove()
     {
-        if (enemyIsDead || IsPathBlocked()||isTouchPlayer) return;
+        if (enemyIsDead || IsPathBlocked()||isHurt) return;
          moveDirection = (target.transform.position - transform.position).normalized;
          transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
-        FlipCharacter();
+         FlipCharacter();
     }
-
     protected bool IsPathBlocked()
     {
         ray = new Ray(transform.position, moveDirection);
@@ -136,9 +130,17 @@ public class Enemy : MonoBehaviour
         collider2D.enabled = true;
         return isBlocked;
     }
-
     #endregion
 
+   public virtual IEnumerator HurtCoroutine()
+    {
+        isHurt = true;
+        yield return new WaitForSeconds(0);
+        isHurt=false;
+
+        hurtCoroutine=null;
+
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
