@@ -100,10 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  damage: 0
-  backForce: 100
+  damage: 100
+  backForce: 6
   explosionPrefab: {fileID: 2675928806069207687, guid: e1e30762610334e4d931745b67a4fa01, type: 3}
-  hitPos: {x: 0, y: 0, z: 0}
 --- !u!50 &753469374956907271
 Rigidbody2D:
   serializedVersion: 4

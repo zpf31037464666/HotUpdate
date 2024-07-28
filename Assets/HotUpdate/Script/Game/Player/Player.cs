@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 
     private Coroutine invincibleTimeCoroutine;
 
-    public static Action<Player> OnTakeDamageEvent;
+    public static Action<Player> OnChangeHealthEvent;
 
     public float Health { get => health; set => health=value; }
     public float MaxHealth { get => maxHealth; set => maxHealth=value; }
@@ -28,11 +28,11 @@ public class Player : MonoBehaviour
     {
         if (health == 0||isInvincible) return;  // 先判断这个会消除下面的 bug
         health -= damage;
-        OnTakeDamageEvent?.Invoke(this);
+        OnChangeHealthEvent?.Invoke(this);
 
         if (health <= 0f)
         {
-            OnTakeDamageEvent?.Invoke(this);
+            OnChangeHealthEvent?.Invoke(this);
             health = 0f;
             Die();
         }
@@ -46,6 +46,17 @@ public class Player : MonoBehaviour
         {
             invincibleTimeCoroutine=StartCoroutine(InvincibleTimeCoroutine());
         }
+    }
+
+    public void AddHelath(int helath)
+    {
+        this.health += helath;
+        if(health>=maxHealth)
+        {
+            health=maxHealth;
+            OnChangeHealthEvent?.Invoke(this);
+        }
+        OnChangeHealthEvent?.Invoke(this);
     }
     public virtual void Die()
     {

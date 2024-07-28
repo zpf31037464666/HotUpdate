@@ -7,15 +7,15 @@ public class Enemy : MonoBehaviour
 {
     [Header("Health")]
     [SerializeField] protected float maxHealth;
+    [SerializeField] protected StatesBar headHealthBar;
     [Header("Movement")]
     [SerializeField] protected float moveSpeed = 0.2f;
-    [SerializeField] protected float damage = 1f;
+    [SerializeField] protected int damage = 1;
     [Header("Raycast")]
     [SerializeField] float raycastDistance = 0.2f;
     [SerializeField] LayerMask raycastLayerMask;
-    [SerializeField] protected bool enemyIsDead = false;
 
-    public float backForce;
+    public bool isDead = false;
 
     new protected Rigidbody2D rigidbody2D;  // 角色刚体
     protected Animator animator;  // 角色动画控制器
@@ -29,13 +29,13 @@ public class Enemy : MonoBehaviour
     protected GameObject target;
     Ray ray;
     bool isBlocked;
-    bool isHurt;
 
-    Coroutine hurtCoroutine;
+    bool isHurt;
+    float hurtPresistTime=.5f;
+    float hurtTime;
 
     protected virtual void Awake()
     {
-
         rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -43,24 +43,29 @@ public class Enemy : MonoBehaviour
         collider2D = GetComponent<CircleCollider2D>();
         target = GameObject.FindGameObjectWithTag("Player");
     }
+    protected virtual void Start()
+    {
+        hurtTime = hurtPresistTime;
+    }
     protected virtual void OnEnable()
     {
         health = maxHealth;
+        headHealthBar.UpdateStates(health, maxHealth);
         collider2D.enabled = true;
         rigidbody2D.drag = 100f;
-        enemyIsDead = false;
+        isDead = false;
     }
     private void Update()
     {
         SimpleMove();
+
+        Hurt();
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent(out Player player))
         {
-            Debug.Log("碰到玩家");
-
             player.TakeDamage(damage);
         }
     }
@@ -75,51 +80,65 @@ public class Enemy : MonoBehaviour
     {
         if (moveDirection.x>0.1)
         {
-            transform.localScale=new Vector3(-1,1, 1);
+            animator.transform.localScale=new Vector3(-1,1, 1);
         }
         else if (moveDirection.x<-0.1)
         {
-            transform.localScale=new Vector3(1, 1, 1);
+            animator.transform.localScale=new Vector3(1, 1, 1);
         }
 
     }
-    public virtual void TakeDamageDiction(float damage, Vector2 knockbackDirection, float knockbackForce, Vector2 hitPos)
+    public virtual void TakeDamageDiction(int damage, Vector2 knockbackDirection, float knockbackForce, Vector2 hitPos)
     {
-        Debug.Log("受到击退"+"Diction"+knockbackDirection+"force"+knockbackForce);
+    //    Debug.Log("受到击退"+"Diction"+knockbackDirection+"force"+knockbackForce);
 
         rigidbody2D.velocity=knockbackDirection*knockbackForce;
         TakeDamage(damage);
     }
-    public virtual void TakeDamage(float damage)
+    public virtual void TakeDamage(int damage)
     {
-        if (health == 0) return;  // 先判断这个会消除下面的 bug
         health -= damage;
+        DamageShowManager.instance.CreateDamage(damage, transform.position);
+        headHealthBar.UpdateStates(health, maxHealth);
+        isHurt=true;
+
         if (health <= 0f)
         {
             health = 0f;
             Die();
         }
+    }
+    public virtual void Hurt()
+    {
+        if(isHurt)
+        {
+            hurtTime-= Time.time;
+            HurtEffect();
+            if(hurtTime <= 0f)
+            {
+                isHurt = false;
+                hurtTime=hurtPresistTime;
+            }
+        }
+    }
+    public virtual void HurtEffect()
+    {
 
-        if (hurtCoroutine!=null)
-        {
-            StopCoroutine(hurtCoroutine);
-            hurtCoroutine=StartCoroutine(HurtCoroutine());
-        }
-        else
-        {
-            hurtCoroutine=StartCoroutine(HurtCoroutine());
-        }
     }
     public virtual void Die()
     {
-        gameObject.SetActive(false);
+        isDead=true;
+        StopAllCoroutines();
+       ObjectPool.Instance.PushObject(gameObject);
     }
     #region Move
     protected virtual void SimpleMove()
     {
-        if (enemyIsDead || IsPathBlocked()||isHurt) return;
+       if (isDead || IsPathBlocked()||isHurt) return;
+
          moveDirection = (target.transform.position - transform.position).normalized;
-         transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+       // rigidbody2D.velocity=moveDirection*moveSpeed;
          FlipCharacter();
     }
     protected bool IsPathBlocked()
@@ -132,21 +151,9 @@ public class Enemy : MonoBehaviour
     }
     #endregion
 
-   public virtual IEnumerator HurtCoroutine()
-    {
-        isHurt = true;
-        yield return new WaitForSeconds(0);
-        isHurt=false;
-
-        hurtCoroutine=null;
-
-    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawRay(ray.origin, ray.direction * 0.2f);
     }
-
-
-
 }

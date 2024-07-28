@@ -7,7 +7,7 @@ public class PlayerWorldUI : StatesBar
 {
     private void OnEnable()
     {
-        Player.OnTakeDamageEvent+=onTakeDamageEvent;
+        Player.OnChangeHealthEvent+=onTakeDamageEvent;
     }
 
 
@@ -15,7 +15,7 @@ public class PlayerWorldUI : StatesBar
     public override void OnDisable()
     {
         base.OnDisable();
-        Player.OnTakeDamageEvent-=onTakeDamageEvent;
+        Player.OnChangeHealthEvent-=onTakeDamageEvent;
     }
     private void onTakeDamageEvent(Player player)
     {

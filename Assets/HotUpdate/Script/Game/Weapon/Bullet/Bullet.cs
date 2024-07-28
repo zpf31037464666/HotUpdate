@@ -30,8 +30,6 @@ public class Bullet : MonoBehaviour
 
         if (other.gameObject.TryGetComponent(out Enemy enemy))
         {
-            Debug.Log("子弹碰到敌人");
-
             Vector2 blackdiction =transform.position - hitPos;
             enemy.TakeDamageDiction(damage, -blackdiction.normalized, backForce, hitPos);
             //enemy.TakeDamage(damage);

@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Image
+  m_EditorClassIdentifier: 
+  m_GroupName: Image
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 8ab61d0fc9572e040b7e099708bf713c
+  m_SerializeEntries:
+  - m_GUID: e6aa432b329028548a98bfe3344fa614
+    m_Address: res
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - HotUpdate
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5fa22dddc3da77c4c92b1e2fc35ed5db
+    m_Address: Icon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 814687ba7ade9ce418567e57eb5209b0
+    m_Address: Weapons
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: e53dea3910c638247a169bdabe09ce20, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 17851dedb993e4949ade1ddcb9158225, type: 2}
+    - {fileID: 11400000, guid: 805cf4d5db093604ca52a7ba0e04b5e7, type: 2}
