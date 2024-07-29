@@ -19,7 +19,6 @@ public class Rewardable : IRewardable
         RewardInfo info = new RewardInfo();
         info.name = Reward.RewardName;
         info.description = Reward.Descript;
-
         // 异步加载背景图
         AsyncOperationHandle<Sprite> bgHandle = Addressables.LoadAssetAsync<Sprite>(Reward.BG);
         bgHandle.Completed += (op) =>

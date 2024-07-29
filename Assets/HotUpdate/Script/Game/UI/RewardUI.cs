@@ -23,8 +23,6 @@ public class RewardUI : MonoBehaviour
     private void onRewardEvent()
     {
         Debug.Log("调用奖励");
-
-        GameManager.GameState=GameState.Reward;
         CreateReward();
     }
 
@@ -48,7 +46,7 @@ public class RewardUI : MonoBehaviour
                 () => 
                     {
                         canvas.enabled=false;
-                        GameManager.GameState=GameState.Playing;
+                        GameManager.GameState=GameState.UI;
                     } 
             );
          }
@@ -56,7 +54,7 @@ public class RewardUI : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("生成奖励");
             CreateReward();

@@ -26,12 +26,14 @@ MonoBehaviour:
   - m_GUID: 5fa22dddc3da77c4c92b1e2fc35ed5db
     m_Address: Icon
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - HotUpdate
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 814687ba7ade9ce418567e57eb5209b0
     m_Address: Weapons
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - HotUpdate
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e53dea3910c638247a169bdabe09ce20, type: 2}

@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  damage: 100
+  damage: 5
   backForce: 6
   explosionPrefab: {fileID: 2675928806069207687, guid: e1e30762610334e4d931745b67a4fa01, type: 3}
 --- !u!50 &753469374956907271

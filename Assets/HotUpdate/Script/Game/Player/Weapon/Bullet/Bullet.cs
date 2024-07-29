@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed;
-    public int damage;
-    public int backForce;//击退力
+    protected float speed;
+    protected int damage;
+    protected int backForce;//击退力
     public GameObject explosionPrefab;
 
-    private Vector3 hitPos;
+    protected Vector3 hitPos;
+    
     new private Rigidbody2D rigidbody;
 
     void Awake()
@@ -17,11 +18,20 @@ public class Bullet : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    public void SetSpeed(Vector2 direction)
+    public void SetDiction(Vector2 direction)
     {
         rigidbody.velocity = direction * speed;
     }
-
+    public void SetBulletInfo(WeaponInfo weaponInfo)
+    {
+        speed=weaponInfo.speed;
+        damage=weaponInfo.damage;
+        backForce=weaponInfo.backForce;
+    }
+    public void AddBulletDamage(int damage)
+    {
+       this.damage+=damage;
+    }
     public virtual void OnTriggerEnter2D(Collider2D other)
     {
         hitPos= other.transform.position;
@@ -36,11 +46,10 @@ public class Bullet : MonoBehaviour
         }
 
     }
-    void CreateBooldEffect()
+    protected virtual void CreateBooldEffect()
     {
         GameObject exp = ObjectPool.Instance.GetObject(explosionPrefab);
         exp.transform.position = transform.position;
-
     }
 
 

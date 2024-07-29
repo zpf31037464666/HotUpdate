@@ -6,7 +6,8 @@
     "RewardValue": 10,
     "Descript": "增加玩家血量",
     "BG": "res/1.png",
-    "Icon": "Icon/star_gold.png"
+    "Icon": "Icon/star_gold.png",
+    "AddObjcetName": "null"
   },
   {
     "RewardID": 1,
@@ -15,7 +16,8 @@
     "RewardValue": 10,
     "Descript": "增加玩家蓝量",
     "BG": "res/2.png",
-    "Icon": "Icon/star_silver.png"
+    "Icon": "Icon/star_silver.png",
+    "AddObjcetName": "null"
   },
   {
     "RewardID": 2,
@@ -24,7 +26,8 @@
     "RewardValue": 100,
     "Descript": "大量增加玩家血量",
     "BG": "res/3.png",
-    "Icon": "Icon/shield_gold.png"
+    "Icon": "Icon/shield_gold.png",
+    "AddObjcetName": "null"
   },
   {
     "RewardID": 3,
@@ -33,24 +36,47 @@
     "RewardValue": 10,
     "Descript": "增加玩家金币",
     "BG": "res/4.png",
-    "Icon": "Icon/Power.png"
+    "Icon": "Icon/Power.png",
+    "AddObjcetName": "null"
   },
   {
     "RewardID": 4,
-    "RewardName": "大金币",
-    "RewardType": "AddCoinReward",
-    "RewardValue": 1000,
-    "Descript": "大量增加玩家金币",
-    "BG": "res/5.png",
-    "Icon": "Icon/star_gold.png"
-  },
-  {
-    "RewardID": 5,
     "RewardName": "经验包",
     "RewardType": "AddLevelReward",
     "RewardValue": 10,
     "Descript": "增加玩家经验",
     "BG": "res/6.png",
-    "Icon": "Icon/star_gold.png"
+    "Icon": "Icon/star_gold.png",
+    "AddObjcetName": "null"
+  },
+  {
+    "RewardID": 5,
+    "RewardName": "手枪",
+    "RewardType": "AddWeaponReward",
+    "RewardValue": 1,
+    "Descript": "增加一把手枪",
+    "BG": "res/7.png",
+    "Icon": "Icon/star_gold.png",
+    "AddObjcetName": "Gun/Gun_Mini.prefab"
+  },
+  {
+    "RewardID": 6,
+    "RewardName": "快速拔弹",
+    "RewardType": "AddWeaponSpeedReward",
+    "RewardValue": 30,
+    "Descript": "增加枪支射速30%",
+    "BG": "res/8.png",
+    "Icon": "Icon/Power.png",
+    "AddObjcetName": "null"
+  },
+  {
+    "RewardID": 7,
+    "RewardName": "鹰眼",
+    "RewardType": "AddWeaponDamageReward",
+    "RewardValue": 2,
+    "Descript": "增加枪支伤害2",
+    "BG": "res/9.png",
+    "Icon": "Icon/Power.png",
+    "AddObjcetName": "null"
   }
 ]

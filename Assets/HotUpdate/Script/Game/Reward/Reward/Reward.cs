@@ -8,13 +8,14 @@
 
 public class Reward
 {
-    public int RewardID; // id值
-    public string RewardName; // 名字
-    public string RewardType; // 类型
-    public int RewardValue; // 值
-    public string Descript; // 描述
-    public string BG; // 背景图
-    public string Icon; // 图标
+	public int  RewardID; // id值
+	public string  RewardName; // 名字
+	public string  RewardType; // 类型
+	public int RewardValue; // 值
+	public string  Descript; // 描述
+	public string BG; // 背景图
+	public string Icon; // 图标
+	public string AddObjcetName; // 增加物体
 }
 
 

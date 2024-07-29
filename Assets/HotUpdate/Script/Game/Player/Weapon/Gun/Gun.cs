@@ -12,6 +12,8 @@ public class Gun : MonoBehaviour
 
     [Header("Weapon stats")]
     [SerializeField] LayerMask enemyLayer;  // 敌人层
+    [SerializeField] WeaponInfo weaponInfo;  // 敌人层
+
 
     Vector2 gunDirection;
     SpriteRenderer spriteRenderer;
@@ -20,10 +22,6 @@ public class Gun : MonoBehaviour
     Collider2D[] colliders;
 
 
-    float damage=10;
-    float gunRange=10;
-    float fireRate = 10;
-    float fireTimer=.2f;
     float time;
 
     Enemy lockedEnemy;
@@ -43,7 +41,7 @@ public class Gun : MonoBehaviour
     }
     void LockEnemy()
     {
-        if (hasLockedEnemy && (lockedEnemy == null || Vector2.Distance(lockedEnemy.transform.position, transform.position) > gunRange||
+        if (hasLockedEnemy && (lockedEnemy == null || Vector2.Distance(lockedEnemy.transform.position, transform.position) > weaponInfo.fireRate||
             lockedEnemy.isDead ))
         {
             hasLockedEnemy = false;
@@ -52,7 +50,7 @@ public class Gun : MonoBehaviour
 
         if (!hasLockedEnemy)
         {
-            colliders = Physics2D.OverlapCircleAll(transform.position, fireRate, enemyLayer);
+            colliders = Physics2D.OverlapCircleAll(transform.position,weaponInfo.fireRate, enemyLayer);
             if (colliders.Length > 0)
             {
                 Collider2D randomEnemy = colliders[Random.Range(0, colliders.Length)];
@@ -71,7 +69,7 @@ public class Gun : MonoBehaviour
             if (time <= 0f)
             {
                 SingleFire();
-                time = fireTimer;
+                time = weaponInfo.interval;
             }
         }
         else
@@ -80,7 +78,6 @@ public class Gun : MonoBehaviour
             transform.right = gunDirection;  // 朝向右边
         }
     }
-
     void SingleFire()
     {
         if (hasLockedEnemy)
@@ -88,18 +85,28 @@ public class Gun : MonoBehaviour
             animator.SetTrigger("Fire");
             GameObject bullet = ObjectPool.Instance.GetObject(bulletPrefab);
             bullet.transform.position = muzzlePoint.position;
-            bullet.GetComponent<Bullet>().SetSpeed(gunDirection);
+
+            bullet.GetComponent<Bullet>().SetBulletInfo(weaponInfo);
+            bullet.GetComponent<Bullet>().SetDiction(gunDirection);
         }
     }
-
     void AutoFlip()
     {
         spriteRenderer.flipY = gunDirection.x < 0f;
     }
-
     public void SetGunMaterial(Material material)
     {
         spriteRenderer.material = material;
+    }
+
+    public void AddDamage(int damage)
+    {
+        weaponInfo.damage += damage;
+    }
+
+    public void AddFireSpeed(float precent)
+    {
+        weaponInfo.interval*=(1-precent);
     }
 
 }

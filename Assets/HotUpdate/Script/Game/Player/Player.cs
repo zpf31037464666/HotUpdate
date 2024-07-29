@@ -6,14 +6,16 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Health")]
-   [SerializeField]  private float maxHealth;
+    [SerializeField]  private float maxHealth;
     private float health;
-    public float InvincibleTime = .5f;
+    public float InvincibleTime = .5f;//无敌时间
     private bool isInvincible=false;
 
     private Coroutine invincibleTimeCoroutine;
 
     public static Action<Player> OnChangeHealthEvent;
+    public static Action<Player> OnHurtEvent;
+    public static Action OnPlayerDeathEvent;
 
     public float Health { get => health; set => health=value; }
     public float MaxHealth { get => maxHealth; set => maxHealth=value; }
@@ -29,7 +31,8 @@ public class Player : MonoBehaviour
         if (health == 0||isInvincible) return;  // 先判断这个会消除下面的 bug
         health -= damage;
         OnChangeHealthEvent?.Invoke(this);
-
+        OnHurtEvent?.Invoke(this);
+        
         if (health <= 0f)
         {
             OnChangeHealthEvent?.Invoke(this);
@@ -37,6 +40,13 @@ public class Player : MonoBehaviour
             Die();
         }
 
+        Invincble();
+    }
+
+    private void Invincble()
+    {
+        if (!gameObject.activeInHierarchy)
+            return;
         if (invincibleTimeCoroutine!=null)
         {
             StopCoroutine(invincibleTimeCoroutine);
@@ -60,14 +70,14 @@ public class Player : MonoBehaviour
     }
     public virtual void Die()
     {
-       // gameObject.SetActive(false);
+        StopAllCoroutines();
+        gameObject.SetActive(false);
+        OnPlayerDeathEvent?.Invoke();
     }
-
     IEnumerator InvincibleTimeCoroutine()
     {
         isInvincible = true;
         yield return new WaitForSeconds(InvincibleTime);
         isInvincible=false;
     }
-
 }

@@ -12,7 +12,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] Image fillImagefront;
 
     [SerializeField] Image dashImage;
-    //[SerializeField] Image hurtImage;
+    [SerializeField] Image hurtImage;
     //[SerializeField] private Text scoreText;
 
     //[SerializeField] Transform lifeTransform;
@@ -51,6 +51,7 @@ public class PlayerUI : MonoBehaviour
     private void OnEnable()
     {
         Player.OnChangeHealthEvent+=onTakeDamageEvent;
+        Player.OnHurtEvent+=onHurtEvent;
     }
 
 
@@ -58,10 +59,15 @@ public class PlayerUI : MonoBehaviour
     private void OnDisable()
     {
         Player.OnChangeHealthEvent-=onTakeDamageEvent;
+        Player.OnHurtEvent-=onHurtEvent;
     }
     private void onTakeDamageEvent(Player player)
     {
         SetHealth(player.Health, player.MaxHealth);
+    }
+    private void onHurtEvent(Player player)
+    {
+        Hurt();
     }
 
     public void SetDashImageFill(float value)
@@ -125,10 +131,10 @@ public class PlayerUI : MonoBehaviour
             bufferedFillingCoroutine =  StartCoroutine(BufferedFillingCoroutine(fillImagefront));
         }
     }
-    //public void Hurt()
-    //{
-    //    StartCoroutine(HurtCoroutine());
-    //}
+    public void Hurt()
+    {
+        StartCoroutine(HurtCoroutine());
+    }
     //缓冲增加血量
     protected virtual IEnumerator BufferedFillingCoroutine(Image image)
     {
@@ -146,19 +152,19 @@ public class PlayerUI : MonoBehaviour
             yield return null;
         }
     }
-    //IEnumerator HurtCoroutine()
-    //{
-    //    hurtImage.gameObject.SetActive(true);
-    //    Color originalColor = hurtImage.color;
-    //    for (float t = 0; t < 1; t += Time.deltaTime / duration)
-    //    {
-    //        Color newColor = originalColor;
-    //        newColor.a = Mathf.Lerp(1f, 0f, t);
-    //        hurtImage.color = newColor;
-    //        yield return null;
-    //    }
-    //    Color finalColor = originalColor;
-    //    finalColor.a = 0f;
-    //    hurtImage.color = finalColor;
-    //}
+    IEnumerator HurtCoroutine()
+    {
+        hurtImage.gameObject.SetActive(true);
+        Color originalColor = hurtImage.color;
+        for (float t = 0; t < 1; t += Time.deltaTime / duration)
+        {
+            Color newColor = originalColor;
+            newColor.a = Mathf.Lerp(1f, 0f, t);
+            hurtImage.color = newColor;
+            yield return null;
+        }
+        Color finalColor = originalColor;
+        finalColor.a = 0f;
+        hurtImage.color = finalColor;
+    }
 }

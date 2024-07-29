@@ -83,12 +83,12 @@ MonoBehaviour:
   maxHealth: 100
   headHealthBar: {fileID: 2150211837319216840}
   moveSpeed: 4
-  damage: 1
+  damage: 10
   raycastDistance: 0.2
   raycastLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  enemyIsDead: 0
+  isDead: 0
 --- !u!50 &2598262411739097571
 Rigidbody2D:
   serializedVersion: 4

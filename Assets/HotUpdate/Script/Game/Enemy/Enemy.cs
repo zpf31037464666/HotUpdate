@@ -54,7 +54,22 @@ public class Enemy : MonoBehaviour
         collider2D.enabled = true;
         rigidbody2D.drag = 100f;
         isDead = false;
+
+        WaveUI.OnRewardEvent+=onRewardEvent;
     }
+
+    private void OnDisable()
+    {
+        WaveUI.OnRewardEvent-=onRewardEvent;
+
+        headHealthBar.EmptyStates();
+        StopAllCoroutines();
+    }
+    private void onRewardEvent()
+    {
+        Die();
+    }
+
     private void Update()
     {
         SimpleMove();
@@ -128,16 +143,17 @@ public class Enemy : MonoBehaviour
     public virtual void Die()
     {
         isDead=true;
+        headHealthBar.EmptyStates();
         StopAllCoroutines();
-       ObjectPool.Instance.PushObject(gameObject);
+        ObjectPool.Instance.PushObject(gameObject);
     }
     #region Move
     protected virtual void SimpleMove()
     {
-       if (isDead || IsPathBlocked()||isHurt) return;
+       if (isDead || IsPathBlocked()||isHurt||target==null) return;
 
          moveDirection = (target.transform.position - transform.position).normalized;
-        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+         transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
        // rigidbody2D.velocity=moveDirection*moveSpeed;
          FlipCharacter();
     }

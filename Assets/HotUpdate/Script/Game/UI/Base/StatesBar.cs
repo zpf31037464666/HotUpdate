@@ -45,6 +45,9 @@ public class StatesBar : MonoBehaviour
     public virtual void UpdateStates(float currentValue, float maxValue)
     {
 
+        if (!gameObject.activeInHierarchy)
+            return;
+
         targetFillAmount = currentValue / maxValue;
         if (bufferedfillingCoroutine != null)
         {
@@ -61,9 +64,7 @@ public class StatesBar : MonoBehaviour
         {
             // if states increase: 1. back -> target 2. front slowly increase
             fillImageBack.fillAmount = targetFillAmount;
-            bufferedfillingCoroutine = StartCoroutine(
-                BufferedFillingCoroutine(fillImageFront)
-            );
+            bufferedfillingCoroutine = StartCoroutine( BufferedFillingCoroutine(fillImageFront));
         }
     }
 
@@ -93,6 +94,7 @@ public class StatesBar : MonoBehaviour
         fillImageBack.fillAmount = 0;
         fillImageFront.fillAmount = 0;
         currentFillAmount = 0;
+        StopAllCoroutines();
     }
 
 }

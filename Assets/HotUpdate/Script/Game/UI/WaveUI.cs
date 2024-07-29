@@ -9,9 +9,8 @@ public class WaveUI : MonoBehaviour
     [SerializeField] Text timeText;
     [SerializeField] GameObject waveUI;
 
-    [SerializeField] int rewardTime;
+    public int rewardTime;
 
-    WaitUntil waitGameState;
     Canvas canvas;
 
     int waveNumber = 1;
@@ -21,7 +20,6 @@ public class WaveUI : MonoBehaviour
     private void Awake()
     {
         canvas = GetComponent<Canvas>();
-        waitGameState = new WaitUntil(() => GameManager.GameState== GameState.Playing);
     }
     IEnumerator Start()
     {
@@ -38,10 +36,13 @@ public class WaveUI : MonoBehaviour
     {
         waveUI.SetActive(true);
         waveUI.GetComponentInChildren<Text>().text = $"----第{waveNumber}波----";
+
+        GameManager.GameState= GameState.UI;
     }
     void CloseUI()
     {
         waveUI.SetActive(false);
+        GameManager.GameState= GameState.Playing;
     }
     IEnumerator RewardCoroutine()
     {
@@ -52,8 +53,9 @@ public class WaveUI : MonoBehaviour
             yield return new WaitForSeconds(1f);
             time -= 1;
         }
+        GameManager.GameState=GameState.Reward;
         OnRewardEvent?.Invoke();
-        yield return waitGameState;
+        yield return new WaitUntil(() => GameManager.GameState== GameState.UI);
         waveNumber++;
     }
 }
