@@ -26,16 +26,19 @@ public class PlayerSpinWeapon : MonoBehaviour
 
         AddSpinWeapon(initSpinWeapon);
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            AddSpinWeapon(initSpinWeapon);
-            AddSpinWeaponDamage(7);
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.T))
+    //    {
+    //        //AddSpinWeapon(initSpinWeapon);
+    //        //AddSpinWeaponDamage(7);
+    //        Debug.Log("Test PlayerSpinWeapon");
 
-        }
+    //        AddSpinWeaponRadius(2);
 
-    }
+    //    }
+
+    //}
     public void AddSpinWeaponDamage(int damage)
     {
         foreach (var bullet in bulletList)
@@ -44,6 +47,16 @@ public class PlayerSpinWeapon : MonoBehaviour
         }
     }
 
+    public void AddSpinWeaponSpeed(float speed)
+    {
+        this.speed+=speed;
+        UpdateWeaponSpeed(this.speed);
+    }
+    public void AddSpinWeaponRadius(float radius)
+    {
+        this.radius+=radius;
+        UpdateWeaponRange(this.radius);
+    }
     void UpdateWeaponRange(float range)
     {
         radius=range;
@@ -52,7 +65,7 @@ public class PlayerSpinWeapon : MonoBehaviour
             //停止协程 避免过多重复协程
             StopCoroutine(bufferedUpdateCoroutine);
         }
-        bufferedUpdateCoroutine= StartCoroutine(BufferedUpdateRangeCoroutine(range));
+        bufferedUpdateCoroutine= StartCoroutine(BufferedUpdateRangeCoroutine(radius));
     }
     void UpdateWeaponSpeed(float speed)
     {

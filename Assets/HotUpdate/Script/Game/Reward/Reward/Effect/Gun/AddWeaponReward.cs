@@ -17,7 +17,7 @@ public class AddWeaponReward : Rewardable
             if (op.Status == AsyncOperationStatus.Succeeded)
             {
                 GameObject weapon=op.Result;
-                GameObject.FindAnyObjectByType<PlayerWeapon>().AddGun(weapon.GetComponent<Gun>());
+                GameObject.FindAnyObjectByType<PlayerWeapon>().AddGun(weapon);
             }
             else
             {

@@ -77,6 +77,8 @@ public class Player : MonoBehaviour
     IEnumerator InvincibleTimeCoroutine()
     {
         isInvincible = true;
+        //  CameraRecoil.instance.Shake(InvincibleTime, .1f);
+        CameraShake.instance.ShakeCamera(InvincibleTime, 1, 1);
         yield return new WaitForSeconds(InvincibleTime);
         isInvincible=false;
     }

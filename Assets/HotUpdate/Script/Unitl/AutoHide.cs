@@ -4,11 +4,34 @@ using UnityEngine;
 
 public class AutoHide : MonoBehaviour
 {
-    private void OnEnable()
+    [SerializeField] bool destroyGameObject;
+    [SerializeField] float lifetime = 1f;
+
+    WaitForSeconds waitLifetime;
+
+    void Awake()
     {
-        Invoke("Close", 1);
+        waitLifetime = new WaitForSeconds(lifetime);
     }
-   public void Close()
+    void OnEnable()
+    {
+        StartCoroutine(DeactivateCoroutine());
+    }
+    IEnumerator DeactivateCoroutine()
+    {
+        yield return waitLifetime;
+
+        if (destroyGameObject)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void Close()
     {
         gameObject.SetActive(false);
     }

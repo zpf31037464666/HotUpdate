@@ -7,10 +7,16 @@ public class EnemyManager : MonoBehaviour
     public float createTime;
 
     [SerializeField] GameObject Enemy;
+    [SerializeField] GameObject corssPrefab;
     [SerializeField] List<Transform> spawnList;
 
     WaveUI waveUI;
 
+    List<Vector2> spawnPosList = new List<Vector2>();
+    List<GameObject> enemyList = new List<GameObject>();
+
+    float spwanRadius = 5;
+    float waitSpawnWarningTime = 1f;
     private void Awake()
     {
         waveUI=FindAnyObjectByType<WaveUI>();
@@ -30,9 +36,8 @@ public class EnemyManager : MonoBehaviour
         var t =(float) waveUI.rewardTime;
         while (t>0)
         {
-            Transform spawn= spawnList[Random.Range(0, spawnList.Count)];
-            GameObject enemy = ObjectPool.Instance.GetObject(Enemy);
-            enemy.transform.position= spawn.position;
+            yield return StartCoroutine(SpawnEnemiesCoroutine(5));
+
             t-=createTime;
             yield return new WaitForSeconds(createTime);
 
@@ -43,6 +48,36 @@ public class EnemyManager : MonoBehaviour
 
         }
      
+    }
+
+
+    IEnumerator SpawnEnemiesCoroutine(int enemyNum)
+    {
+        spawnPosList.Clear();
+        enemyList.Clear();
+        for (int i = 0; i < enemyNum; i++)
+        {
+           // spawnPosList.Add(spawnList[Random.Range(0, spawnList.Count)].position + Random.insideUnitSphere * spwanRadius);
+            spawnPosList.Add(spawnList[Random.Range(0, spawnList.Count)].position);
+            enemyList.Add(Enemy);
+        }
+
+
+        for (int i = 0; i < enemyNum; i++)
+        {
+            yield return new WaitForSeconds(.2f);
+
+            var clone=  ObjectPool.Instance.GetObject(corssPrefab);
+            clone.transform.position=spawnPosList[i];
+        }
+
+        yield return new WaitForSeconds(waitSpawnWarningTime);
+
+        for (int i = 0; i < enemyNum; i++)
+        {
+            var clone = ObjectPool.Instance.GetObject(enemyList[i]);
+            clone.transform.position=spawnPosList[i];
+        }
     }
 
 

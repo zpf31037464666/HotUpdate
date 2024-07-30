@@ -78,5 +78,45 @@
     "BG": "res/9.png",
     "Icon": "Icon/Power.png",
     "AddObjcetName": "null"
+  },
+  {
+    "RewardID": 8,
+    "RewardName": "火球术",
+    "RewardType": "AddSpinWeaponReward",
+    "RewardValue": 1,
+    "Descript": "增加一个火球",
+    "BG": "res/10.png",
+    "Icon": "Icon/star_gold.png",
+    "AddObjcetName": "Bullet/FireBullet.prefab"
+  },
+  {
+    "RewardID": 9,
+    "RewardName": "加伤球",
+    "RewardType": "AddSpinWeaponDamageReward",
+    "RewardValue": 2,
+    "Descript": "增加旋转武器伤害2",
+    "BG": "res/9.png",
+    "Icon": "Icon/Power.png",
+    "AddObjcetName": "null"
+  },
+  {
+    "RewardID": 10,
+    "RewardName": "控球",
+    "RewardType": "AddSpinWeaponRadiusReward",
+    "RewardValue": 1,
+    "Descript": "增加旋转武器范围1",
+    "BG": "res/9.png",
+    "Icon": "Icon/Power.png",
+    "AddObjcetName": "null"
+  },
+  {
+    "RewardID": 10,
+    "RewardName": "操球",
+    "RewardType": "AddSpinWeaponSpeedReward",
+    "RewardValue": 1,
+    "Descript": "增加旋转武器速度1",
+    "BG": "res/9.png",
+    "Icon": "Icon/Power.png",
+    "AddObjcetName": "null"
   }
 ]

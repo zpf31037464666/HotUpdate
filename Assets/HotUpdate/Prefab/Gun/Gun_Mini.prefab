@@ -178,6 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8545036338222546623}
   - component: {fileID: 8477314651440396461}
+  - component: {fileID: 4852151712634825449}
   m_Layer: 0
   m_Name: Gun_Mini
   m_TagString: Untagged
@@ -194,7 +195,7 @@ Transform:
   m_GameObject: {fileID: 6337057585152864084}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.341, y: -0.011, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -229,3 +230,19 @@ MonoBehaviour:
     speed: 20
     interval: 0.5
     fireRate: 10
+--- !u!114 &4852151712634825449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6337057585152864084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d763d853f299b164ca5569ee547eeeb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  rotationSpeed: 50
+  radius: 1
+  isRotation: 0
