@@ -7,10 +7,12 @@ public class Player : MonoBehaviour
 {
     [Header("Health")]
     [SerializeField]  private float maxHealth;
+    [Header("Music")]
+    [SerializeField] AudioData hurtAudioData;
+
     private float health;
     public float InvincibleTime = .5f;//无敌时间
     private bool isInvincible=false;
-
     private Coroutine invincibleTimeCoroutine;
 
     public static Action<Player> OnChangeHealthEvent;
@@ -30,6 +32,10 @@ public class Player : MonoBehaviour
     {
         if (health == 0||isInvincible) return;  // 先判断这个会消除下面的 bug
         health -= damage;
+
+        AudioManager.instance.PlayRandomSFXaudio(hurtAudioData);
+
+
         OnChangeHealthEvent?.Invoke(this);
         OnHurtEvent?.Invoke(this);
         

@@ -12,7 +12,10 @@ public class Gun : MonoBehaviour
 
     [Header("Weapon stats")]
     [SerializeField] LayerMask enemyLayer;  // 敌人层
-    [SerializeField] WeaponInfo weaponInfo;  // 敌人层
+    [SerializeField] WeaponInfo weaponInfo; //数据层
+
+    [Header("Aduio")]
+    [SerializeField] AudioData fireAudioData;
 
 
     Vector2 gunDirection;
@@ -83,6 +86,7 @@ public class Gun : MonoBehaviour
         if (hasLockedEnemy)
         {
             animator.SetTrigger("Fire");
+            AudioManager.instance.PlayRandomSFXaudio(fireAudioData);
             GameObject bullet = ObjectPool.Instance.GetObject(bulletPrefab);
             bullet.transform.position = muzzlePoint.position;
 
@@ -107,6 +111,14 @@ public class Gun : MonoBehaviour
     public void AddFireSpeed(float precent)
     {
         weaponInfo.interval*=(1-precent);
+    }
+    public void AddCriticalRota(float precent)
+    {
+        weaponInfo.baseCriticalRate+=precent;
+    }
+    public void AddCriticalEffect(float precent)
+    {
+        weaponInfo.criticalEffect+=precent;
     }
 
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Collections;
 
 public class RewardButton : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class RewardButton : MonoBehaviour
 
     private Button button;
 
+    private bool isOnclik;
+
+    private Action action;
     private void Awake()
     {
         button = GetComponent<Button>();
@@ -20,7 +24,7 @@ public class RewardButton : MonoBehaviour
     {
         button.onClick.AddListener(() =>
         {
-            Debug.Log("点击事件");
+            OnButtonOnClick();
         });
     }
 
@@ -36,7 +40,8 @@ public class RewardButton : MonoBehaviour
                 nameText.text = info.name;
                 descriptText.text = info.description;
                 // 添加按钮点击事件
-                button.onClick.AddListener(() => rewardable.GetReward());
+               // button.onClick.AddListener(() => rewardable.GetReward());
+                action+=()=>rewardable.GetReward();
             }
             else
             {
@@ -47,9 +52,29 @@ public class RewardButton : MonoBehaviour
 
     public void ButtonAddAction(Action action)
     {
-        button.onClick.AddListener(() =>
+        //button.onClick.AddListener(() =>
+        //{
+        //    action?.Invoke();
+        //});
+        this.action += action;
+    }
+
+    void OnButtonOnClick()
+    {
+
+        if (isOnclik)
         {
+            Debug.Log("双击");
             action?.Invoke();
-        });
+        }
+
+        StartCoroutine(DoubleOnClikCoroutine());
+    }
+
+    IEnumerator DoubleOnClikCoroutine()
+    {
+        isOnclik=true;
+        yield return new WaitForSeconds(0.5f);
+        isOnclik = false;
     }
 }

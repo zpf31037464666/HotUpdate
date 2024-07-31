@@ -11,7 +11,10 @@ public class FireBullet :Bullet
         if (other.gameObject.TryGetComponent(out Enemy enemy))
         {
             Vector2 blackdiction = transform.position - hitPos;
-            enemy.TakeDamageDiction(damage, -blackdiction.normalized, backForce, hitPos);
+
+            enemy.TakeDamageDiction(weaponInfo.damage, -blackdiction.normalized, weaponInfo.backForce, hitPos);
+
+            DamageShowManager.instance.CreateDamage(weaponInfo.damage, transform.position);
             //enemy.TakeDamage(damage);
         }
     }

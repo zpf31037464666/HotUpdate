@@ -42,16 +42,32 @@ public class PlayerWeapon : MonoBehaviour
             gun.AddFireSpeed(precent);
         }
     }
-
-    private void Update()
+    //暴击率
+    public void AddWeaponCriticalRate(float number)
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
+        foreach (var gun in gunList)
         {
-            Debug.Log("Test Add Gun");
-            AddGun(initGun);
-            //AddWeaponDamage(2);
-            //AddWeaponFireSpeed(.3f);
+            gun.AddCriticalRota(number);
         }
     }
+    //暴击效果
+    public void AddWeaponCriticalEffect(float number)
+    {
+        foreach (var gun in gunList)
+        {
+            gun.AddCriticalEffect(number);
+        }
+    }
+
+    //private void Update()
+    //{
+    //    if (Input.GetKeyUp(KeyCode.Escape))
+    //    {
+    //        Debug.Log("Test Add Gun");
+    //        AddGun(initGun);
+    //        //AddWeaponDamage(2);
+    //        //AddWeaponFireSpeed(.3f);
+    //    }
+    //}
 
 }

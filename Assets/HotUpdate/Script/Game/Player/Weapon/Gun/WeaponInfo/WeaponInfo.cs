@@ -14,4 +14,6 @@ public class WeaponInfo
     public float interval;
     public float fireRate;
 
+    public float baseCriticalRate =0f; // 基础暴击率
+    public float criticalEffect = 2f; // 暴击效果
 }

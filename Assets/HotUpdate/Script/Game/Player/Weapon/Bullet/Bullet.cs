@@ -1,18 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    protected float speed;
-    protected int damage=10;
-    protected int backForce;//击退力
     public GameObject explosionPrefab;
+    public AudioData hitAudioData;
 
     protected Vector3 hitPos;
     
-    new private Rigidbody2D rigidbody;
-
+    new protected Rigidbody2D rigidbody;
+    protected WeaponInfo weaponInfo;
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -20,28 +19,42 @@ public class Bullet : MonoBehaviour
 
     public void SetDiction(Vector2 direction)
     {
-        rigidbody.velocity = direction * speed;
+        rigidbody.velocity = direction * weaponInfo.speed;
     }
     public void SetBulletInfo(WeaponInfo weaponInfo)
     {
-        speed=weaponInfo.speed;
-        damage=weaponInfo.damage;
-        backForce=weaponInfo.backForce;
+        this.weaponInfo = weaponInfo;
     }
+
     public void AddBulletDamage(int damage)
     {
-       this.damage+=damage;
+        weaponInfo.damage+=damage;
     }
     public virtual void OnTriggerEnter2D(Collider2D other)
     {
-        hitPos= other.transform.position;
+  
         ObjectPool.Instance.PushObject(gameObject);
         CreateBooldEffect();
+        AudioManager.instance.PlayRandomSFXaudio(hitAudioData);
 
+        hitPos= other.transform.position;
         if (other.gameObject.TryGetComponent(out Enemy enemy))
         {
             Vector2 blackdiction =transform.position - hitPos;
-            enemy.TakeDamageDiction(damage, -blackdiction.normalized, backForce, hitPos);
+
+            bool isCriticalHit=UnityEngine. Random.Range(0f, 1f) < weaponInfo.baseCriticalRate;//计算暴击
+
+            if(isCriticalHit)
+            {
+                var damage =weaponInfo.damage*weaponInfo.criticalEffect;
+                DamageShowManager.instance.CreateRedDamage((int)damage, transform.position);
+            }
+            else
+            {
+                enemy.TakeDamageDiction(weaponInfo.damage, -blackdiction.normalized, weaponInfo.backForce, hitPos);
+                DamageShowManager.instance.CreateDamage(weaponInfo.damage, transform.position);
+            }
+
             //enemy.TakeDamage(damage);
         }
 

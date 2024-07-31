@@ -1,15 +1,23 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RewardUI : MonoBehaviour
 {
     [SerializeField] Canvas canvas;
     [SerializeField] RewardButton rewardButton;
-    [SerializeField] Transform rewardGroup;
 
-    private int rewardNumber = 3;
+    public Transform cardParent;
+    public Transform cardStartPosT;
+    public int cardCount = 10;
+    public float cardWidth = 1f;
+
+    public float dealDuration = 1f;
+    public float delayBetweenCards = 0.2f;
 
     private void OnEnable()
     {
@@ -23,33 +31,78 @@ public class RewardUI : MonoBehaviour
     private void onRewardEvent()
     {
         Debug.Log("调用奖励");
-        CreateReward();
+        CreateCard();
     }
-
-    void ClearReward()
-    {
-        foreach (Transform child in rewardGroup)
-        {
-            Destroy(child.gameObject);
-        }
-    }
-    public void CreateReward()
+    void CreateCard()
     {
         canvas.enabled=true;
-        ClearReward();
-        IRewardable[] rewardables = RewardManager.instance.GetRewardble(rewardNumber);
-        for (int i = 0; i < rewardables.Length; i++)
+
+        foreach (Transform item in cardParent)
         {
-            var rewardObject = Instantiate(rewardButton, rewardGroup);
-            rewardObject.GetComponent<RewardButton>().Init(rewardables[i]);
-            rewardObject.GetComponent<RewardButton>().ButtonAddAction(
-                () => 
-                    {
-                        canvas.enabled=false;
-                        GameManager.GameState=GameState.UI;
-                    } 
-            );
-         }
+            Destroy(item.gameObject);
+        }
+
+        IRewardable[] rewardables = RewardManager.instance.GetRewardble(cardCount);
+
+        int cardNumber =cardCount;
+
+        float totalWidth = cardNumber * cardWidth;
+        float startingX = cardParent.position.x - totalWidth / 2 + cardWidth / 2;
+        for (int i = 0; i < cardNumber; i++)
+        {
+            var card = Instantiate(rewardButton);
+
+            // Position the card
+            float cardX = startingX + i * cardWidth;
+            card.transform.position = cardStartPosT.position;
+
+            card.transform.SetParent(cardParent);
+            card.transform.localScale = Vector3.one;
+
+
+            DealCard(card.gameObject, i * delayBetweenCards, new Vector3(cardX, cardParent.position.y, cardParent.position.z), rewardables[i]);
+        }
+
+    }
+    private void DealCard(GameObject card, float delay, Vector3 targetPos, IRewardable rewardable)
+    {
+        // Store the initial rotation
+        Quaternion initialRotation = card.transform.rotation;
+
+        // Create rotate animation
+        var sequence = DOTween.Sequence();
+
+        sequence.AppendInterval(delay);
+
+        // Move card to target position
+        sequence.Append(card.transform.DOMove(targetPos, 0.1f));
+
+        // Rotate card to half way over dealDuration / 2
+        sequence.Append(card.transform.DORotate(new Vector3(0, 90, 0), dealDuration / 2));
+
+        // Add a function callback here to do something when the card is half way turned
+        // For example, change the card's sprite to show its face
+        sequence.AppendCallback(() => HalfWayThere(card, rewardable));
+
+        // Rotate card to fully turned over dealDuration / 2
+        sequence.Append(card.transform.DORotate(initialRotation.eulerAngles, dealDuration / 2));
+
+        // Add a callback for completion after the animation finishes
+        //  sequence.OnComplete(() => ResetReawardPlane());
+
+    }
+
+    private void HalfWayThere(GameObject card, IRewardable rewardable)
+    {
+        card.GetComponent<RewardButton>().Init(rewardable);
+        card.GetComponent<RewardButton>().ButtonAddAction(
+            () =>
+            {
+                canvas.enabled=false;
+                GameManager.GameState=GameState.UI;
+            }
+        );
+
     }
 
     private void Update()
@@ -57,7 +110,8 @@ public class RewardUI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("生成奖励");
-            CreateReward();
+            //  CreateReward();
+            CreateCard();
         }
     }
 }

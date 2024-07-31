@@ -9,9 +9,6 @@ public class PlayerWorldUI : StatesBar
     {
         Player.OnChangeHealthEvent+=onTakeDamageEvent;
     }
-
-
-
     public override void OnDisable()
     {
         base.OnDisable();

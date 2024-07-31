@@ -4,20 +4,13 @@ using TMPro;
 using UnityEngine;
 public class DamageShow : MonoBehaviour
 {
-    [SerializeField] TMP_Text damageText;
-    [SerializeField] Canvas canvas;
+    public TMP_Text damageText;
+    public Canvas canvas;
     public Vector3 movement;
     public float perisistTime;
-
-
-    public void ShowDamage(int damage, Vector3 position)
+    public virtual void ShowDamage(int damage, Vector3 position)
     {
         transform.position = position;
-        ShowDamage(damage);
-
-    }
-    public void ShowDamage(int damage)
-    {
         canvas.enabled=true;
         damageText.text = damage.ToString();
         Vector3 localPositon = transform.position;
@@ -27,8 +20,7 @@ public class DamageShow : MonoBehaviour
     {
         canvas.enabled=false;
         gameObject.transform.localPosition = Vector3.zero;
-
+        gameObject.transform.localScale = Vector3.one;
         ObjectPool.Instance.PushObject(gameObject);
     }
-
 }

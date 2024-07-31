@@ -87,7 +87,7 @@
     "Descript": "增加一个火球",
     "BG": "res/10.png",
     "Icon": "Icon/star_gold.png",
-    "AddObjcetName": "Bullet/FireBullet.prefab"
+    "AddObjcetName": "Bullet/Spin/FireBall.prefab"
   },
   {
     "RewardID": 9,
@@ -110,13 +110,33 @@
     "AddObjcetName": "null"
   },
   {
-    "RewardID": 10,
+    "RewardID": 11,
     "RewardName": "操球",
     "RewardType": "AddSpinWeaponSpeedReward",
     "RewardValue": 1,
     "Descript": "增加旋转武器速度1",
     "BG": "res/9.png",
     "Icon": "Icon/Power.png",
+    "AddObjcetName": "null"
+  },
+  {
+    "RewardID": 12,
+    "RewardName": "暴击率",
+    "RewardType": "AddWeaponCriticalRateReward",
+    "RewardValue": 10,
+    "Descript": "增加武器暴击率10%",
+    "BG": "res/1.png",
+    "Icon": "Icon/star_gold.png",
+    "AddObjcetName": "null"
+  },
+  {
+    "RewardID": 13,
+    "RewardName": "暴击效果",
+    "RewardType": "AddWeaponCriticalEffectReward",
+    "RewardValue": 10,
+    "Descript": "增加武器暴击效果10%",
+    "BG": "res/1.png",
+    "Icon": "Icon/star_gold.png",
     "AddObjcetName": "null"
   }
 ]

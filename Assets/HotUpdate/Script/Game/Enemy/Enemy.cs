@@ -113,7 +113,6 @@ public class Enemy : MonoBehaviour
     public virtual void TakeDamage(int damage)
     {
         health -= damage;
-        DamageShowManager.instance.CreateDamage(damage, transform.position);
         headHealthBar.UpdateStates(health, maxHealth);
         isHurt=true;
 

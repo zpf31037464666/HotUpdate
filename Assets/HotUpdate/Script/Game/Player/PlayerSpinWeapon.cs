@@ -46,7 +46,6 @@ public class PlayerSpinWeapon : MonoBehaviour
             bullet.AddBulletDamage(damage);
         }
     }
-
     public void AddSpinWeaponSpeed(float speed)
     {
         this.speed+=speed;
@@ -76,8 +75,18 @@ public class PlayerSpinWeapon : MonoBehaviour
     }
     public void AddSpinWeapon(GameObject spinWeapon)
     {
-        GameObject clone=   Instantiate(spinWeapon, spinWeaponGorup);
+
+        Debug.Log("增加火球");
+
+        GameObject clone =   Instantiate(spinWeapon, spinWeaponGorup);
         rotationObjectList.Add(clone.GetComponent<AutoRotationToPlayer>());
+
+        //临时
+         WeaponInfo weaponInfo=new WeaponInfo();
+        weaponInfo.damage=10;
+        clone.GetComponent<Bullet>().SetBulletInfo(weaponInfo);
+
+
         bulletList.Add(clone.GetComponent<Bullet>());
         UpdateWeaponSpeed(speed);
         UpdateWeaponRange(radius);
