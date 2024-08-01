@@ -769,6 +769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  missPrecet: 0.5
   hurtAudioData:
     audioClip: {fileID: 8300000, guid: 92b908cae5fd4d54d80c320632c82f54, type: 3}
     volume: 1
@@ -877,7 +878,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6c70d9d7acc9446e18e506871a6e8879, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

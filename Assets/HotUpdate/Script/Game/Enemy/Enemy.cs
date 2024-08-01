@@ -31,8 +31,7 @@ public class Enemy : MonoBehaviour
     bool isBlocked;
 
     bool isHurt;
-    float hurtPresistTime=.5f;
-    float hurtTime;
+    float hurtPresistTime=.1f;
 
     protected virtual void Awake()
     {
@@ -45,7 +44,7 @@ public class Enemy : MonoBehaviour
     }
     protected virtual void Start()
     {
-        hurtTime = hurtPresistTime;
+     
     }
     protected virtual void OnEnable()
     {
@@ -54,10 +53,11 @@ public class Enemy : MonoBehaviour
         collider2D.enabled = true;
         rigidbody2D.drag = 100f;
         isDead = false;
+        spriteRenderer.material.SetFloat("_FlashAmount", 0);
+        isHurt = false;
 
         WaveUI.OnRewardEvent+=onRewardEvent;
     }
-
     private void OnDisable()
     {
         WaveUI.OnRewardEvent-=onRewardEvent;
@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
     {
         SimpleMove();
 
-        Hurt();
+        //Hurt();
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -106,37 +106,41 @@ public class Enemy : MonoBehaviour
     public virtual void TakeDamageDiction(int damage, Vector2 knockbackDirection, float knockbackForce, Vector2 hitPos)
     {
     //    Debug.Log("受到击退"+"Diction"+knockbackDirection+"force"+knockbackForce);
-
         rigidbody2D.velocity=knockbackDirection*knockbackForce;
         TakeDamage(damage);
     }
+    Coroutine hurtCoroutine;
     public virtual void TakeDamage(int damage)
     {
         health -= damage;
         headHealthBar.UpdateStates(health, maxHealth);
-        isHurt=true;
 
         if (health <= 0f)
         {
             health = 0f;
             Die();
         }
-    }
-    public virtual void Hurt()
-    {
-        if(isHurt)
+
+        if (!gameObject.activeInHierarchy)
+            return;
+        if (hurtCoroutine != null)
         {
-            hurtTime-= Time.time;
-            HurtEffect();
-            if(hurtTime <= 0f)
-            {
-                isHurt = false;
-                hurtTime=hurtPresistTime;
-            }
+            StopCoroutine(hurtCoroutine);
         }
+        hurtCoroutine=StartCoroutine(HurtCoroutine());
     }
+    IEnumerator HurtCoroutine()
+    {
+        isHurt=true;
+        HurtEffect();
+        yield return new WaitForSeconds(hurtPresistTime);
+        spriteRenderer.material.SetFloat("_FlashAmount", 0);
+        isHurt = false;
+    }
+
     public virtual void HurtEffect()
     {
+        spriteRenderer.material.SetFloat("_FlashAmount", 1);
 
     }
     public virtual void Die()

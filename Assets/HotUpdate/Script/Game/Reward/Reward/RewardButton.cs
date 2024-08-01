@@ -64,7 +64,6 @@ public class RewardButton : MonoBehaviour
 
         if (isOnclik)
         {
-            Debug.Log("双击");
             action?.Invoke();
         }
 

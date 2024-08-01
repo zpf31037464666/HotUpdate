@@ -226,14 +226,14 @@ MonoBehaviour:
     id: 0
     name: Gun
     damage: 10
-    backForce: 0
+    backForce: 10
     speed: 20
     interval: 0.5
     fireRate: 10
     baseCriticalRate: 0.5
     criticalEffect: 2
   fireAudioData:
-    audioClip: {fileID: 8300000, guid: 73ce2d15eab081d43ae8edc368d26f2b, type: 3}
+    audioClip: {fileID: 8300000, guid: be86fb8d074d30245a2e0e1a4aafc965, type: 3}
     volume: 1
 --- !u!114 &4852151712634825449
 MonoBehaviour:

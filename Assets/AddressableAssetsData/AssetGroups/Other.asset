@@ -10,13 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: HostUpdate
+  m_Name: Other
   m_EditorClassIdentifier: 
-  m_GroupName: HostUpdate
+  m_GroupName: Other
   m_Data:
     m_SerializedData: []
   m_GUID: f3cbb83427f091243b6ae2730df34114
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 8ecbb97921ad7bf419402692ea4f7505
+    m_Address: Assets/HotUpdate/Shaders
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - HotUpdate
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e53dea3910c638247a169bdabe09ce20, type: 2}
   m_SchemaSet:

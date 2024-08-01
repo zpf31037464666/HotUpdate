@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     [Header("Health")]
     [SerializeField]  private float maxHealth;
+    [SerializeField]  private float missPrecet;
     [Header("Music")]
     [SerializeField] AudioData hurtAudioData;
 
@@ -31,22 +32,35 @@ public class Player : MonoBehaviour
     public virtual void TakeDamage(float damage)
     {
         if (health == 0||isInvincible) return;  // 先判断这个会消除下面的 bug
-        health -= damage;
 
-        AudioManager.instance.PlayRandomSFXaudio(hurtAudioData);
+        bool isMiss = UnityEngine.Random.Range(0f, 1f)<missPrecet;
 
 
-        OnChangeHealthEvent?.Invoke(this);
-        OnHurtEvent?.Invoke(this);
-        
-        if (health <= 0f)
+        if (isMiss)
         {
+            DamageShowManager.instance.CreateDamage("Miss", transform.position);
+            Invincble();
+        }
+        else
+        {
+            health -= damage;
+
+            AudioManager.instance.PlayRandomSFXaudio(hurtAudioData);
+
             OnChangeHealthEvent?.Invoke(this);
-            health = 0f;
-            Die();
+            OnHurtEvent?.Invoke(this);
+
+            if (health <= 0f)
+            {
+                OnChangeHealthEvent?.Invoke(this);
+                health = 0f;
+                Die();
+            }
+
+            Invincble();
         }
 
-        Invincble();
+
     }
 
     private void Invincble()

@@ -30,6 +30,7 @@ public class Test : MonoBehaviour
 
     private void OnSenceLoad(AsyncOperationHandle<SceneInstance> handle)
     {
+
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             Debug.Log("加载成功");

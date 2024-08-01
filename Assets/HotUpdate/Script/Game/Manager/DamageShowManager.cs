@@ -14,6 +14,14 @@ public class DamageShowManager : Singleton<DamageShowManager>
         Vector3 randromPos = new Vector3(position.x+Random.Range(-0.5F, 0.5F), position.y+Random.Range(-0.5f, 0.5f), 0);
         damageShow.ShowDamage(damage, randromPos);
     }
+    public void CreateDamage(string contect, Vector3 position)
+    {
+        GameObject clone = ObjectPool.Instance.GetObject(ordinaryDamageShow.gameObject);
+        DamageShow damageShow = clone.GetComponent<DamageShow>();
+
+        Vector3 randromPos = new Vector3(position.x+Random.Range(-0.5F, 0.5F), position.y+Random.Range(-0.5f, 0.5f), 0);
+        damageShow.ShowDamage(contect, randromPos);
+    }
     public void CreateRedDamage(int damage, Vector3 position)
     {
         GameObject clone = ObjectPool.Instance.GetObject(redDamageShow.gameObject);

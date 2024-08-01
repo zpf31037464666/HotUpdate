@@ -15,9 +15,11 @@ public class PlayerMovement : MonoBehaviour
 
 
     new private Rigidbody2D rigidbody;
+    private SpriteRenderer spriteRenderer;
     private Animator animator;
     private Joystick joystick;
     private Button dashButton;
+
     PlayerUI playerUI;
 
     private void Start()
@@ -25,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         animator=GetComponentInChildren<Animator>();
         playerUI=FindAnyObjectByType<PlayerUI>();
+
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         joystick=playerUI.joystick;
         dashButton=playerUI.dashButton;
 
@@ -36,6 +40,12 @@ public class PlayerMovement : MonoBehaviour
         Move();
         SwitchAnimation();
         Fild();
+
+        if(Input.GetKeyDown(KeyCode.S))
+        {
+            Debug.Log("测试更改材质");
+            spriteRenderer.material.SetFloat("_FlashAmount", 1);
+        }
     }
     void Fild()
     {

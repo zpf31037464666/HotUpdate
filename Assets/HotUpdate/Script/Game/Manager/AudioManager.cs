@@ -55,6 +55,8 @@ public class AudioManager : PersistentSingleton<AudioManager>
     {
         SFXplayer.volume=value;
     }
+    public float GetSfxVolume => SFXplayer.volume;
+    public float GetMusicVolume => musicPlayer.volume;
 }
 [System.Serializable]
 public class AudioData// [System.Serializable]  序列化到编辑器中

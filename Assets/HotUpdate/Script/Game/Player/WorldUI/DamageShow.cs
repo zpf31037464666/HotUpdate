@@ -16,6 +16,14 @@ public class DamageShow : MonoBehaviour
         Vector3 localPositon = transform.position;
         UIEffect.Instance.SetUIMove(gameObject, localPositon+ movement, perisistTime, () => Original());
     }
+    public virtual void ShowDamage(string contect, Vector3 position)
+    {
+        transform.position = position;
+        canvas.enabled=true;
+        damageText.text = contect;
+        Vector3 localPositon = transform.position;
+        UIEffect.Instance.SetUIMove(gameObject, localPositon+ movement, perisistTime, () => Original());
+    }
     public void Original()
     {
         canvas.enabled=false;
