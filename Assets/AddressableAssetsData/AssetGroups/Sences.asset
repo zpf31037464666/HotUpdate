@@ -23,12 +23,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - HotUpdate
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 036b1cdc2895e3449a4e9563db0f587c
-    m_Address: Level1
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - HotUpdate
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b09f423fb20323d45b0b3fc6053c9b34
     m_Address: Game
     m_ReadOnly: 0
@@ -36,7 +30,7 @@ MonoBehaviour:
     - HotUpdate
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d1c654b6268728b4dbd4a7317e2292de
-    m_Address: Game2
+    m_Address: 0
     m_ReadOnly: 0
     m_SerializedLabels:
     - HotUpdate

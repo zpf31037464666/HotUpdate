@@ -17,11 +17,10 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 8ab61d0fc9572e040b7e099708bf713c
   m_SerializeEntries:
-  - m_GUID: e6aa432b329028548a98bfe3344fa614
-    m_Address: res
+  - m_GUID: ffa20b4e14020624abbda583e92ef4ab
+    m_Address: Card
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - HotUpdate
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5fa22dddc3da77c4c92b1e2fc35ed5db
     m_Address: Icon

@@ -10,6 +10,8 @@ public class RewardButton : MonoBehaviour
     [SerializeField] private Text nameText;
     [SerializeField] private Text descriptText;
 
+    [SerializeField] private GameObject BackGround;
+
     private Button button;
 
     private bool isOnclik;
@@ -30,17 +32,19 @@ public class RewardButton : MonoBehaviour
 
     public void Init(IRewardable rewardable)
     {
+     
         // 异步加载并显示奖励信息
         rewardable.ReturnRewardInfo((info) =>
         {
             if (info != null)
             {
+                BackGround.SetActive(false);
+
                 BG.sprite = info.bgSprite;
                 headImage.sprite = info.headSprite;
                 nameText.text = info.name;
                 descriptText.text = info.description;
                 // 添加按钮点击事件
-               // button.onClick.AddListener(() => rewardable.GetReward());
                 action+=()=>rewardable.GetReward();
             }
             else
@@ -52,10 +56,6 @@ public class RewardButton : MonoBehaviour
 
     public void ButtonAddAction(Action action)
     {
-        //button.onClick.AddListener(() =>
-        //{
-        //    action?.Invoke();
-        //});
         this.action += action;
     }
 

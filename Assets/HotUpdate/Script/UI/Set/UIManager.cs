@@ -8,8 +8,6 @@ public class UIManager : StateMachina
     public static UIManager Instance;
 
     private Dictionary<string, GameObject> prefabDict = new Dictionary<string, GameObject>();
-    private IState currentState;
-
     private void Awake()
     {
         if (Instance == null)
@@ -32,23 +30,25 @@ public class UIManager : StateMachina
     {
         if (prefabDict.ContainsKey(name))
         {
+            Debug.Log("包含物体"+name);
             onLoaded?.Invoke(prefabDict[name]);
             return;
         }
 
         Addressables.LoadAssetAsync<GameObject>(name).Completed += handle =>
         {
-            OnPanelLoaded(handle, onLoaded);
+            OnPanelLoaded(handle, onLoaded,name);
         };
     }
 
-    private void OnPanelLoaded(AsyncOperationHandle<GameObject> handle, System.Action<GameObject> onLoaded)
+    private void OnPanelLoaded(AsyncOperationHandle<GameObject> handle, System.Action<GameObject> onLoaded,string name)
     {
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
             GameObject panelPrefab = handle.Result;
             GameObject panelObject = Instantiate(panelPrefab, gameObject.transform, false);
-            prefabDict[panelPrefab.name] = panelObject; // 使用 prefab 的名字作为字典的键
+
+            prefabDict[name] = panelObject; 
             onLoaded?.Invoke(panelObject); // 调用回调，返回实例化的面板对象
         }
         else

@@ -7,9 +7,11 @@ public class UIObjectScaler : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     private Vector3 originalScale;
     [SerializeField] private float multiply = 1.2f;
     [SerializeField] private float duration = 0.5f;
+
+    [SerializeField] private bool isVectorOne=true;
     void Start()
     {
-        originalScale = transform.localScale;
+        originalScale = isVectorOne?Vector3.one: transform.localScale;
     }
     public void OnPointerEnter(PointerEventData eventData)
     {

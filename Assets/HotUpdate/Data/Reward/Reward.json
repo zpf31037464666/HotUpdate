@@ -5,7 +5,7 @@
     "RewardType": "AddHealthReward",
     "RewardValue": 10,
     "Descript": "增加玩家血量",
-    "BG": "res/1.png",
+    "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/star_gold.png",
     "AddObjcetName": "null"
   },
@@ -15,7 +15,7 @@
     "RewardType": "AddMpReward",
     "RewardValue": 10,
     "Descript": "增加玩家蓝量",
-    "BG": "res/2.png",
+    "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/star_silver.png",
     "AddObjcetName": "null"
   },
@@ -25,7 +25,7 @@
     "RewardType": "AddHealthReward",
     "RewardValue": 100,
     "Descript": "大量增加玩家血量",
-    "BG": "res/3.png",
+    "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/shield_gold.png",
     "AddObjcetName": "null"
   },
@@ -35,7 +35,7 @@
     "RewardType": "AddCoinReward",
     "RewardValue": 10,
     "Descript": "增加玩家金币",
-    "BG": "res/4.png",
+    "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/Power.png",
     "AddObjcetName": "null"
   },
@@ -45,7 +45,7 @@
     "RewardType": "AddLevelReward",
     "RewardValue": 10,
     "Descript": "增加玩家经验",
-    "BG": "res/6.png",
+    "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/star_gold.png",
     "AddObjcetName": "null"
   },
@@ -55,7 +55,7 @@
     "RewardType": "AddWeaponReward",
     "RewardValue": 1,
     "Descript": "增加一把手枪",
-    "BG": "res/7.png",
+    "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/star_gold.png",
     "AddObjcetName": "Gun/Gun_Mini.prefab"
   },
@@ -65,7 +65,7 @@
     "RewardType": "AddWeaponSpeedReward",
     "RewardValue": 30,
     "Descript": "增加枪支射速30%",
-    "BG": "res/8.png",
+    "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/Power.png",
     "AddObjcetName": "null"
   },
@@ -75,7 +75,7 @@
     "RewardType": "AddWeaponDamageReward",
     "RewardValue": 2,
     "Descript": "增加枪支伤害2",
-    "BG": "res/9.png",
+    "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/Power.png",
     "AddObjcetName": "null"
   },
@@ -85,7 +85,7 @@
     "RewardType": "AddSpinWeaponReward",
     "RewardValue": 1,
     "Descript": "增加一个火球",
-    "BG": "res/10.png",
+    "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/star_gold.png",
     "AddObjcetName": "Bullet/Spin/FireBall.prefab"
   },
@@ -95,7 +95,7 @@
     "RewardType": "AddSpinWeaponDamageReward",
     "RewardValue": 2,
     "Descript": "增加旋转武器伤害2",
-    "BG": "res/9.png",
+    "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/Power.png",
     "AddObjcetName": "null"
   },
@@ -105,7 +105,7 @@
     "RewardType": "AddSpinWeaponRadiusReward",
     "RewardValue": 1,
     "Descript": "增加旋转武器范围1",
-    "BG": "res/9.png",
+    "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/Power.png",
     "AddObjcetName": "null"
   },
@@ -115,7 +115,7 @@
     "RewardType": "AddSpinWeaponSpeedReward",
     "RewardValue": 1,
     "Descript": "增加旋转武器速度1",
-    "BG": "res/9.png",
+    "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/Power.png",
     "AddObjcetName": "null"
   },
@@ -125,7 +125,7 @@
     "RewardType": "AddWeaponCriticalRateReward",
     "RewardValue": 10,
     "Descript": "增加武器暴击率10%",
-    "BG": "res/1.png",
+    "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/star_gold.png",
     "AddObjcetName": "null"
   },
@@ -135,7 +135,7 @@
     "RewardType": "AddWeaponCriticalEffectReward",
     "RewardValue": 10,
     "Descript": "增加武器暴击效果10%",
-    "BG": "res/1.png",
+    "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/star_gold.png",
     "AddObjcetName": "null"
   }

@@ -24,7 +24,7 @@ public class PlayerSpinWeapon : MonoBehaviour
 
         currentRadius = radius;
 
-        AddSpinWeapon(initSpinWeapon);
+       // AddSpinWeapon(initSpinWeapon);
     }
     //private void Update()
     //{

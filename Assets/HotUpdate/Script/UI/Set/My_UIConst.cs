@@ -4,12 +4,12 @@ public class My_UIConst
     //  Menu
     public const string MainMenuPanel = "UI/Panel/MainMeun/MainMenuPanel.prefab";
     public const string OptionPanel = "UI/Panel/MainMeun/OptionPanel.prefab";
-
+    public const string LevelSelectPanel = "UI/Panel/MainMeun/LevelSelectPanel.prefab";
 
 
     public const string UserPanel = "UserPanel";
     public const string SettingsPanel = "SettingsPanel";
-    public const string LevelSelectPanel = "LevelSelectPanel";
+
     public const string SavePanel = "SavePanel";
 
     //Game

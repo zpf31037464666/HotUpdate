@@ -20,8 +20,9 @@ public class MainMeunPanel : UIState
     {
         startButton.onClick.AddListener(() =>
         {
-            SceneLoadManager.instance.LoadScene("Game2");
-            canvas.enabled=false;
+            //SceneLoadManager.instance.LoadScene("Game2");
+            //canvas.enabled=false;
+            UIManager.Instance.SwitchPanel(My_UIConst.LevelSelectPanel);
         });
         optionButton.onClick.AddListener(() =>
         {
@@ -29,7 +30,11 @@ public class MainMeunPanel : UIState
         });
         exitButton.onClick.AddListener(() =>
         {
-            Application.Quit();
+                #if UNITY_EDITOR
+                          UnityEditor.EditorApplication.isPlaying = false; // 在编辑器中停止播放模式
+                #else
+                          Application.Quit(); // 在构建版本中退出应用
+                #endif
         });
     }
     public override void Enter()

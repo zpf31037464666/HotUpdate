@@ -11,6 +11,9 @@ public class Enemy : MonoBehaviour
     [Header("Movement")]
     [SerializeField] protected float moveSpeed = 0.2f;
     [SerializeField] protected int damage = 1;
+    [Header("Movement")]
+    [SerializeField] protected SpriteRenderer[] spriteRenderers; 
+
     [Header("Raycast")]
     [SerializeField] float raycastDistance = 0.2f;
     [SerializeField] LayerMask raycastLayerMask;
@@ -19,7 +22,6 @@ public class Enemy : MonoBehaviour
 
     new protected Rigidbody2D rigidbody2D;  // 角色刚体
     protected Animator animator;  // 角色动画控制器
-    protected SpriteRenderer spriteRenderer;  // 角色精灵渲染器
 
     protected float health;  // 角色血量
     protected Vector2 moveDirection;  // 角色移动方向
@@ -37,7 +39,6 @@ public class Enemy : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         collider2D = GetComponent<CircleCollider2D>();
         target = GameObject.FindGameObjectWithTag("Player");
@@ -50,20 +51,23 @@ public class Enemy : MonoBehaviour
     {
         health = maxHealth;
         headHealthBar.UpdateStates(health, maxHealth);
-        collider2D.enabled = true;
         rigidbody2D.drag = 100f;
+        foreach (var spriteRenderer in spriteRenderers)
+        {
+            spriteRenderer.material.SetFloat("_FlashAmount", 0);
+        }
+        collider2D.enabled = true;
         isDead = false;
-        spriteRenderer.material.SetFloat("_FlashAmount", 0);
         isHurt = false;
 
-        WaveUI.OnRewardEvent+=onRewardEvent;
+        WaveUI.OnRewardEvent += onRewardEvent;
     }
     private void OnDisable()
     {
-        WaveUI.OnRewardEvent-=onRewardEvent;
-
         headHealthBar.EmptyStates();
         StopAllCoroutines();
+
+        WaveUI.OnRewardEvent -= onRewardEvent;
     }
     private void onRewardEvent()
     {
@@ -73,9 +77,6 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         SimpleMove();
-
-        //Hurt();
-
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -113,6 +114,8 @@ public class Enemy : MonoBehaviour
     public virtual void TakeDamage(int damage)
     {
         health -= damage;
+        Debug.Log("Enemy"+health);
+
         headHealthBar.UpdateStates(health, maxHealth);
 
         if (health <= 0f)
@@ -134,14 +137,24 @@ public class Enemy : MonoBehaviour
         isHurt=true;
         HurtEffect();
         yield return new WaitForSeconds(hurtPresistTime);
-        spriteRenderer.material.SetFloat("_FlashAmount", 0);
+
+
+        foreach (var spriteRenderer in spriteRenderers)
+        {
+            spriteRenderer.material.SetFloat("_FlashAmount", 0);
+        }
+
         isHurt = false;
+        hurtCoroutine=null;
     }
 
     public virtual void HurtEffect()
     {
-        spriteRenderer.material.SetFloat("_FlashAmount", 1);
-
+        foreach (var spriteRenderer in spriteRenderers)
+        {
+            spriteRenderer.material.SetFloat("_FlashAmount", 1);
+        }
+        animator.SetTrigger("attack");
     }
     public virtual void Die()
     {
@@ -155,13 +168,15 @@ public class Enemy : MonoBehaviour
     {
        if (isDead || IsPathBlocked()||isHurt||target==null) return;
 
-         moveDirection = (target.transform.position - transform.position).normalized;
+        animator.SetBool("isMoving", true);
+        moveDirection = (target.transform.position - transform.position).normalized;
          transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
        // rigidbody2D.velocity=moveDirection*moveSpeed;
          FlipCharacter();
     }
     protected bool IsPathBlocked()
     {
+        
         ray = new Ray(transform.position, moveDirection);
         collider2D.enabled = false;
         isBlocked = Physics2D.Raycast(ray.origin, ray.direction, raycastDistance, raycastLayerMask);
