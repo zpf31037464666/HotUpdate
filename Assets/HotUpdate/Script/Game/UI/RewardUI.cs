@@ -105,13 +105,13 @@ public class RewardUI : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Debug.Log("生成奖励");
-            //  CreateReward();
-            CreateCard();
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Escape))
+    //    {
+    //        Debug.Log("生成奖励");
+    //        //  CreateReward();
+    //        CreateCard();
+    //    }
+    //}
 }

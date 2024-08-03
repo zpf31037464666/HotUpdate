@@ -1,4 +1,3 @@
-
 public class My_UIConst
 {
     //  Menu
@@ -6,22 +5,16 @@ public class My_UIConst
     public const string OptionPanel = "UI/Panel/MainMeun/OptionPanel.prefab";
     public const string LevelSelectPanel = "UI/Panel/MainMeun/LevelSelectPanel.prefab";
 
-
-    public const string UserPanel = "UserPanel";
-    public const string SettingsPanel = "SettingsPanel";
-
-    public const string SavePanel = "SavePanel";
-
     //Game
-    public const string GamePanel = "GamePanel";
-    public const string ReawardPanel = "ReawardPanel";
-    public const string PlayerUIPanel = "PlayerUIPanel";
-
-    public const string PlayerInfoPanel = "PlayerInfoPanel";
-
+    public const string GamePanel = "UI/Panel/Game/GamePanel.prefab";
+    public const string PausePanel = "UI/Panel/Game/PausePanel.prefab";
 
 
     // 你可以根据需要添加更多的 UI 名称
+}
+public class SceneName
+{
+    public const string Main = "Main";
 }
 
 public class Archival

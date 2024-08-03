@@ -32,10 +32,7 @@ public class Player : MonoBehaviour
     public virtual void TakeDamage(float damage)
     {
         if (health == 0||isInvincible) return;  // 先判断这个会消除下面的 bug
-
         bool isMiss = UnityEngine.Random.Range(0f, 1f)<missPrecet;
-
-
         if (isMiss)
         {
             DamageShowManager.instance.CreateDamage("Miss", transform.position);
@@ -59,10 +56,7 @@ public class Player : MonoBehaviour
 
             Invincble();
         }
-
-
     }
-
     private void Invincble()
     {
         if (!gameObject.activeInHierarchy)

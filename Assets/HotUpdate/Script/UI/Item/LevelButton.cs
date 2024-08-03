@@ -66,7 +66,7 @@ public class LevelButton : MonoBehaviour
     {
         Debug.Log("双击"+levelInfo.name);
 
-        SceneLoadManager.instance.LoadScene(levelInfo.level.ToString());
-        levelSelector.Exit();
+        SceneLoadManager.instance.LoadScene(levelInfo.level.ToString(), My_UIConst.GamePanel, levelSelector.moveDuration*2);
+       // UIManager.Instance.SwitchPanel(My_UIConst.GamePanel);
     }
 }

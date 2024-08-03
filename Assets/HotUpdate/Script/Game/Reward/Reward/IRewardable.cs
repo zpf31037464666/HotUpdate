@@ -6,7 +6,6 @@ public interface IRewardable
 {
     string Name { get; }
     Reward Reward { get; set; }
-
     /// <summary>
     /// 异步返回奖励信息的方法
     /// </summary>
@@ -18,8 +17,6 @@ public interface IRewardable
     /// </summary>
     void GetReward();
 }
-
-
 public class RewardInfo
 {
     public string name;       // 奖励名称

@@ -13,7 +13,6 @@ public class UIState : MonoBehaviour, IState
     protected int initialSortingOrder;
     protected virtual void Awake()
     {
-
         canvas = GetComponent<Canvas>();
         canvasGroup = GetComponent<CanvasGroup>();
         rectTransform= GetComponent<RectTransform>();

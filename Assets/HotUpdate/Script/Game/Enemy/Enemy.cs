@@ -114,9 +114,7 @@ public class Enemy : MonoBehaviour
     public virtual void TakeDamage(int damage)
     {
         health -= damage;
-        Debug.Log("Enemy"+health);
-
-        headHealthBar.UpdateStates(health, maxHealth);
+         headHealthBar.UpdateStates(health, maxHealth);
 
         if (health <= 0f)
         {

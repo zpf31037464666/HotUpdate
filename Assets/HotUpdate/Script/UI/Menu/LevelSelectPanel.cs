@@ -25,10 +25,6 @@ public class LevelSelectPanel : UIState
     private float currentAngle = 0f;
 
     private float scalePrecet = 1.2f;
-
-
-
-
     void Start()
     {
         Initial();

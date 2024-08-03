@@ -24,20 +24,29 @@ public class OptionPanel : UIState
 
         comfirmButton.onClick.AddListener(() =>
         {
-             UIManager.Instance.SwitchPanel(My_UIConst.MainMenuPanel);
+            // UIManager.Instance.SwitchPanel(My_UIConst.MainMenuPanel);
+             UIManager.Instance.ReturnToPreviousPanel();
         });
         backButton.onClick.AddListener(() =>
         {
-            UIManager.Instance.SwitchPanel(My_UIConst.MainMenuPanel);
+            //UIManager.Instance.SwitchPanel(My_UIConst.MainMenuPanel);
+            UIManager.Instance.ReturnToPreviousPanel();
         });
     }
 
     public override void Enter()
     {
         base.Enter();
+        Time.timeScale =0;
+        canvas.sortingOrder=99;
         musicAudioSlider.value= AudioManager.instance.GetMusicVolume;
         sfxAudioSlider.value= AudioManager.instance.GetSfxVolume;
-
+    }
+    public override void Exit()
+    {
+        base.Exit();
+        Time.timeScale =1;
+        canvas.sortingOrder=0;
     }
 
 }

@@ -20,8 +20,6 @@ public class MainMeunPanel : UIState
     {
         startButton.onClick.AddListener(() =>
         {
-            //SceneLoadManager.instance.LoadScene("Game2");
-            //canvas.enabled=false;
             UIManager.Instance.SwitchPanel(My_UIConst.LevelSelectPanel);
         });
         optionButton.onClick.AddListener(() =>
