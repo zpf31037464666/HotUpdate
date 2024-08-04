@@ -1,18 +1,14 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class Poison : MonoBehaviour
+public class Blood : MonoBehaviour
 {
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            Buff buff = BuffManager.instance.GetBuff("毒药");
+            Buff buff = BuffManager.instance.GetBuff("血包");
 
             if (buff != null)
             {
@@ -21,21 +17,17 @@ public class Poison : MonoBehaviour
             }
             buff.ReturnBuffDataInfo((info) =>
             {
-        
-                Debug.Log("毒药的描述是"+info.description);
+             
+  
 
             });
             buff.Apply(collision.gameObject);
             collision.GetComponent<BuffHandle>().AddBuff(buff);
 
             Destroy(gameObject);
+
         }
 
 
     }
-
-
-
-
-
 }

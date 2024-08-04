@@ -18,7 +18,7 @@ public class PlayerWeapon : MonoBehaviour
 
     public void AddGun(GameObject weapon)
     {
-        Debug.Log("增加武器次数");
+     //   Debug.Log("增加武器次数");
         GameObject clone = Instantiate(weapon, gunTransformGroup,false);
         gunList.Add(clone.GetComponent<Gun>());
         rotationObjectList.Add(clone.GetComponent<AutoRotationToPlayer>());

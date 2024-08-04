@@ -10,17 +10,18 @@ public class AddHealthBuff : Buff
     public override void OnEnter()
     {
         Debug.Log("进入时增加血量");
-        ower.GetComponent<Player>().TakeDamage(10);
+        ower.GetComponent<Player>()?.AddHealth(buffData.BuffValue);
 
     }
     public override void OnUpdate()
     {
         Debug.Log("更新血量");
-        ower.GetComponent<Player>().TakeDamage(1);
+        ower.GetComponent<Player>()?.AddHealth(buffData.BuffValue);
     }
     public override void OnRemove()
     {
         Debug.Log("移除时更新血量");
-        ower.GetComponent<Player>().Die();
+        ower.GetComponent<Player>()?.AddHealth(buffData.BuffValue);
     }
 }
+

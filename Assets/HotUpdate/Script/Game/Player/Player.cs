@@ -57,6 +57,13 @@ public class Player : MonoBehaviour
             Invincble();
         }
     }
+
+    public virtual void AddHealth(float amont)
+    {
+        health+=amont;
+        if (health>=maxHealth) health=maxHealth;
+        OnChangeHealthEvent?.Invoke(this);
+    }
     private void Invincble()
     {
         if (!gameObject.activeInHierarchy)
@@ -71,7 +78,6 @@ public class Player : MonoBehaviour
             invincibleTimeCoroutine=StartCoroutine(InvincibleTimeCoroutine());
         }
     }
-
     public void AddHelath(int helath)
     {
         this.health += helath;

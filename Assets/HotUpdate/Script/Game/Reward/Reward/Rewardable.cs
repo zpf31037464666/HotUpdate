@@ -11,6 +11,8 @@ public class Rewardable : IRewardable
 
     public Rewardable(Reward reward)
     {
+        Debug.Log("初始化数据"+Name);
+
         Reward = reward;
     }
 

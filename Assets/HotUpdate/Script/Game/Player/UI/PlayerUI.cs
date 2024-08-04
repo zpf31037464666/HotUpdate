@@ -1,32 +1,31 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
 {
+    [Header("Health")]
     [SerializeField] private Text nameText;
     [SerializeField] private Text hpText;
     [SerializeField] Image fillImageBack;
     [SerializeField] Image fillImagefront;
-
+    [Header("Dash")]
     [SerializeField] Image dashImage;
     [SerializeField] Image hurtImage;
-    //[SerializeField] private Text scoreText;
-
-    //[SerializeField] Transform lifeTransform;
-    //[SerializeField] GameObject lifeObjects;
-
+    [Header("Buff")]
+    [SerializeField] BuffItem buffItem;
+    [SerializeField] Transform buffItemGroup;
+    public List<GameObject> iconList = new List<GameObject>();
 
     public Button dashButton;
     public Joystick joystick;
 
-
-    [SerializeField] float fillSpeed = 0.5f;//填充速度
-    [SerializeField] bool isDelayFill = true;//是否填充
-    [SerializeField] float DelayFillTime = 0.5f;  //填充等待时间
-
+    float fillSpeed = 0.5f;//填充速度
+    bool isDelayFill = true;//是否填充
+    float DelayFillTime = 0.5f;  //填充等待时间
     private float currentFillAmount;
     private float targetFillAmount;
     float t;
@@ -46,12 +45,15 @@ public class PlayerUI : MonoBehaviour
     private void Start()
     {
         SetNameText("张三");
-
     }
     private void OnEnable()
     {
         Player.OnChangeHealthEvent+=onTakeDamageEvent;
         Player.OnHurtEvent+=onHurtEvent;
+
+        PlayerBuffHandle.OnBuffEntry+=BuffEntry;
+        PlayerBuffHandle.OnBuffUpdate+=BuffUpdate;
+        PlayerBuffHandle.OnBuffExit+=BuffExit;
     }
 
 
@@ -60,7 +62,12 @@ public class PlayerUI : MonoBehaviour
     {
         Player.OnChangeHealthEvent-=onTakeDamageEvent;
         Player.OnHurtEvent-=onHurtEvent;
+
+        PlayerBuffHandle.OnBuffEntry-=BuffEntry;
+        PlayerBuffHandle.OnBuffUpdate-=BuffUpdate;
+        PlayerBuffHandle.OnBuffExit-=BuffExit;
     }
+    #region Event
     private void onTakeDamageEvent(Player player)
     {
         SetHealth(player.Health, player.MaxHealth);
@@ -70,31 +77,54 @@ public class PlayerUI : MonoBehaviour
         Hurt();
     }
 
+    private void BuffEntry(BuffHandle handle)
+    {
+        var clone = Instantiate(buffItem.gameObject, buffItemGroup);
+        iconList.Add(clone);
+        UpdateBuffIcons(handle);
+    }
+    private void BuffUpdate(BuffHandle handle)
+    {
+        UpdateBuffIcons(handle);
+    }
+    private void BuffExit(BuffHandle handle)
+    {
+        // 删除最后一个元素并销毁
+        if (iconList.Count > 0)
+        {
+            int lastIndex = iconList.Count - 1;
+            GameObject objToDestroy = iconList[lastIndex];
+            iconList.RemoveAt(lastIndex);
+            Destroy(objToDestroy);
+        }
+        UpdateBuffIcons(handle);
+    }
+    // 提取更新 Buff 图标的逻辑
+    private void UpdateBuffIcons(BuffHandle handle)
+    {
+        int buffCount = handle.buffList.Count;
+
+        for (int i = 0; i < iconList.Count; i++)
+        {
+            if (i < buffCount) // 确保不越界
+            {
+                BuffItem buff = iconList[i].GetComponent<BuffItem>();
+                buff.UpdateStackText(handle.buffList[i].curStack);
+                buff.SetIconImage(handle.buffList[i].info.showSprite);
+                buff.UpdateCoolTime(handle.buffList[i].duationTimer / handle.buffList[i].buffData.duration);
+            }
+        }
+    }
+
+    #endregion
     public void SetDashImageFill(float value)
     {
         dashImage.fillAmount = value;
     }
-
     public void SetNameText(string name)
     {
         nameText.text = name;
     }
-    //public void SetScoreText(int score)
-    //{
-    //    scoreText.text=score.ToString();
-    //}
-    //public void SetLifeNumber(int number)
-    //{
-    //    foreach (Transform child in lifeTransform)
-    //    {
-    //        Destroy(child.gameObject);
-    //    }
-    //    for (int i = 0; i < number; i++)
-    //    {
-    //        Instantiate(lifeObjects, lifeTransform);
-    //    }
-    //}
-
     public void SetHealth(float currentValue, float maxValue)
     {
         hpText.text= currentValue.ToString()+"/"+maxValue.ToString();

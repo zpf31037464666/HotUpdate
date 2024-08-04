@@ -1,0 +1,36 @@
+[
+  {
+    "id": 0,
+    "buffname": "血包",
+    "BuffType": "AddHealthBuff",
+    "description": "每秒增加血量10",
+    "BuffValue": 10,
+    "icon": "Card/Details.png[Details_11]",
+    "curStack": 1,
+    "priority": 1,
+    "maxStack": 10,
+    "tags": "Buff",
+    "isForever": false,
+    "duration": 10,
+    "tickTime": 0.5,
+    "updateTimeType": "Add",
+    "removeStackUpdateType": "Reduce"
+  },
+  {
+    "id": 1,
+    "buffname": "毒药",
+    "BuffType": "TakeHealthBuff",
+    "description": "每秒扣除血量10",
+    "BuffValue": 10,
+    "icon": "Card/Details.png[Details_10]",
+    "curStack": 2,
+    "priority": 1,
+    "maxStack": 10,
+    "tags": "Buff",
+    "isForever": false,
+    "duration": 10,
+    "tickTime": 0.5,
+    "updateTimeType": "Add",
+    "removeStackUpdateType": "Reduce"
+  }
+]

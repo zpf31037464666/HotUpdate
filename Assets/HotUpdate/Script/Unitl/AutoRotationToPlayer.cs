@@ -24,7 +24,7 @@ public class AutoRotationToPlayer : MonoBehaviour
         Vector3 newPosition = CalculateCirclePosition(target.position, radius, numberOfFireballs, myIndex);
         transform.position = newPosition; // 设置小球的初始位置
 
-        Debug.Log(gameObject.name+"位置"+transform.position+"第"+myIndex+"个，总共"+numberOfFireballs);
+      //  Debug.Log(gameObject.name+"位置"+transform.position+"第"+myIndex+"个，总共"+numberOfFireballs);
     }
     public void RestPos(Transform target)
     {
@@ -35,7 +35,7 @@ public class AutoRotationToPlayer : MonoBehaviour
         Vector3 newPosition = CalculateCirclePosition(target.position, radius, numberOfFireballs, myIndex);
         transform.position = newPosition; // 设置小球的初始位置
 
-        Debug.Log(gameObject.name+"位置"+transform.position+"第"+myIndex+"个，总共"+numberOfFireballs);
+     //   Debug.Log(gameObject.name+"位置"+transform.position+"第"+myIndex+"个，总共"+numberOfFireballs);
     }
     void Update()
     {

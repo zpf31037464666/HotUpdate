@@ -8,7 +8,7 @@ public interface IBuff
     /// 异步返回奖励信息的方法
     /// </summary>
     /// <param name="callback">加载完成后的回调，返回加载的奖励信息</param>
-    void ReturnBuffDataInfo(Action<BuffData> callback);
+    void ReturnBuffDataInfo(Action<BuffInfo> callback);
     void OnEnter();
     void OnUpdate();
     void OnRemove();

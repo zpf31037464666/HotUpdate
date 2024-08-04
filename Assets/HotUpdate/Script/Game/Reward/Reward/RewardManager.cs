@@ -29,7 +29,7 @@ public class RewardManager :MonoBehaviour
         LoadJson();
         foreach (string name in RewardFactory.GetRewardNames())
         {
-            Debug.Log("奖励名字"+   name);
+           // Debug.Log("奖励名字"+   name);
         }
     }
 
@@ -103,7 +103,7 @@ public static class RewardFactory
     private static void Init()
     {
         if (isInit) return;
-        Debug.Log("初始化奖励脚本");
+       // Debug.Log("初始化奖励脚本");
 
         var rewardTypes = Assembly.GetAssembly(typeof(IRewardable)).GetTypes()
             .Where(myType => myType.IsClass && !myType.IsInterface && myType.IsSubclassOf(typeof(Rewardable)));
@@ -111,7 +111,7 @@ public static class RewardFactory
         foreach (var rewardType in rewardTypes)
         {
             var tempEffect = Activator.CreateInstance(rewardType, new Reward()) as IRewardable;
-            Debug.Log(tempEffect.Name);
+            //Debug.Log(tempEffect.Name);
             rewardByName.Add(tempEffect.Name, rewardType);
         }
     }
@@ -139,7 +139,7 @@ public static class RewardFactory
     }
     public static IEnumerable<string> GetRewardNames()
     {
-        Debug.Log("获取所有奖励名称");
+       // Debug.Log("获取所有奖励名称");
         Init();
         return rewardByName.Keys;
     }
