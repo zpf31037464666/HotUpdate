@@ -12,6 +12,12 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] private Text hpText;
     [SerializeField] Image fillImageBack;
     [SerializeField] Image fillImagefront;
+    [Header("MP")]
+    [SerializeField] Image mpImage;
+    [SerializeField] TMP_Text mpText;
+    [Header("Level")]
+    [SerializeField] Image levelImage;
+
     [Header("Dash")]
     [SerializeField] Image dashImage;
     [SerializeField] Image hurtImage;
@@ -20,6 +26,12 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] Transform buffItemGroup;
     public List<GameObject> iconList = new List<GameObject>();
 
+    [Header("Skill")]
+    [SerializeField] SkillItem skillItem;
+    [SerializeField] Transform skillItemGroup;
+    public List<SkillItem> skillItemList = new List<SkillItem>();
+
+    [Header("MoveButton")]
     public Button dashButton;
     public Joystick joystick;
 
@@ -29,6 +41,12 @@ public class PlayerUI : MonoBehaviour
     private float currentFillAmount;
     private float targetFillAmount;
     float t;
+
+    //生成技能的间距和半径
+    int skillNumber = 3;
+    int currentNumer = 1;
+    private float radius = 300f;
+    private float offAngle = 30f;
 
     float previousFillAmount;
 
@@ -48,35 +66,70 @@ public class PlayerUI : MonoBehaviour
     }
     private void OnEnable()
     {
-        Player.OnChangeHealthEvent+=onTakeDamageEvent;
-        Player.OnHurtEvent+=onHurtEvent;
+        Player.OnChangeHealthEvent+=TakeDamageEvent;
+        Player.OnHurtEvent+=HurtEvent;
+        Player.OnChangeExpEvent+=ChangeExpEvent;
+        Player.OnChangeLevelEvent+=ChangeLevelEvent;
+        Player.OnChangeMpEvent+=ChangeMpEvent;
+
+
+
 
         PlayerBuffHandle.OnBuffEntry+=BuffEntry;
         PlayerBuffHandle.OnBuffUpdate+=BuffUpdate;
         PlayerBuffHandle.OnBuffExit+=BuffExit;
-    }
 
+
+        PlayerSkill.OnSkillAddEvent+=SkillAddEvent;
+        PlayerSkill.OnSkillRemoveEvent+=SkillRemoveEvent;
+        PlayerSkill.OnSkillUpdateEvent+=SkillUpdateEvent;
+    }
 
 
     private void OnDisable()
     {
-        Player.OnChangeHealthEvent-=onTakeDamageEvent;
-        Player.OnHurtEvent-=onHurtEvent;
+        Player.OnChangeHealthEvent-=TakeDamageEvent;
+        Player.OnHurtEvent-=HurtEvent;
+
+        Player.OnChangeExpEvent-=ChangeExpEvent;
+        Player.OnChangeLevelEvent-=ChangeLevelEvent;
+        Player.OnChangeMpEvent-=ChangeMpEvent;
+
 
         PlayerBuffHandle.OnBuffEntry-=BuffEntry;
         PlayerBuffHandle.OnBuffUpdate-=BuffUpdate;
         PlayerBuffHandle.OnBuffExit-=BuffExit;
+
+
+        PlayerSkill.OnSkillAddEvent-=SkillAddEvent;
+        PlayerSkill.OnSkillRemoveEvent-=SkillRemoveEvent;
+        PlayerSkill.OnSkillUpdateEvent-=SkillUpdateEvent;
+
     }
     #region Event
-    private void onTakeDamageEvent(Player player)
+    private void TakeDamageEvent(Player player)
     {
         SetHealth(player.Health, player.MaxHealth);
     }
-    private void onHurtEvent(Player player)
+    private void HurtEvent(Player player)
     {
         Hurt();
     }
 
+    private void ChangeMpEvent(Player player)
+    {
+        SetMP(player.CurrentMp, player.MaxMP);
+    }
+
+    private void ChangeLevelEvent(Player player)
+    {
+
+    }
+
+    private void ChangeExpEvent(Player player)
+    {
+        SetLevelImage(player.CurrentExp/ player.RequiteExp);
+    }
     private void BuffEntry(BuffHandle handle)
     {
         var clone = Instantiate(buffItem.gameObject, buffItemGroup);
@@ -116,7 +169,44 @@ public class PlayerUI : MonoBehaviour
         }
     }
 
+    private void SkillAddEvent(Skill skill)
+    {
+        GameObject clone = Instantiate(skillItem.gameObject, skillItemGroup, false);
+        SkillItem cloneItme = clone.GetComponent<SkillItem>();
+        cloneItme.SetAction(skill.Apply);
+        skillItemList.Add(cloneItme);
+
+
+        clone.transform.position=CalculateCirclePosition(skillItemGroup.transform.position, radius, skillNumber, currentNumer);
+        currentNumer++;
+
+    }
+    private void SkillRemoveEvent(Skill skill)
+    {
+        Debug.Log("暂时移除技能");
+
+    }
+    private void SkillUpdateEvent(List<Skill> list)
+    {
+        // 确保 skillItemList 的大小与 list 的大小一致
+        for (int i = 0; i < list.Count; i++)
+        {
+            skillItemList[i].SetIcon(list[i].info.showSprite);
+            skillItemList[i].UpdateCoolDown(list[i].coolDownTime / list[i].SkillData.CoolDownTime);
+        }
+    }
+
+
     #endregion
+    public void SetMP(float currentMp, float maxMp)
+    {
+        mpText.text= currentMp.ToString()+"/"+maxMp.ToString();
+        mpImage.fillAmount= currentMp/maxMp;
+    }
+    public void SetLevelImage(float value)
+    {
+        levelImage.fillAmount = value;
+    }
     public void SetDashImageFill(float value)
     {
         dashImage.fillAmount = value;
@@ -130,7 +220,6 @@ public class PlayerUI : MonoBehaviour
         hpText.text= currentValue.ToString()+"/"+maxValue.ToString();
         UpdateHpState(currentValue, maxValue);
     }
-
     //初始化血量的值
     public void InitializeHP(float currentValue, float maxValue)
     {
@@ -197,4 +286,31 @@ public class PlayerUI : MonoBehaviour
         finalColor.a = 0f;
         hurtImage.color = finalColor;
     }
+
+
+
+    //private void Update()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.Escape))
+    //    {
+    //        Debug.Log("测试生成技能");
+
+    //        GameObject clone= Instantiate(skillItem.gameObject,skillItemGroup,false);
+    //        clone.transform.position=CalculateCirclePosition(skillItemGroup.transform.position, radius, skillNumber, currentNumer);
+
+    //        currentNumer++;
+    //    }
+    //}
+    Vector3 CalculateCirclePosition(Vector3 center, float radius, int totalPoints, int currentIndex)
+    {
+        float angle = (120 / totalPoints) * currentIndex;
+        angle+=offAngle;
+        //Mathf.Deg2Rad 用于将角度转换为弧度。具体来说，它将角度值乘以 π/180
+        float radians = angle * Mathf.Deg2Rad;
+        float x = center.x + radius * Mathf.Cos(radians);
+        float y = center.y + radius * Mathf.Sin(radians);
+
+        return new Vector3(x, y, center.z);
+    }
+
 }

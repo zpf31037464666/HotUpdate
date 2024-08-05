@@ -112,10 +112,11 @@ public class PlayerMovement : MonoBehaviour
         var time = 0f;
         while (time<=dashCooldownTime)
         {
-            playerUI.SetDashImageFill(time/dashCooldownTime);
+            playerUI.SetDashImageFill(1f-(time/dashCooldownTime));
             time += Time.deltaTime;
             yield return null;
         }
+        playerUI.SetDashImageFill(0f);
         isUseDash = true;
 
         layer = LayerMask.NameToLayer("Player");

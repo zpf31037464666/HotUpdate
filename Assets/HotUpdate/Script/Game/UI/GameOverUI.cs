@@ -33,7 +33,9 @@ public class GameOverUI : MonoBehaviour
         exitButton.onClick.AddListener(() =>
         {
             //临时
-            ReloadCurrentScene();
+            // ReloadCurrentScene();
+            SceneLoadManager.instance.LoadScene("Main", My_UIConst.MainMenuPanel,.5f);
+
         });
     }
 

@@ -1,0 +1,18 @@
+[
+  {
+    "Id": 0,
+    "Name": "加血技能",
+    "SkillType": "AddHealthBuffSkill",
+    "Description": "增加一个每秒恢复血量的buff",
+    "IconPath": "Card/Items samples 1.png[Example items_12]",
+    "CoolDownTime": 2
+  },
+  {
+    "Id": 1,
+    "Name": "扣血技能",
+    "SkillType": "TakeHealthBuffSkill",
+    "Description": "增加一个每秒扣除血量的buff",
+    "IconPath": "Card/Items samples 1.png[Example items_13]",
+    "CoolDownTime": 2
+  }
+]
