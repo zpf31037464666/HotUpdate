@@ -38,6 +38,7 @@
     <type fullname="GamePanel" preserve="all" />
     <type fullname="Gun" preserve="all" />
     <type fullname="LevelButton" preserve="all" />
+    <type fullname="LevelManager" preserve="all" />
     <type fullname="LevelSelectPanel" preserve="all" />
     <type fullname="MainMeunPanel" preserve="all" />
     <type fullname="OptionPanel" preserve="all" />
@@ -57,7 +58,6 @@
     <type fullname="SceneLoadManager" preserve="all" />
     <type fullname="SkillItem" preserve="all" />
     <type fullname="SkillManager" preserve="all" />
-    <type fullname="Test" preserve="all" />
     <type fullname="UIManager" preserve="all" />
     <type fullname="UIObjectScaler" preserve="all" />
     <type fullname="WaveUI" preserve="all" />

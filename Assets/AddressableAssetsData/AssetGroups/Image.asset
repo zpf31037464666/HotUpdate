@@ -20,7 +20,8 @@ MonoBehaviour:
   - m_GUID: ffa20b4e14020624abbda583e92ef4ab
     m_Address: Card
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - HotUpdate
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5fa22dddc3da77c4c92b1e2fc35ed5db
     m_Address: Icon
@@ -33,6 +34,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - HotUpdate
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 633c921f8f1282941bb6dac1d6ddcdc1
+    m_Address: Enemy
+    m_ReadOnly: 0
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e53dea3910c638247a169bdabe09ce20, type: 2}

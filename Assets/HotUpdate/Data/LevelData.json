@@ -1,0 +1,47 @@
+[
+  {
+    "Id": 0,
+    "Name": "地牢",
+    "Description": "一切开始的地方",
+    "IconPath": "Enemy/characters.png[characters_15]",
+    "BGPath": "Enemy/bg9.png[bg9]",
+    "ScenceName": "Scenes/Level/0.unity",
+    "IsUnLock": true
+  },
+  {
+    "Id": 1,
+    "Name": "花园",
+    "Description": "生存下去",
+    "IconPath": "Enemy/characters.png[characters_16]",
+    "BGPath": "Enemy/bg9.png[bg9]",
+    "ScenceName": "Scenes/Level/1.unity",
+    "IsUnLock": false
+  },
+  {
+    "Id": 2,
+    "Name": "荒野",
+    "Description": "一切开始的地方",
+    "IconPath": "Enemy/characters.png[characters_17]",
+    "BGPath": "Enemy/bg9.png[bg9]",
+    "ScenceName": "Scenes/Level/2.unity",
+    "IsUnLock": false
+  },
+  {
+    "Id": 3,
+    "Name": "海洋",
+    "Description": "生存下去",
+    "IconPath": "Enemy/characters.png[characters_18]",
+    "BGPath": "Enemy/bg9.png[bg9]",
+    "ScenceName": "Scenes/Level/3.unity",
+    "IsUnLock": false
+  },
+  {
+    "Id": 4,
+    "Name": "天空",
+    "Description": "一切开始的地方",
+    "IconPath": "Enemy/characters.png[characters_19]",
+    "BGPath": "Enemy/bg9.png[bg9]",
+    "ScenceName": "Scenes/Level/4.unity",
+    "IsUnLock": false
+  }
+]

@@ -25,6 +25,7 @@ public class LevelSelectPanel : UIState
     private float currentAngle = 0f;
 
     private float scalePrecet = 1.2f;
+    private List<LevelData> levelDataList = new List<LevelData>();
     void Start()
     {
         Initial();
@@ -67,6 +68,10 @@ public class LevelSelectPanel : UIState
 
     private void Initial()
     {
+
+        levelCount=LevelManager.instance.levelDataList.Count;
+        levelDataList=LevelManager.instance.levelDataList;
+
         // 计算每个按钮之间的角度
         angleStep = 360f / levelCount;
 
@@ -81,10 +86,8 @@ public class LevelSelectPanel : UIState
             GameObject levelButton = Instantiate(levelButtonPrefab, levelGroup);
             levelButton.gameObject.name = i.ToString();
 
-            LevelInfo levelInfo = new LevelInfo();
-            levelInfo.name ="关卡"+ i.ToString();
 
-            levelButton.GetComponent<LevelButton>().RegisterLevelSelector(this,levelInfo);
+            levelButton.GetComponent<LevelButton>().RegisterLevelSelector(this, levelDataList[i]);
             levelButtons.Add(levelButton);
         }
         UpdateButtonPositions();

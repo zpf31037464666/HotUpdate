@@ -193,6 +193,8 @@ public class PlayerUI : MonoBehaviour
         {
             skillItemList[i].SetIcon(list[i].info.showSprite);
             skillItemList[i].UpdateCoolDown(list[i].coolDownTime / list[i].SkillData.CoolDownTime);
+            skillItemList[i].UpdateCoolDownText(list[i].coolDownTime);
+            skillItemList[i].DisableImage(list[i].IsUse);
         }
     }
 

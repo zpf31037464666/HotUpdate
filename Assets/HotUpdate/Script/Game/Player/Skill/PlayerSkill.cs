@@ -43,20 +43,20 @@ public class PlayerSkill : MonoBehaviour
 
 
 
-        if(Input.GetKeyUp(KeyCode.Escape))
-        {
-            Debug.Log("增加技能");
-            Skill skill = SkillManager.instance.GetSkill("加血技能");
-            skill.ReturnSkillDataInfo((info) => { });
-            AddSkill(skill);
+        //if(Input.GetKeyUp(KeyCode.Escape))
+        //{
+        //    Debug.Log("增加技能");
+        //    Skill skill = SkillManager.instance.GetSkill("加血技能");
+        //    skill.ReturnSkillDataInfo((info) => { });
+        //    AddSkill(skill);
 
-            Debug.Log("增加技能");
-            Skill skill2 = SkillManager.instance.GetSkill("扣血技能");
-            skill2.ReturnSkillDataInfo((info) => { });
-            AddSkill(skill2
-                );
+        //    Debug.Log("增加技能");
+        //    Skill skill2 = SkillManager.instance.GetSkill("扣血技能");
+        //    skill2.ReturnSkillDataInfo((info) => { });
+        //    AddSkill(skill2
+        //        );
 
-        }
+        //}
     }
 
 }

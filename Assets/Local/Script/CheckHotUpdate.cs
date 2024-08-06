@@ -120,7 +120,7 @@ public class CheckHotUpdate : MonoBehaviour
 
     private void LoadMainScene()
     {
-        var handle = Addressables.LoadSceneAsync("Main", LoadSceneMode.Single);
+        var handle = Addressables.LoadSceneAsync("Scenes/Main.unity", LoadSceneMode.Single);
         handle.Completed += OnSenceLoad;
     }
 

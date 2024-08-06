@@ -17,18 +17,43 @@ public class Skill : ISkill
 
     public float coolDownTime;
     public SkillData SkillData { get ; set ; }
+    public bool IsUse {
+        get {
+            return isUse= player? !player.IsUseMp(info.mp):true; 
+        }
+        set { isUse=value; }
+    }
 
     public SkillInfo info;
+
+    Player player;
+
+    private bool isUse;
+
+
     public virtual void Apply()
+    {
+        isUse= player.IsUseMp(info.mp);
+        if (coolDownTime==0&&isUse)
+        {
+            coolDownTime = SkillData.CoolDownTime;
+            player.UseMp(info.mp);
+            Effect();
+        }
+    }
+    public virtual void Effect()
     {
 
     }
 
     public void ReturnSkillDataInfo(Action<SkillInfo> callback)
     {
+       player = GameObject.FindAnyObjectByType<Player>();
+
         info=new SkillInfo();
         info.name = SkillData.Name;
         info.description = SkillData.Description;
+        info.mp=SkillData.UseMp;
         // 异步加载背景图
         AsyncOperationHandle<Sprite> bgHandle = Addressables.LoadAssetAsync<Sprite>(SkillData.IconPath);
         bgHandle.Completed += (op) =>

@@ -7,21 +7,11 @@ public class AddHealthBuffSkill : Skill
     public AddHealthBuffSkill(SkillData skillData) : base(skillData)
     {
     }
-    public override void Apply()
+    public override void Effect()
     {
-        if (coolDownTime!=0) return;
-        coolDownTime = SkillData.CoolDownTime;
-
-
-
         Buff buff = BuffManager.instance.GetBuff("血包");
-        if (buff != null)
-        {
-        }
-        buff.ReturnBuffDataInfo((info) =>
-        {
-        });
-        GameObject player=GameObject.FindAnyObjectByType<Player>().gameObject;
+        buff.ReturnBuffDataInfo((info) => { });
+        GameObject player = GameObject.FindAnyObjectByType<Player>().gameObject;
         buff.Apply(player);
         player.GetComponent<BuffHandle>().AddBuff(buff);
     }

@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
 
 [System.Serializable]
@@ -17,10 +20,14 @@ public class LevelButton : MonoBehaviour
 {
     [SerializeField] private Text nameText;
     [SerializeField] private Image headImage;
+    [SerializeField] private Image bgImage;
+    [SerializeField] private Image lockImage;
 
     private LevelSelectPanel levelSelector;
     private Button levelButton;
-    private LevelInfo levelInfo;
+
+    // private LevelInfo levelInfo;
+    private LevelData levelData;
 
     private float doubleTime = .5f;
     bool isDouble=false;
@@ -29,7 +36,7 @@ public class LevelButton : MonoBehaviour
     {
         levelButton=GetComponent<Button>();
     }
-    public void RegisterLevelSelector(LevelSelectPanel levelSelector, LevelInfo levelInfo)
+    public void RegisterLevelSelector(LevelSelectPanel levelSelector, LevelData levelData)
     {
         this.levelSelector = levelSelector;
         levelButton.onClick.AddListener(() =>
@@ -38,17 +45,34 @@ public class LevelButton : MonoBehaviour
             OnclickEvent();
         });
 
-        SetLevelInfo(levelInfo);
+        SetLevelInfo(levelData);
     }
-    private void SetLevelInfo(LevelInfo levelInfo)
+    private void SetLevelInfo(LevelData levelData)
     {
-        this.levelInfo = levelInfo;
-
-        headImage.sprite=levelInfo.headSprite;
-        nameText.text = levelInfo.name;
+        this.levelData = levelData;
+        nameText.text = levelData.Name;
+        lockImage.gameObject.SetActive(!levelData.IsUnLock);
+        Addressables.LoadAssetAsync<Sprite>(levelData.IconPath).Completed += OnLoadSpite;
+        Addressables.LoadAssetAsync<Sprite>(levelData.BGPath).Completed+=(handle) =>
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                bgImage.sprite= handle.Result;
+            }
+        };
     }
+
+    private void OnLoadSpite(AsyncOperationHandle<Sprite> handle)
+    {
+        if (handle.Status == AsyncOperationStatus.Succeeded)
+        {
+            headImage.sprite= handle.Result;
+        }
+    }
+
     private void OnclickEvent()
     {
+        if (!levelData.IsUnLock) return;
         if(isDouble)
         {
             Effcet();
@@ -64,9 +88,7 @@ public class LevelButton : MonoBehaviour
     }
     public void Effcet()
     {
-        Debug.Log("双击"+levelInfo.name);
-
-        SceneLoadManager.instance.LoadScene(levelInfo.level.ToString(), My_UIConst.GamePanel, levelSelector.moveDuration*2);
+        SceneLoadManager.instance.LoadScene(levelData.ScenceName, My_UIConst.GamePanel, levelSelector.moveDuration*2);
        // UIManager.Instance.SwitchPanel(My_UIConst.GamePanel);
     }
 }

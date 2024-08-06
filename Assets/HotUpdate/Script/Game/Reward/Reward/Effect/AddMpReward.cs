@@ -9,7 +9,7 @@ public class AddMpReward : Rewardable
     }
     public override void GetReward()
     {
-        Debug.Log("增加蓝量");
+        GameObject.FindAnyObjectByType<Player>().AddMp(Reward.RewardValue);
 
     }
 }

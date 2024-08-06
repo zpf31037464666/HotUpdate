@@ -23,7 +23,7 @@ public class PausePanel : UIState
         });
         exitButton.onClick.AddListener(() =>
         {
-            SceneLoadManager.instance.LoadScene("Main");
+            SceneLoadManager.instance.LoadScene("Scenes/Main.unity");
             UIManager.Instance.SwitchPanel(My_UIConst.MainMenuPanel);
             //SceneLoadManager.instance.LoadScene("Main", My_UIConst.MainMenuPanel, moveDuration);
         });

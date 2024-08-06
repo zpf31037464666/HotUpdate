@@ -28,13 +28,14 @@ public class GameOverUI : MonoBehaviour
 
         restButton.onClick.AddListener(() =>
         {
-            ReloadCurrentScene();
+            //测试
+            SceneLoadManager.instance.LoadScene("Scenes/Main.unity", My_UIConst.MainMenuPanel, .5f);
         });
         exitButton.onClick.AddListener(() =>
         {
             //临时
             // ReloadCurrentScene();
-            SceneLoadManager.instance.LoadScene("Main", My_UIConst.MainMenuPanel,.5f);
+            SceneLoadManager.instance.LoadScene("Scenes/Main.unity", My_UIConst.MainMenuPanel,.5f);
 
         });
     }
@@ -57,31 +58,5 @@ public class GameOverUI : MonoBehaviour
     void Open()
     {
         canvas.enabled=true;
-    }
-
-
-    public void ReloadCurrentScene()
-    {
-        StartCoroutine(ReloadSceneCoroutine());
-    }
-    private IEnumerator ReloadSceneCoroutine()
-    {
-        // 卸载当前场景
-        AsyncOperation unloadOperation = SceneManager.UnloadSceneAsync(currentSceneAddress);
-        yield return unloadOperation;
-
-        // 重新加载场景
-        AsyncOperationHandle<SceneInstance> loadOperation = Addressables.LoadSceneAsync(currentSceneAddress);
-        yield return loadOperation;
-
-        // 检查加载是否成功
-        if (loadOperation.Status == AsyncOperationStatus.Succeeded)
-        {
-            Debug.Log($"Scene {currentSceneAddress} reloaded successfully.");
-        }
-        else
-        {
-            Debug.LogError($"Failed to reload scene {currentSceneAddress}.");
-        }
     }
 }

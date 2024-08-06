@@ -7,21 +7,10 @@ public class TakeHealthBuffSkill : Skill
     public TakeHealthBuffSkill(SkillData skillData) : base(skillData)
     {
     }
-    public override void Apply()
+    public override void Effect()
     {
-        if (coolDownTime!=0) return;
-        coolDownTime = SkillData.CoolDownTime;
-
         Buff buff = BuffManager.instance.GetBuff("毒药");
-        if (buff != null)
-        {
-            Debug.Log("获得实例成功");
-        }
-        buff.ReturnBuffDataInfo((info) =>
-        {
-            Debug.Log("毒药的描述是"+info.description);
-        });
-
+        buff.ReturnBuffDataInfo((info) => { });
         GameObject player = GameObject.FindAnyObjectByType<Player>().gameObject;
         buff.Apply(player);
         player.GetComponent<BuffHandle>().AddBuff(buff);
