@@ -21,7 +21,7 @@ public class SkillManager : Singleton<SkillManager>
     private void LoadJson()
     {
         // 使用 Addressables 异步加载 JSON 文件
-        Addressables.LoadAssetAsync<TextAsset>("SkillData").Completed += OnJsonLoaded;
+        Addressables.LoadAssetAsync<TextAsset>("Data/SkillData.json").Completed += OnJsonLoaded;
     }
     private void OnJsonLoaded(AsyncOperationHandle<TextAsset> handle)
     {

@@ -1,0 +1,29 @@
+[
+  {
+    "Id": 0,
+    "Name": "普通人",
+    "Description": "普通人,芸芸众生中的一份子，可不甘于平庸，决心在这个世界中留下自己的痕迹",
+    "IconPath": "Heros/knight/knight_run_spritesheet.png[knight_run_spritesheet_5]",
+    "BGPath": "Card/Cards.png[Cards_11]",
+    "PrefabPath": "Prefab/Game/Player/Player.prefab",
+    "IsUnLock": true
+  },
+  {
+    "Id": 1,
+    "Name": "猎人",
+    "Description": "生活在大自然中，拥有高超的射击技巧",
+    "IconPath": "Enemy/characters.png[characters_34]",
+    "BGPath": "Card/Cards.png[Cards_11]",
+    "PrefabPath": "Prefab/Game/Player/Player.prefab",
+    "IsUnLock": true
+  },
+  {
+    "Id": 2,
+    "Name": "土匪",
+    "Description": "占山为王，强权之上",
+    "IconPath": "Enemy/characters.png[characters_30]",
+    "BGPath": "Card/Cards.png[Cards_11]",
+    "PrefabPath": "Prefab/Game/Player/Player.prefab",
+    "IsUnLock": false
+  }
+]

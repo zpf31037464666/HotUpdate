@@ -21,7 +21,7 @@ public class BuffManager : Singleton<BuffManager>
     private void LoadJson()
     {
         // 使用 Addressables 异步加载 JSON 文件
-        Addressables.LoadAssetAsync<TextAsset>("BuffData").Completed += OnJsonLoaded;
+        Addressables.LoadAssetAsync<TextAsset>("Data/BuffData.json").Completed += OnJsonLoaded;
     }
     private void OnJsonLoaded(AsyncOperationHandle<TextAsset> handle)
     {

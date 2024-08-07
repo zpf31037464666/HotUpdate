@@ -46,6 +46,8 @@
     <type fullname="Player" preserve="all" />
     <type fullname="PlayerBuffHandle" preserve="all" />
     <type fullname="PlayerDashShadow" preserve="all" />
+    <type fullname="PlayerItem" preserve="all" />
+    <type fullname="PlayerItemManager" preserve="all" />
     <type fullname="PlayerMovement" preserve="all" />
     <type fullname="PlayerSkill" preserve="all" />
     <type fullname="PlayerSpinWeapon" preserve="all" />
@@ -56,6 +58,7 @@
     <type fullname="RewardManager" preserve="all" />
     <type fullname="RewardUI" preserve="all" />
     <type fullname="SceneLoadManager" preserve="all" />
+    <type fullname="SelectPlayerPanel" preserve="all" />
     <type fullname="SkillItem" preserve="all" />
     <type fullname="SkillManager" preserve="all" />
     <type fullname="UIManager" preserve="all" />
@@ -148,11 +151,14 @@
     <type fullname="UnityEngine.EventSystems.StandaloneInputModule" preserve="all" />
     <type fullname="UnityEngine.UI.Button" preserve="all" />
     <type fullname="UnityEngine.UI.CanvasScaler" preserve="all" />
+    <type fullname="UnityEngine.UI.ContentSizeFitter" preserve="all" />
     <type fullname="UnityEngine.UI.GraphicRaycaster" preserve="all" />
     <type fullname="UnityEngine.UI.GridLayoutGroup" preserve="all" />
     <type fullname="UnityEngine.UI.HorizontalLayoutGroup" preserve="all" />
     <type fullname="UnityEngine.UI.Image" preserve="all" />
     <type fullname="UnityEngine.UI.Mask" preserve="all" />
+    <type fullname="UnityEngine.UI.Scrollbar" preserve="all" />
+    <type fullname="UnityEngine.UI.ScrollRect" preserve="all" />
     <type fullname="UnityEngine.UI.Slider" preserve="all" />
     <type fullname="UnityEngine.UI.Text" preserve="all" />
     <type fullname="UnityEngine.UI.VerticalLayoutGroup" preserve="all" />
@@ -164,6 +170,8 @@
     <type fullname="UnityEngine.UI.Slider/SliderEvent" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UI.SpriteState" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UI.Button/ButtonClickedEvent" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.ScrollRect/ScrollRectEvent" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UI.Scrollbar/ScrollEvent" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.Canvas" preserve="all" />

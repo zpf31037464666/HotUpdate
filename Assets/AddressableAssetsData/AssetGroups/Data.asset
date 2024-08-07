@@ -17,26 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 0f3e76d10fee7234593b468a9d786de0
   m_SerializeEntries:
-  - m_GUID: 938b7c33230ebd24da025857916d5a48
-    m_Address: Reward
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - HotUpdate
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8ad018a62657ebc4ca4e534c234fa0e4
-    m_Address: BuffData
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - HotUpdate
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b2d7def054f1f9b4aa1d3bb3ba8d4458
-    m_Address: SkillData
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - HotUpdate
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 5c43bd33bf65e4f4b944914fa9bc00e1
-    m_Address: LevelData
+  - m_GUID: 39c68d9514bc5a8419f936ed6040640e
+    m_Address: Data
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

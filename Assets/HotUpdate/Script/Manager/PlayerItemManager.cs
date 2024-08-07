@@ -5,9 +5,9 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class LevelManager : PersistentSingleton<LevelManager>
+public class PlayerItemManager : PersistentSingleton<PlayerItemManager>
 {
-    public List<LevelData> levelDataList = new List<LevelData>();
+    public List<PlayerItemData> PlayerItemDataList = new List<PlayerItemData>();
     private void Start()
     {
         LoadJson();
@@ -15,7 +15,7 @@ public class LevelManager : PersistentSingleton<LevelManager>
     private void LoadJson()
     {
         // 使用 Addressables 异步加载 JSON 文件
-        Addressables.LoadAssetAsync<TextAsset>("Data/LevelData.json").Completed += OnJsonLoaded;
+        Addressables.LoadAssetAsync<TextAsset>("Data/PlayerItemData.json").Completed += OnJsonLoaded;
     }
     private void OnJsonLoaded(AsyncOperationHandle<TextAsset> handle)
     {
@@ -24,10 +24,10 @@ public class LevelManager : PersistentSingleton<LevelManager>
             // JSON 文件加载成功
             TextAsset jsonAsset = handle.Result;
             string json = jsonAsset.text;
-            levelDataList = JsonConvert.DeserializeObject<List<LevelData>>(json);
-            foreach (var level in levelDataList)
+            PlayerItemDataList = JsonConvert.DeserializeObject<List<PlayerItemData>>(json);
+            foreach (var level in PlayerItemDataList)
             {
-               Debug.Log(level.Name);
+                Debug.Log(level.Name);
             }
             // 在这里处理 JSON 数据
         }
@@ -36,4 +36,5 @@ public class LevelManager : PersistentSingleton<LevelManager>
             Debug.LogError("Failed to load JSON: " + handle);
         }
     }
+
 }

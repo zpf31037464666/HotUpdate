@@ -17,29 +17,10 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: ec6c9a4ee81b8704d96bd9853880d6dc
   m_SerializeEntries:
-  - m_GUID: 370e6cbe87df931448f3ae728f9af0dd
-    m_Address: Gun
+  - m_GUID: b2efc25ac43de254397519b52199f1c8
+    m_Address: Prefab
     m_ReadOnly: 0
-    m_SerializedLabels:
-    - HotUpdate
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a14525447ee3c324f9b3d366d941aba0
-    m_Address: Bullet
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - HotUpdate
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d57047769effbbb41ae5ca88a481522b
-    m_Address: Effect
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - HotUpdate
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b6c2455020307d44d83b06095e286572
-    m_Address: UI
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - HotUpdate
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e53dea3910c638247a169bdabe09ce20, type: 2}

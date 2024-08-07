@@ -25,7 +25,8 @@ public class UIManager : StateMachina
 
     private void Start()
     {
-        SwitchPanel(My_UIConst.MainMenuPanel);
+
+       SwitchPanel(My_UIConst.MainMenuPanel);
     }
 
     public void CreatePanel(string name, System.Action<GameObject> onLoaded)

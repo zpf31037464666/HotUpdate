@@ -36,7 +36,7 @@ public class RewardManager :MonoBehaviour
     private void LoadJson()
     {
         // 使用 Addressables 异步加载 JSON 文件
-        Addressables.LoadAssetAsync<TextAsset>("Reward").Completed += OnJsonLoaded;
+        Addressables.LoadAssetAsync<TextAsset>("Data/Reward.json").Completed += OnJsonLoaded;
     }
 
     private void OnJsonLoaded(AsyncOperationHandle<TextAsset> handle)
