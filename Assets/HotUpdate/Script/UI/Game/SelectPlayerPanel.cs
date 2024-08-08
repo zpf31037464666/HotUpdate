@@ -51,13 +51,15 @@ public class SelectPlayerPanel : UIState
         }
     }
 
-    public void SetShowStage(bool isUnlock, Sprite bgSprite, Sprite headSprite, string name, string descript)
+    public void SetShowStage(bool isUnlock, Sprite bgSprite, Sprite headSprite, string name, string descript,PlayerItemData playerItemData)
     {
             showBgImage.sprite = bgSprite;
             headImage.sprite = headSprite;
             nameText.text = name;
             descriptText.text = descript;
             lockImage.gameObject.SetActive(!isUnlock);
+
+            GameManager.instance.currentPlyaerItemData = playerItemData;
  
     }
 

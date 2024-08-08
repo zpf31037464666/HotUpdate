@@ -57,7 +57,7 @@
     "Descript": "增加一把手枪",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/star_gold.png",
-    "AddObjcetName": "Gun/Gun_Mini.prefab"
+    "AddObjcetName": "Prefab/Game/Weapon/Gun/Gun_Mini.prefab"
   },
   {
     "RewardID": 6,
@@ -87,7 +87,7 @@
     "Descript": "增加一个火球",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/star_gold.png",
-    "AddObjcetName": "Bullet/Spin/FireBall.prefab"
+    "AddObjcetName": "Prefab/Game/Weapon/Bullet/Spin/FireBall.prefab"
   },
   {
     "RewardID": 9,

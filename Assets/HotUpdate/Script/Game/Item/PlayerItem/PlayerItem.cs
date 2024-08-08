@@ -1,3 +1,5 @@
+using Codice.CM.Common.Selectors;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -31,7 +33,7 @@ public class PlayerItem : MonoBehaviour
 
         button.onClick.AddListener(() =>
         {
-            selectPlayerPanel.SetShowStage(data.IsUnLock, bgimage.sprite, headImage.sprite, data.Name, data.Description);
+            selectPlayerPanel.SetShowStage(data.IsUnLock, bgimage.sprite, headImage.sprite, data.Name, data.Description, data);
         });
 
     }
@@ -54,5 +56,4 @@ public class PlayerItem : MonoBehaviour
             }
         };
     }
-
 }

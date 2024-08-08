@@ -69,12 +69,12 @@ public class Enemy : MonoBehaviour
 
         WaveUI.OnRewardEvent -= onRewardEvent;
     }
-    private void onRewardEvent()
+    public virtual void onRewardEvent()
     {
         Die();
     }
 
-    private void Update()
+    public virtual  void Update()
     {
         SimpleMove();
     }
@@ -152,7 +152,7 @@ public class Enemy : MonoBehaviour
         {
             spriteRenderer.material.SetFloat("_FlashAmount", 1);
         }
-        animator.SetTrigger("attack");
+        animator.SetTrigger("attack");//像是受击动作
     }
     public virtual void Die()
     {
@@ -182,10 +182,4 @@ public class Enemy : MonoBehaviour
         return isBlocked;
     }
     #endregion
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(ray.origin, ray.direction * 0.2f);
-    }
 }

@@ -1,12 +1,15 @@
 using UnityEngine;
 using Cinemachine;
 using System.Collections;
+using TreeEditor;
 
 public class CameraShake : Singleton<CameraShake>
 {
     public CinemachineVirtualCamera virtualCamera; // 引用虚拟相机
 
     private CinemachineBasicMultiChannelPerlin perlin; // 用于控制震动的组件
+
+    [SerializeField] private float gloablShakeForce = 1f;
 
 
     Coroutine shakeCoroutine;
@@ -25,13 +28,16 @@ public class CameraShake : Singleton<CameraShake>
         {
             perlin = virtualCamera.AddCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         }
-
         perlin.m_AmplitudeGain = 0; // 初始化震动幅度为0
-
-
     }
 
-    public void ShakeCamera(float shakeDuration, float shakeAmplitude, float shakeFrequency)
+    public void SetFollowPlayer(Transform player)
+    {
+        virtualCamera.Follow = player; // 设置相机跟随玩家
+        virtualCamera.LookAt = player; // 设置相机朝向玩家
+    }
+
+    public void CamerShake(float shakeDuration, float shakeAmplitude, float shakeFrequency)
     {
         if (shakeCoroutine != null)
         {
@@ -40,6 +46,11 @@ public class CameraShake : Singleton<CameraShake>
         shakeCoroutine = StartCoroutine(Shake(shakeDuration, shakeAmplitude, shakeFrequency));
     }
 
+    public void CamerShake(CinemachineImpulseSource shakeSource)
+    {
+        shakeSource.GenerateImpulseWithForce(gloablShakeForce);
+
+    }
     private IEnumerator Shake(float shakeDuration, float shakeAmplitude, float shakeFrequency)
     {
         perlin.m_AmplitudeGain = shakeAmplitude; // 设置震动幅度
@@ -59,6 +70,7 @@ public class CameraShake : Singleton<CameraShake>
         }
 
         perlin.m_AmplitudeGain = 0; // 震动结束，幅度归零
+        perlin.m_FrequencyGain= 0;
 
         // 恢复摄像机的初始位置和旋转
       transform.rotation = originalRotation;

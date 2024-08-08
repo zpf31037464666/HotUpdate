@@ -10,6 +10,13 @@ public class GameManager : PersistentSingleton<GameManager>
     //设置属性 其他类可以访问和设置
     public static GameState GameState { get => instance.gameState; set => instance.gameState = value; }
     [SerializeField] GameState gameState = GameState.UI;
+
+    public PlayerItemData currentPlyaerItemData;
+
+    public string currentSelectSenceName;
+
+
+
 }
 public enum GameState
 {

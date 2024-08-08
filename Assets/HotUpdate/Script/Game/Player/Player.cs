@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Player : MonoBehaviour
 {
@@ -23,14 +24,15 @@ public class Player : MonoBehaviour
 
     private bool isInvincible=false;
     private Coroutine invincibleTimeCoroutine;
+    private CinemachineImpulseSource impulseSource;
+
+
 
     public static Action<Player> OnChangeHealthEvent;
     public static Action<Player> OnHurtEvent;
     public static Action<Player> OnChangeMpEvent;
     public static Action<Player> OnChangeExpEvent;
     public static Action<Player> OnChangeLevelEvent;
-
-
     public static Action OnPlayerDeathEvent;
 
 
@@ -46,6 +48,10 @@ public class Player : MonoBehaviour
     {
         health=maxHealth;
         currentMp=maxMP;
+
+        impulseSource=GetComponent<CinemachineImpulseSource>();
+        CameraShake.instance.SetFollowPlayer(transform);
+
     }
 
     private void Update()
@@ -164,7 +170,10 @@ public class Player : MonoBehaviour
     {
         isInvincible = true;
         //  CameraRecoil.instance.Shake(InvincibleTime, .1f);
-        CameraShake.instance.ShakeCamera(InvincibleTime, 1, 1);
+        //    CameraShake.instance.ShakeCamera(InvincibleTime, 1, 1);
+        CameraShake.instance.CamerShake(impulseSource);
+
+
         yield return new WaitForSeconds(InvincibleTime);
         isInvincible=false;
     }

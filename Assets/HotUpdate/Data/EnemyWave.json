@@ -1,0 +1,42 @@
+[
+  {
+    "WaveNumber": 0,
+    "EnemyType": "Prefab/Game/Enemy/Enemy.prefab",
+    "Count": 3,
+    "SpawnTime": 5,
+    "RewardTime": 5,
+    "IsOverGame": false
+  },
+  {
+    "WaveNumber": 1,
+    "EnemyType": "Prefab/Game/Enemy/Enemy.prefab",
+    "Count": 5,
+    "SpawnTime": 5,
+    "RewardTime": 10,
+    "IsOverGame": false
+  },
+  {
+    "WaveNumber": 2,
+    "EnemyType": "Prefab/Game/Enemy/Enemy.prefab",
+    "Count": 5,
+    "SpawnTime": 5,
+    "RewardTime": 10,
+    "IsOverGame": false
+  },
+  {
+    "WaveNumber": 2,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 5,
+    "SpawnTime": 5,
+    "RewardTime": 10,
+    "IsOverGame": false
+  },
+  {
+    "WaveNumber": 3,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 10,
+    "SpawnTime": 2,
+    "RewardTime": 15,
+    "IsOverGame": true
+  }
+]
