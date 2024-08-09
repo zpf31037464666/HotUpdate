@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class SkillManager : Singleton<SkillManager>
+public class SkillManager : PersistentSingleton<SkillManager>
 {
     private List<SkillData> skillDataList = new List<SkillData>();
     private List<Skill> skillList = new List<Skill>();

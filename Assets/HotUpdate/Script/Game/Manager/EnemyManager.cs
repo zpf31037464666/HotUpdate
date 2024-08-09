@@ -6,14 +6,12 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class EnemyManager : MonoBehaviour
 {
-
     [SerializeField] GameObject corssPrefab;
     [SerializeField] List<Transform> spawnList;
 
     WaveUI waveUI;
 
     List<Vector2> spawnPosList = new List<Vector2>();
-    List<Enemy> enemyList = new List<Enemy>();
 
     float waitSpawnWarningTime = 1f;
 
@@ -35,12 +33,6 @@ public class EnemyManager : MonoBehaviour
 
     private void onRewardEvent()
     {
-        Debug.Log("Rewad Event Clear Envet");
-
-        foreach (var t in enemyList)
-        {
-            t.Die();
-        }
     }
 
     IEnumerator Start()
@@ -106,10 +98,6 @@ public class EnemyManager : MonoBehaviour
             {
                 // 确保敌人对象在敌人列表中
                 var enemyComponent = clone.GetComponent<Enemy>();
-                if (enemyComponent != null && !enemyList.Contains(enemyComponent))
-                {
-                    enemyList.Add(enemyComponent);
-                }
                 clone.transform.position = spawnPosList[i]; // 设置敌人位置
             }
             else

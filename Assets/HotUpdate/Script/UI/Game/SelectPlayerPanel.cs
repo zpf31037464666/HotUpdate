@@ -20,8 +20,7 @@ public class SelectPlayerPanel : UIState
     {
         startButton.onClick.AddListener(() =>
         {
-           // UIManager.Instance.SwitchPanel(My_UIConst.SelectPlayerPanel);
-            UIManager.Instance.SwitchPanel(My_UIConst.LevelSelectPanel);
+            UIManager.Instance.SwitchPanel(My_UIConst.PlayerInfoPanel);
         });
     }
     public override void Enter()
@@ -58,7 +57,7 @@ public class SelectPlayerPanel : UIState
             nameText.text = name;
             descriptText.text = descript;
             lockImage.gameObject.SetActive(!isUnlock);
-
+             startButton.interactable=isUnlock;
             GameManager.instance.currentPlyaerItemData = playerItemData;
  
     }

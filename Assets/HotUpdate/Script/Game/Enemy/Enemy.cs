@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -61,6 +62,7 @@ public class Enemy : MonoBehaviour
         isHurt = false;
 
         WaveUI.OnRewardEvent += onRewardEvent;
+        WaveUI.OnGameWin+=GameWin;
     }
     private void OnDisable()
     {
@@ -68,8 +70,13 @@ public class Enemy : MonoBehaviour
         StopAllCoroutines();
 
         WaveUI.OnRewardEvent -= onRewardEvent;
+        WaveUI.OnGameWin-=GameWin;
     }
     public virtual void onRewardEvent()
+    {
+        Die();
+    }
+    private void GameWin()
     {
         Die();
     }

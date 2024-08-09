@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class EnemyWaveManager : Singleton<EnemyWaveManager>
+public class EnemyWaveManager : PersistentSingleton<EnemyWaveManager>
 {
     private List<EnemyWaveData> enemyWaveList = new List<EnemyWaveData>();
 
@@ -47,6 +47,17 @@ public class EnemyWaveManager : Singleton<EnemyWaveManager>
 
         return currentWaves; // 返回找到的波数据（可能是空列表）
     }
-    public bool IsBeyond(int waveNumber) => enemyWaveList.Count<=waveNumber;
+    public bool IsLastEnemyWaveData(int currentWave)
+    {
+        List<EnemyWaveData> currentWaves = enemyWaveList.FindAll(w => w.WaveNumber == currentWave);
+        if (currentWaves.Count == 0)
+        {
+            Debug.LogWarning($"No enemy wave data found for wave number: {currentWave}");
+            return false;
+        }
+        return currentWaves[0].IsOverGame;
+
+    }
+
 
 }

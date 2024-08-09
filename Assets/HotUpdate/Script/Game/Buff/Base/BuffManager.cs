@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class BuffManager : Singleton<BuffManager>
+public class BuffManager : PersistentSingleton<BuffManager>
 {
     private List<BuffData> buffdataList = new List<BuffData>();
     private List<Buff> buffs = new List<Buff>();

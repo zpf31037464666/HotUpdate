@@ -13,6 +13,7 @@ public class WaveUI : MonoBehaviour
     public int waveNumber = 0;
 
     public static Action OnRewardEvent;
+    public static event Action OnGameWin;
 
     private void Awake()
     {
@@ -31,9 +32,15 @@ public class WaveUI : MonoBehaviour
 
     void OpenUI()
     {
-
         waveUI.SetActive(true);
-        waveUI.GetComponentInChildren<Text>().text = $"----第{waveNumber}波----";
+        if (EnemyWaveManager.instance.IsLastEnemyWaveData(waveNumber))
+        {
+            waveUI.GetComponentInChildren<Text>().text = $"----最后一波----";
+        }
+        else
+        {
+            waveUI.GetComponentInChildren<Text>().text = $"----第{waveNumber}波----";
+        }
         GameManager.GameState= GameState.UI;
     }
     void CloseUI()
@@ -44,25 +51,27 @@ public class WaveUI : MonoBehaviour
     IEnumerator RewardCoroutine()
     {
         var enemyWaveList = EnemyWaveManager.instance.GetEnemyWaveData(waveNumber);
-
-        if(enemyWaveList == null)
-        {
-            GameManager.GameState= GameState.GameOver;
-            yield break;
-        }
         int time = enemyWaveList[0].RewardTime;
         while (time > 0)
         {
+            time -= 1;
             timeText.text = time.ToString();
             yield return new WaitForSeconds(1f);
-            time -= 1;
         }
+        if (EnemyWaveManager.instance.IsLastEnemyWaveData(waveNumber))
+        {
+            GameManager.GameState= GameState.GameOver;
+            OnGameWin?.Invoke();
+            yield break;
+        }
+
+
         GameManager.GameState=GameState.Reward;
         OnRewardEvent?.Invoke();
+
+
         yield return new WaitUntil(() => GameManager.GameState== GameState.UI);
+
         waveNumber++;
-
-
-
     }
 }
