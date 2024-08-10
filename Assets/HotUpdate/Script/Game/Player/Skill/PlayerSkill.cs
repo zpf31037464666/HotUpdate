@@ -6,8 +6,6 @@ using UnityEngine;
 public class PlayerSkill : MonoBehaviour
 {
     public List<Skill> SkillList= new List<Skill>();
-
-
     public static event Action<Skill> OnSkillAddEvent;
     public static event Action<Skill> OnSkillRemoveEvent;
     public static event Action<List<Skill>> OnSkillUpdateEvent;

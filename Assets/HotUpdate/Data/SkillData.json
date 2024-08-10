@@ -6,7 +6,8 @@
     "Description": "增加一个每秒恢复血量的buff",
     "IconPath": "Card/Items samples 1.png[Example items_12]",
     "CoolDownTime": 2,
-    "UseMp": 20
+    "UseMp": 20,
+    "BuffName": "血包"
   },
   {
     "Id": 1,
@@ -15,6 +16,17 @@
     "Description": "增加一个每秒扣除血量的buff",
     "IconPath": "Card/Items samples 1.png[Example items_13]",
     "CoolDownTime": 2,
-    "UseMp": 20
+    "UseMp": 20,
+    "BuffName": "毒药"
+  },
+  {
+    "Id": 3,
+    "Name": "攻速技能",
+    "SkillType": "AddAttackSpeedBuffKill",
+    "Description": "增加一个增加攻速的buff",
+    "IconPath": "Card/Items samples 1.png[Example items_14]",
+    "CoolDownTime": 2,
+    "UseMp": 20,
+    "BuffName": "活力覆盖"
   }
 ]

@@ -12,11 +12,11 @@ public class Bullet : MonoBehaviour
     
     new protected Rigidbody2D rigidbody;
     protected WeaponInfo weaponInfo;
+    protected Player player;
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
     }
-
     public void SetDiction(Vector2 direction)
     {
         rigidbody.velocity = direction * weaponInfo.speed;
@@ -25,7 +25,10 @@ public class Bullet : MonoBehaviour
     {
         this.weaponInfo = weaponInfo;
     }
-
+    public void SetPlayer(Player player)
+    {
+        this.player = player;
+    }
     public void AddBulletDamage(int damage)
     {
         weaponInfo.damage+=damage;
@@ -44,20 +47,19 @@ public class Bullet : MonoBehaviour
 
             bool isCriticalHit=UnityEngine. Random.Range(0f, 1f) < weaponInfo.baseCriticalRate;//计算暴击
 
-            if(isCriticalHit)
-            {
-                var damage =weaponInfo.damage*weaponInfo.criticalEffect;
-                enemy.TakeDamageDiction((int)damage, -blackdiction.normalized, weaponInfo.backForce, hitPos);
+            float damage = isCriticalHit ? weaponInfo.damage*weaponInfo.criticalEffect : weaponInfo.damage;
 
+            if (isCriticalHit)
+            {
+                enemy.TakeDamageDiction((int)damage, -blackdiction.normalized, weaponInfo.backForce, hitPos);
                 DamageShowManager.instance.CreateRedDamage((int)damage, transform.position);
             }
             else
             {
-                enemy.TakeDamageDiction(weaponInfo.damage, -blackdiction.normalized, weaponInfo.backForce, hitPos);
+                enemy.TakeDamageDiction((int)damage, -blackdiction.normalized, weaponInfo.backForce, hitPos);
                 DamageShowManager.instance.CreateDamage(weaponInfo.damage, transform.position);
             }
-
-            //enemy.TakeDamage(damage);
+            player.AddHealth(damage*weaponInfo.vampire);//吸血
         }
 
     }

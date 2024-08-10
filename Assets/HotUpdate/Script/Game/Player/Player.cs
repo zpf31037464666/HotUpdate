@@ -9,7 +9,13 @@ public class Player : MonoBehaviour
     [Header("Health")]
     [SerializeField]  private float maxHealth;
     [SerializeField]  private float maxMP;//蓝量
-    [SerializeField]  private float missPrecet;//闪避率
+    [SerializeField]  private float speed;//速度
+    [SerializeField]  private float critical;//暴击率
+    [SerializeField]  private float dodge;//闪避率
+    [SerializeField]  private float armor;//护甲
+    [SerializeField]  private float vampire;//吸血率
+    [SerializeField]  private float attackSpeed;//攻击速度
+
     [Header("Music")]
     [SerializeField] AudioData hurtAudioData;
 
@@ -35,6 +41,8 @@ public class Player : MonoBehaviour
     public static Action<Player> OnChangeLevelEvent;
     public static Action OnPlayerDeathEvent;
 
+    private PlayerWeapon playerWeapon;
+
 
     public float Health { get => health; set => health=value; }
     public float MaxHealth { get => maxHealth; set => maxHealth=value; }
@@ -43,27 +51,37 @@ public class Player : MonoBehaviour
     public float CurrentExp { get => currentExp; set => currentExp=value; }
     public int CurrentLevel { get => currentLevel; set => currentLevel=value; }
     public float RequiteExp { get => requiteExp; set => requiteExp=value; }
+    public float Vampire { get => vampire; set => vampire=value; }
+    public float AttackSpeed { get => attackSpeed; set => attackSpeed=value; }
+    public float Critical { get => critical; set => critical=value; }
+    public float Speed { get => speed; set => speed=value; }
+    private void Awake()
+    {
+        playerWeapon = GetComponent<PlayerWeapon>();
+    }
 
     private void Start()
     {
+        impulseSource=GetComponent<CinemachineImpulseSource>();
+        CameraShake.instance.SetFollowPlayer(transform);
+    }
+
+    public void Init(PlayerItemData playerItemData)
+    {
+        maxHealth=playerItemData.Health;
+        maxMP=playerItemData.MP;
+        dodge=playerItemData.Dodge;
+        armor=playerItemData.Armor;
+        vampire=playerItemData.Vampire;
+        attackSpeed=playerItemData.AttackSpeed;
+        speed=playerItemData.Speed;
+        critical=playerItemData.Critical;
+
         health=maxHealth;
         currentMp=maxMP;
 
-        impulseSource=GetComponent<CinemachineImpulseSource>();
-        CameraShake.instance.SetFollowPlayer(transform);
-
-    }
-
-    private void Update()
-    {
-        
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            Debug.Log("Test mp andd Exp");
-            AddExp(2);
-            UseMp(2);
-
-        }
+        OnChangeHealthEvent?.Invoke(this);
+        OnChangeMpEvent?.Invoke(this);
     }
     public virtual bool IsUseMp(float mp)=>currentMp>=mp;
     public virtual void UseMp(float mp)
@@ -96,7 +114,7 @@ public class Player : MonoBehaviour
     public virtual void TakeDamage(float damage)
     {
         if (health == 0||isInvincible) return;  // 先判断这个会消除下面的 bug
-        bool isMiss = UnityEngine.Random.Range(0f, 1f)<missPrecet;
+        bool isMiss = UnityEngine.Random.Range(0f, 1f)<dodge;
         if (isMiss)
         {
             DamageShowManager.instance.CreateDamage("Miss", transform.position);
@@ -104,8 +122,8 @@ public class Player : MonoBehaviour
         }
         else
         {
+            damage*=(1-armor);//护甲减伤
             health -= damage;
-
             AudioManager.instance.PlayRandomSFXaudio(hurtAudioData);
 
             OnChangeHealthEvent?.Invoke(this);
@@ -145,6 +163,16 @@ public class Player : MonoBehaviour
         }
         OnChangeMpEvent?.Invoke(this);
     }
+    public virtual void AddAttackSpeed(float percent)
+    {
+        attackSpeed*=percent;
+        playerWeapon.AddWeaponFireSpeed(attackSpeed);
+    }
+    public virtual void DecreateAttackSpeed(float percent)
+    {
+        attackSpeed/=percent;
+        playerWeapon.DecreateFireSpeed(attackSpeed);
+    }
     private void Invincble()
     {
         if (!gameObject.activeInHierarchy)
@@ -159,7 +187,6 @@ public class Player : MonoBehaviour
             invincibleTimeCoroutine=StartCoroutine(InvincibleTimeCoroutine());
         }
     }
-
     public virtual void Die()
     {
         StopAllCoroutines();
@@ -170,10 +197,8 @@ public class Player : MonoBehaviour
     {
         isInvincible = true;
         //  CameraRecoil.instance.Shake(InvincibleTime, .1f);
-        //    CameraShake.instance.ShakeCamera(InvincibleTime, 1, 1);
+        //  CameraShake.instance.ShakeCamera(InvincibleTime, 1, 1);
         CameraShake.instance.CamerShake(impulseSource);
-
-
         yield return new WaitForSeconds(InvincibleTime);
         isInvincible=false;
     }

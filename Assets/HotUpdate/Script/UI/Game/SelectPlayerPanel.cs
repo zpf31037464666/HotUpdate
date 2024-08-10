@@ -57,7 +57,7 @@ public class SelectPlayerPanel : UIState
             nameText.text = name;
             descriptText.text = descript;
             lockImage.gameObject.SetActive(!isUnlock);
-             startButton.interactable=isUnlock;
+            startButton.interactable=isUnlock;
             GameManager.instance.currentPlyaerItemData = playerItemData;
  
     }

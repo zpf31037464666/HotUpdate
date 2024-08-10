@@ -15,14 +15,11 @@ public class PlayerWeapon : MonoBehaviour
     {
         AddGun(initGun);
     }
-
     public void AddGun(GameObject weapon)
     {
-     //   Debug.Log("增加武器次数");
         GameObject clone = Instantiate(weapon, gunTransformGroup,false);
         gunList.Add(clone.GetComponent<Gun>());
         rotationObjectList.Add(clone.GetComponent<AutoRotationToPlayer>());
-
         foreach (var item in rotationObjectList)
         {
             item.RestPos(gunTransformGroup);
@@ -42,6 +39,13 @@ public class PlayerWeapon : MonoBehaviour
             gun.AddFireSpeed(precent);
         }
     }
+    public void DecreateFireSpeed(float precent)
+    {
+        foreach (var gun in gunList)
+        {
+            gun.DecreateSpeed(precent);
+        }
+    }
     //暴击率
     public void AddWeaponCriticalRate(float number)
     {
@@ -58,16 +62,4 @@ public class PlayerWeapon : MonoBehaviour
             gun.AddCriticalEffect(number);
         }
     }
-
-    //private void Update()
-    //{
-    //    if (Input.GetKeyUp(KeyCode.Escape))
-    //    {
-    //        Debug.Log("Test Add Gun");
-    //        AddGun(initGun);
-    //        //AddWeaponDamage(2);
-    //        //AddWeaponFireSpeed(.3f);
-    //    }
-    //}
-
 }

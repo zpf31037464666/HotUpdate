@@ -7,7 +7,7 @@
     "BGPath": "Card/Cards.png[Cards_11]",
     "PrefabPath": "Prefab/Game/Player/Player.prefab",
     "IsUnLock": true,
-    "Health": 100,
+    "Health": 50,
     "Armor": 0,
     "MP": 100,
     "Speed": 5,
@@ -15,7 +15,8 @@
     "Dodge": 0,
     "Vampire": 0,
     "AttackSpeed": 1,
-    "Special": "也许我不需要那玩意"
+    "Special": "也许我不需要那玩意",
+    "SkillName": ["加血技能", "扣血技能"]
   },
   {
     "Id": 1,
@@ -25,7 +26,7 @@
     "BGPath": "Card/Cards.png[Cards_11]",
     "PrefabPath": "Prefab/Game/Player/Player.prefab",
     "IsUnLock": true,
-    "Health": 100,
+    "Health": 70,
     "Armor": 0,
     "MP": 100,
     "Speed": 5,
@@ -33,7 +34,8 @@
     "Dodge": 0,
     "Vampire": 0,
     "AttackSpeed": 1,
-    "Special": "使用枪支时增加攻击速度"
+    "Special": "获得攻击速度提升技能",
+    "SkillName": ["攻速技能"]
   },
   {
     "Id": 2,
@@ -51,6 +53,7 @@
     "Dodge": 0,
     "Vampire": 0,
     "AttackSpeed": 1,
-    "Special": "每次击杀10敌人增加伤害加2"
+    "Special": "每次击杀10敌人增加伤害加2",
+    "SkillName": []
   }
 ]

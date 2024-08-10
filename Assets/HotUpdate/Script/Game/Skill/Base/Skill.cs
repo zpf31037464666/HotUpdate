@@ -19,7 +19,7 @@ public class Skill : ISkill
     public SkillData SkillData { get ; set ; }
     public bool IsUse {
         get {
-            return isUse= player? !player.IsUseMp(info.mp):true; 
+            return isUse= player? player.IsUseMp(info.mp):true; 
         }
         set { isUse=value; }
     }
@@ -43,13 +43,19 @@ public class Skill : ISkill
     }
     public virtual void Effect()
     {
-
+        if (SkillData.BuffName!="null")
+        {
+            Buff buff = BuffManager.instance.GetBuff(SkillData.BuffName);
+            buff.ReturnBuffDataInfo((info) => { });
+            GameObject player = GameObject.FindAnyObjectByType<Player>().gameObject;
+            buff.Apply(player);
+            player.GetComponent<BuffHandle>().AddBuff(buff);
+        }
     }
 
     public void ReturnSkillDataInfo(Action<SkillInfo> callback)
     {
-       player = GameObject.FindAnyObjectByType<Player>();
-
+        player = GameObject.FindAnyObjectByType<Player>();
         info=new SkillInfo();
         info.name = SkillData.Name;
         info.description = SkillData.Description;

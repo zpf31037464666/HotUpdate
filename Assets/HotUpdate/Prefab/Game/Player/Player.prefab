@@ -288,7 +288,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   maxMP: 100
-  missPrecet: 0.2
+  speed: 0
+  critical: 0
+  dodge: 0
+  armor: 0
+  vampire: 0
+  attackSpeed: 0
   hurtAudioData:
     audioClip: {fileID: 8300000, guid: 92b908cae5fd4d54d80c320632c82f54, type: 3}
     volume: 1
@@ -304,7 +309,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebce6a886c1c55846bc4275339c6c568, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
   isDashing: 0
 --- !u!114 &8755475740636095531
 MonoBehaviour:

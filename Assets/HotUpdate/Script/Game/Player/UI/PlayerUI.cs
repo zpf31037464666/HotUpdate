@@ -176,7 +176,7 @@ public class PlayerUI : MonoBehaviour
         cloneItme.SetAction(skill.Apply);
         skillItemList.Add(cloneItme);
 
-
+        //环形排列
         clone.transform.position=CalculateCirclePosition(skillItemGroup.transform.position, radius, skillNumber, currentNumer);
         currentNumer++;
 
@@ -194,7 +194,7 @@ public class PlayerUI : MonoBehaviour
             skillItemList[i].SetIcon(list[i].info.showSprite);
             skillItemList[i].UpdateCoolDown(list[i].coolDownTime / list[i].SkillData.CoolDownTime);
             skillItemList[i].UpdateCoolDownText(list[i].coolDownTime);
-            skillItemList[i].DisableImage(list[i].IsUse);
+            skillItemList[i].DisableImage(!list[i].IsUse);
         }
     }
 

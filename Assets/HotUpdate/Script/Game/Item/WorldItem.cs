@@ -20,7 +20,7 @@ public class WorldItem : MonoBehaviour
             {
                 case ItemType.buff:
                     Buff buff = BuffManager.instance.GetBuff(Name);
-                    buff.ReturnBuffDataInfo((info) => {     });
+                    buff.ReturnBuffDataInfo((info) => {});
                     buff.Apply(collision.gameObject);
                     collision.GetComponent<BuffHandle>().AddBuff(buff);
                     break;
@@ -29,7 +29,6 @@ public class WorldItem : MonoBehaviour
                     Skill skill = SkillManager.instance.GetSkill(Name);
                     skill.ReturnSkillDataInfo((info) => { });
                     collision.GetComponent<PlayerSkill>().AddSkill(skill);
-
                     break;
             }
             Destroy(gameObject);

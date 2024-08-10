@@ -1,10 +1,3 @@
-//
-// Auto Generated Code By excel2json
-// https://neil3d.gitee.io/coding/excel2json.html
-// 1. 每个 Sheet 形成一个 Struct 定义, Sheet 的名称作为 Struct 的名称
-// 2. 表格约定：第一行是变量名称，第二行是变量类型
-
-// Generate From C:\Users\wasi\Desktop\GameDataExcel\PlayerItemData.xlsx.xlsx
 
 public class PlayerItemData
 {
@@ -24,7 +17,5 @@ public class PlayerItemData
     public float Vampire; // 吸血
     public float AttackSpeed; // 攻速
     public string Special; // 特殊效果
+    public string[] SkillName; // 开局的技能
 }
-
-
-// End of Auto Generated Code

@@ -23,17 +23,16 @@ public class Gun : MonoBehaviour
     Animator animator;
 
     Collider2D[] colliders;
-
-
     float time;
-
     Enemy lockedEnemy;
     bool hasLockedEnemy = false;
+    Player player;
 
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        player=FindAnyObjectByType<Player>();
     }
 
     private void Update()
@@ -90,6 +89,7 @@ public class Gun : MonoBehaviour
             GameObject bullet = ObjectPool.Instance.GetObject(bulletPrefab);
             bullet.transform.position = muzzlePoint.position;
 
+            bullet.GetComponent<Bullet>().SetPlayer(player);
             bullet.GetComponent<Bullet>().SetBulletInfo(weaponInfo);
             bullet.GetComponent<Bullet>().SetDiction(gunDirection);
         }
@@ -110,7 +110,17 @@ public class Gun : MonoBehaviour
 
     public void AddFireSpeed(float precent)
     {
+        Debug.Log("增加射速 precent"+  precent);
         weaponInfo.interval*=(1-precent);
+
+        Debug.Log("增加射速"+  weaponInfo.interval);
+    }
+    public void DecreateSpeed(float precent)
+    {
+        Debug.Log("恢复射速 precent"+  precent);
+        weaponInfo.interval*=(1+precent);
+
+        Debug.Log("恢复射速"+  weaponInfo.interval);
     }
     public void AddCriticalRota(float precent)
     {

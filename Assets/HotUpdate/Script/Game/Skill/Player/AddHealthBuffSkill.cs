@@ -9,10 +9,11 @@ public class AddHealthBuffSkill : Skill
     }
     public override void Effect()
     {
-        Buff buff = BuffManager.instance.GetBuff("血包");
-        buff.ReturnBuffDataInfo((info) => { });
-        GameObject player = GameObject.FindAnyObjectByType<Player>().gameObject;
-        buff.Apply(player);
-        player.GetComponent<BuffHandle>().AddBuff(buff);
+        base.Effect();
+        //Buff buff = BuffManager.instance.GetBuff("血包");
+        //buff.ReturnBuffDataInfo((info) => { });
+        //GameObject player = GameObject.FindAnyObjectByType<Player>().gameObject;
+        //buff.Apply(player);
+        //player.GetComponent<BuffHandle>().AddBuff(buff);
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed;
     [Space]
     [Header("冲刺")]
     private float dashSpeed=20;
@@ -21,11 +20,13 @@ public class PlayerMovement : MonoBehaviour
     private Button dashButton;
 
     PlayerUI playerUI;
+    Player player;
 
     private void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         animator=GetComponentInChildren<Animator>();
+        player=GetComponent<Player>();
         playerUI=FindAnyObjectByType<PlayerUI>();
 
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -41,11 +42,11 @@ public class PlayerMovement : MonoBehaviour
         SwitchAnimation();
         Fild();
 
-        if(Input.GetKeyDown(KeyCode.S))
-        {
-            Debug.Log("测试更改材质");
-            spriteRenderer.material.SetFloat("_FlashAmount", 1);
-        }
+        //if(Input.GetKeyDown(KeyCode.S))
+        //{
+        //    Debug.Log("测试更改材质");
+        //    spriteRenderer.material.SetFloat("_FlashAmount", 1);
+        //}
     }
     void Fild()
     {
@@ -60,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Move()
     {  
-        rigidbody.velocity = joystick.Direction * speed;
+        rigidbody.velocity = joystick.Direction * player.Speed;
     }
     void SwitchAnimation()
     {

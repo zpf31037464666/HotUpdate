@@ -15,7 +15,26 @@ public class SpawnPlayer : MonoBehaviour
         {
             if (e.Status ==AsyncOperationStatus.Succeeded)
             {
-                Instantiate(e.Result,spawnPos.position,Quaternion.identity);
+                GameObject clone=Instantiate(e.Result,spawnPos.position,Quaternion.identity);
+                clone.GetComponent<Player>().Init(playerItemData);
+
+                if (playerItemData.SkillName != null && playerItemData.SkillName.Length > 0)
+                {
+                    Debug.Log("玩家生成技能");
+
+                    foreach (string skillName in playerItemData.SkillName)
+                    {
+                        if (skillName != "null") // 确保技能名有效
+                        {
+                            Skill skill = SkillManager.instance.GetSkill(skillName);
+                            skill.ReturnSkillDataInfo((info) => { });
+
+                            // 将技能添加到玩家技能管理器中
+                            GameObject.FindAnyObjectByType<PlayerSkill>().AddSkill(skill);
+                        }
+                    }
+                }
+
             }
         };
     }

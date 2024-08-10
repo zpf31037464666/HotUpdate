@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 918587511028799454}
   - component: {fileID: 1954592203981698885}
   - component: {fileID: 1767790863958054148}
-  - component: {fileID: 2884382059061334505}
+  - component: {fileID: 1277158676172505452}
   m_Layer: 5
   m_Name: WorldHp
   m_TagString: Untagged
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &2884382059061334505
+--- !u!114 &1277158676172505452
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -246,14 +246,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1526689291626033305}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 228e6264bd4a80345a3506f4484c3a69, type: 3}
+  m_Script: {fileID: 11500000, guid: abd8506d5070ff64f955bc7eecdf3924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fillImageBack: {fileID: 1639957677842129344}
   fillImageFront: {fileID: 3753506259474391539}
-  fillSpeed: 0.5
+  fillSpeed: 0.1
   delayFill: 1
-  fillDelay: 0.1
+  fillDelay: 0.5
 --- !u!1 &1562616279175335227
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,7 +410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  headHealthBar: {fileID: 2884382059061334505}
+  headHealthBar: {fileID: 1277158676172505452}
   moveSpeed: 4
   damage: 10
   spriteRenderers:
