@@ -28,7 +28,7 @@ public class LevelSelectPanel : UIState
     private List<LevelData> levelDataList = new List<LevelData>();
     void Start()
     {
-        Initial();
+
 
         nextLevelButton.onClick.AddListener(OnNextLevelButtonClicked);
         previousLevelButton.onClick.AddListener(OnPreviousLevelButtonClicked);
@@ -37,6 +37,8 @@ public class LevelSelectPanel : UIState
         {
             UIManager.Instance.SwitchPanel(My_UIConst.MainMenuPanel);
         });
+
+        Initial();
     }
     public override void Enter()
     {
@@ -46,6 +48,8 @@ public class LevelSelectPanel : UIState
         rectTransform.DOScale(Vector3.one*scalePrecet, moveDuration).OnComplete(
                () => rectTransform.DOScale(Vector3.one, moveDuration)
             );
+
+        //Initial();
     }
     public override void Exit()
     {
@@ -68,8 +72,13 @@ public class LevelSelectPanel : UIState
 
     private void Initial()
     {
+        foreach (Transform t in levelGroup)
+        {
+            Destroy(t.gameObject);
+        }
+        levelButtons.Clear();
 
-        levelCount=LevelManager.instance.levelDataList.Count;
+        levelCount =LevelManager.instance.levelDataList.Count;
         levelDataList=LevelManager.instance.levelDataList;
 
         // 计算每个按钮之间的角度
@@ -85,7 +94,6 @@ public class LevelSelectPanel : UIState
         {
             GameObject levelButton = Instantiate(levelButtonPrefab, levelGroup);
             levelButton.gameObject.name = i.ToString();
-
 
             levelButton.GetComponent<LevelButton>().RegisterLevelSelector(this, levelDataList[i]);
             levelButtons.Add(levelButton);
@@ -117,8 +125,8 @@ public class LevelSelectPanel : UIState
         }
 
         // 打印最上层和最下层按钮的名称
-        PrintTopButtonName();
-        PrintBottomButtonName();
+        //PrintTopButtonName();
+        //PrintBottomButtonName();
     }
     void OnNextLevelButtonClicked()
     {
@@ -219,8 +227,8 @@ public class LevelSelectPanel : UIState
                     previousLevelButton.interactable = true;
 
                     // 打印最上层和最下层按钮的名称
-                    PrintTopButtonName();
-                    PrintBottomButtonName();
+                    //PrintTopButtonName();
+                    //PrintBottomButtonName();
                 }
             });
         }

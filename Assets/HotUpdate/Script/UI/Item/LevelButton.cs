@@ -38,6 +38,8 @@ public class LevelButton : MonoBehaviour
     }
     public void RegisterLevelSelector(LevelSelectPanel levelSelector, LevelData levelData)
     {
+        levelButton.onClick.RemoveAllListeners();
+
         this.levelSelector = levelSelector;
         levelButton.onClick.AddListener(() =>
         {

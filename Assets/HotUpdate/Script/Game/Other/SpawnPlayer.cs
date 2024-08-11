@@ -24,7 +24,7 @@ public class SpawnPlayer : MonoBehaviour
 
                     foreach (string skillName in playerItemData.SkillName)
                     {
-                        if (skillName != "null") // 确保技能名有效
+                        if (skillName != null) // 确保技能名有效
                         {
                             Skill skill = SkillManager.instance.GetSkill(skillName);
                             skill.ReturnSkillDataInfo((info) => { });

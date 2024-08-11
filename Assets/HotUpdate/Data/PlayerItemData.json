@@ -16,7 +16,10 @@
     "Vampire": 0,
     "AttackSpeed": 1,
     "Special": "也许我不需要那玩意",
-    "SkillName": ["加血技能", "扣血技能"]
+    "SkillName": [
+      "加血技能",
+      "扣血技能"
+    ]
   },
   {
     "Id": 1,
@@ -35,7 +38,10 @@
     "Vampire": 0,
     "AttackSpeed": 1,
     "Special": "获得攻击速度提升技能",
-    "SkillName": ["攻速技能"]
+    "SkillName": [
+      "加血技能",
+      "攻速技能"
+    ]
   },
   {
     "Id": 2,

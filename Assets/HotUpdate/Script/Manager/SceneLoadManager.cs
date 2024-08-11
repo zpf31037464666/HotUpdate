@@ -12,8 +12,6 @@ public class SceneLoadManager : PersistentSingleton<SceneLoadManager>
     public Slider progressBar; // 进度条
     public Text progressText; // 显示进度的文本
     public Animator loadingAnimator; // 用于加载动画的 Animator
-
-
     public void LoadScene(string sceneName)
     {
         StartCoroutine(LoadSceneAsync(sceneName));

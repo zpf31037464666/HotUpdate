@@ -798,6 +798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98c59c031055c14a94eef061885e8ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unLockId: 1
   restButton: {fileID: 1725503760}
   exitButton: {fileID: 695047140}
 --- !u!114 &332834636

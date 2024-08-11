@@ -6,12 +6,29 @@ using UnityEngine.UI;
 
 public class GameWinUI : MonoBehaviour
 {
+    public int unLockId;
+
     [SerializeField] Button restButton;
     [SerializeField] Button exitButton;
     Canvas canvas;
     private void Awake()
     {
         canvas = GetComponent<Canvas>();
+    }
+    private void Start()
+    {
+        restButton.onClick.AddListener(() =>
+        {
+            LevelManager.instance.UnlockLevel(unLockId);
+            SceneLoadManager.instance.LoadScene("Scenes/Main.unity", My_UIConst.MainMenuPanel, .5f);
+
+        });
+
+        exitButton.onClick.AddListener(() =>
+        {
+            LevelManager.instance.UnlockLevel(unLockId);
+            SceneLoadManager.instance.LoadScene("Scenes/Main.unity", My_UIConst.MainMenuPanel, .5f);
+        });
     }
     private void OnEnable()
     {
