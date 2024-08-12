@@ -38,7 +38,7 @@ public class LevelSelectPanel : UIState
             UIManager.Instance.SwitchPanel(My_UIConst.MainMenuPanel);
         });
 
-        Initial();
+       // Initial();
     }
     public override void Enter()
     {
@@ -49,7 +49,7 @@ public class LevelSelectPanel : UIState
                () => rectTransform.DOScale(Vector3.one, moveDuration)
             );
 
-        //Initial();
+        Initial();
     }
     public override void Exit()
     {

@@ -7,22 +7,9 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
-public class RewardManager :MonoBehaviour
+public class RewardManager :PersistentSingleton<RewardManager>
 {
     private List<Reward> rewardsList = new List<Reward>();
-    public static RewardManager instance;
-    private void Awake()
-    {
-        if(instance == null)
-        {
-            instance=this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
     void Start()
     {
         //    LoadRewards();

@@ -47,6 +47,7 @@ public class EnemyWaveManager : PersistentSingleton<EnemyWaveManager>
 
         return currentWaves; // 返回找到的波数据（可能是空列表）
     }
+    //判断是否为最后一波
     public bool IsLastEnemyWaveData(int currentWave)
     {
         List<EnemyWaveData> currentWaves = enemyWaveList.FindAll(w => w.WaveNumber == currentWave);

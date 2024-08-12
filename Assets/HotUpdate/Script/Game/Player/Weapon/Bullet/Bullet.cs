@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour
     new protected Rigidbody2D rigidbody;
     protected WeaponInfo weaponInfo;
     protected Player player;
+    protected Vector2 direction;
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
@@ -20,6 +21,7 @@ public class Bullet : MonoBehaviour
     public void SetDiction(Vector2 direction)
     {
         rigidbody.velocity = direction * weaponInfo.speed;
+        this.direction = direction;
     }
     public void SetBulletInfo(WeaponInfo weaponInfo)
     {
@@ -39,7 +41,6 @@ public class Bullet : MonoBehaviour
         ObjectPool.Instance.PushObject(gameObject);
         CreateBooldEffect();
         AudioManager.instance.PlayRandomSFXaudio(hitAudioData);
-
         hitPos= other.transform.position;
         if (other.gameObject.TryGetComponent(out Enemy enemy))
         {
@@ -68,6 +69,5 @@ public class Bullet : MonoBehaviour
         GameObject exp = ObjectPool.Instance.GetObject(explosionPrefab);
         exp.transform.position = transform.position;
     }
-
 
 }

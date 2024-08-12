@@ -322,7 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5fe8c531fe9cd24cba1def0fee8a4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initGun: {fileID: 6337057585152864084, guid: a87f81ed0d729a840b9ed47871d2fd1f, type: 3}
+  initGun: {fileID: 2290748178909219072, guid: 369c97c7c221e0342af6e0efedc42d40, type: 3}
   gunTransformGroup: {fileID: 3615963356886568414}
   gunList: []
   radius: 1

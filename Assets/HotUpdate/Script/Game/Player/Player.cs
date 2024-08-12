@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class Player : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class Player : MonoBehaviour
     [SerializeField]  private float armor;//护甲
     [SerializeField]  private float vampire;//吸血率
     [SerializeField]  private float attackSpeed;//攻击速度
+
+    private string playerName;
 
     [Header("Music")]
     [SerializeField] AudioData hurtAudioData;
@@ -30,9 +34,7 @@ public class Player : MonoBehaviour
 
     private bool isInvincible=false;
     private Coroutine invincibleTimeCoroutine;
-    private CinemachineImpulseSource impulseSource;
-
-
+    private CinemachineImpulseSource impulseSource;//震动源头
 
     public static Action<Player> OnChangeHealthEvent;
     public static Action<Player> OnHurtEvent;
@@ -42,6 +44,7 @@ public class Player : MonoBehaviour
     public static Action OnPlayerDeathEvent;
 
     private PlayerWeapon playerWeapon;
+    private PlayerUI playerUI;
 
 
     public float Health { get => health; set => health=value; }
@@ -58,6 +61,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         playerWeapon = GetComponent<PlayerWeapon>();
+        playerUI=FindAnyObjectByType<PlayerUI>();
     }
 
     private void Start()
@@ -76,12 +80,24 @@ public class Player : MonoBehaviour
         attackSpeed=playerItemData.AttackSpeed;
         speed=playerItemData.Speed;
         critical=playerItemData.Critical;
+        playerName=playerItemData.Name;
 
         health=maxHealth;
         currentMp=maxMP;
 
         OnChangeHealthEvent?.Invoke(this);
         OnChangeMpEvent?.Invoke(this);
+
+        playerUI.SetNameText(playerItemData.Name);
+        //加载图片
+        Addressables.LoadAssetAsync<Sprite>(playerItemData.IconPath).Completed+=(handle) =>
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                playerUI.SetHeadImage(handle.Result);
+            }
+        };
+
     }
     public virtual bool IsUseMp(float mp)=>currentMp>=mp;
     public virtual void UseMp(float mp)

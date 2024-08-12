@@ -56,7 +56,7 @@
     "RewardValue": 1,
     "Descript": "增加一把手枪",
     "BG": "Card/Cards.png[Cards_0]",
-    "Icon": "Icon/star_gold.png",
+    "Icon": "Weapons/Weapons 2-Sheet.png[Weapons 2-Sheet_0]",
     "AddObjcetName": "Prefab/Game/Weapon/Gun/Gun_Mini.prefab"
   },
   {
@@ -73,8 +73,8 @@
     "RewardID": 7,
     "RewardName": "鹰眼",
     "RewardType": "AddWeaponDamageReward",
-    "RewardValue": 2,
-    "Descript": "增加枪支伤害2",
+    "RewardValue": 10,
+    "Descript": "增加枪支伤害10",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/Power.png",
     "AddObjcetName": "null"
@@ -93,8 +93,8 @@
     "RewardID": 9,
     "RewardName": "加伤球",
     "RewardType": "AddSpinWeaponDamageReward",
-    "RewardValue": 2,
-    "Descript": "增加旋转武器伤害2",
+    "RewardValue": 5,
+    "Descript": "增加旋转武器伤害5",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/Power.png",
     "AddObjcetName": "null"
@@ -138,5 +138,15 @@
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/star_gold.png",
     "AddObjcetName": "null"
+  },
+  {
+    "RewardID": 14,
+    "RewardName": "散弹枪",
+    "RewardType": "AddWeaponReward",
+    "RewardValue": 1,
+    "Descript": "增加一把散弹枪",
+    "BG": "Card/Cards.png[Cards_0]",
+    "Icon": "Weapons/Weapons 2-Sheet.png[Weapons 2-Sheet_8]",
+    "AddObjcetName": "Prefab/Game/Weapon/Gun/Gun_Shotgun.prefab"
   }
 ]

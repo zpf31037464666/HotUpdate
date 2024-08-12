@@ -23,8 +23,6 @@ public class AddWeaponReward : Rewardable
             {
                 Debug.LogError($"Failed to load sprite with key {Reward.BG}");
             }
-
- 
         };
         Debug.Log("增加武器");
     }

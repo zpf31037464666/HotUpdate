@@ -17,8 +17,6 @@ public class LevelManager : PersistentSingleton<LevelManager>, ISaveable<List<Le
         playerSaveManager.Register(this);
 
         LoadJson();
-
-
     }
 
     private void LoadSaveData()
@@ -63,9 +61,14 @@ public class LevelManager : PersistentSingleton<LevelManager>, ISaveable<List<Le
             level.IsUnLock = true;
         }
         //保存场景
+        SaveData();
+
+    }
+
+    private void SaveData()
+    {
         var playerSaveManager = SaveLoadManager<List<LevelData>>.GetInstance(GetType().Name);
         playerSaveManager.SaveGameData("Save1", GetType().Name);
-
     }
 
     private void Update()

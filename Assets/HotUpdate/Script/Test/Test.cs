@@ -1,3 +1,4 @@
+using Aliyun.OSS;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,31 +10,22 @@ using UnityEngine.UI;
 
 public class Test : MonoBehaviour
 {
-    Button button;
+    public ReboundsBullet beboundBullet;
 
-    private void Awake()
+
+    private void Update()
     {
-        button = GetComponent<Button>();
-    }
-    void Start()
-    {
-        button.onClick.AddListener(() =>
+        if(Input.GetKeyUp(KeyCode.Space))
         {
-            LoadMainScene();
-        });
-    }
-    private void LoadMainScene()
-    {
-        var handle = Addressables.LoadSceneAsync("Game2", LoadSceneMode.Single);
-        handle.Completed += OnSenceLoad;
-    }
+          //  var bullet = ObjectPool.Instance.GetObject(beboundBullet.gameObject);
+          //  bullet.transform.localPosition = transform.position;
+          ////  bullet.GetComponent<Bullet>().SetPlayer(player);
 
-    private void OnSenceLoad(AsyncOperationHandle<SceneInstance> handle)
-    {
-
-        if (handle.Status == AsyncOperationStatus.Succeeded)
-        {
-            Debug.Log("加载成功");
+          //   var weaponInfo=new WeaponInfo();
+          //    weaponInfo.speed=20;
+          //  var gunDirection = transform.right;
+          //  bullet.GetComponent<Bullet>().SetBulletInfo(weaponInfo);
+          //  bullet.GetComponent<Bullet>().SetDiction(gunDirection);
         }
     }
 

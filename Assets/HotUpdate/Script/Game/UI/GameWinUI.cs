@@ -20,7 +20,12 @@ public class GameWinUI : MonoBehaviour
         restButton.onClick.AddListener(() =>
         {
             LevelManager.instance.UnlockLevel(unLockId);
-            SceneLoadManager.instance.LoadScene("Scenes/Main.unity", My_UIConst.MainMenuPanel, .5f);
+          //  SceneLoadManager.instance.LoadScene("Scenes/Main.unity", My_UIConst.MainMenuPanel, .5f);
+
+            SceneLoadManager.instance.LoadScene("Scenes/Main.unity");
+            UIManager.Instance.SwitchPanel(My_UIConst.MainMenuPanel);
+
+            GameManager.GameState=GameState.Playing;
 
         });
 
@@ -28,6 +33,8 @@ public class GameWinUI : MonoBehaviour
         {
             LevelManager.instance.UnlockLevel(unLockId);
             SceneLoadManager.instance.LoadScene("Scenes/Main.unity", My_UIConst.MainMenuPanel, .5f);
+
+            GameManager.GameState=GameState.Playing;
         });
     }
     private void OnEnable()
@@ -42,6 +49,8 @@ public class GameWinUI : MonoBehaviour
     private void GameWin()
     {
         Open();
+        //解锁场景
+        LevelManager.instance.UnlockLevel(unLockId);
     }
 
     void Open()

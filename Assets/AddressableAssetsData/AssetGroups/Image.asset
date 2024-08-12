@@ -38,12 +38,14 @@ MonoBehaviour:
   - m_GUID: 633c921f8f1282941bb6dac1d6ddcdc1
     m_Address: Enemy
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - HotUpdate
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1e09d96c4acd31c40bbdd84d1edc0c18
     m_Address: Heros
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - HotUpdate
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e53dea3910c638247a169bdabe09ce20, type: 2}

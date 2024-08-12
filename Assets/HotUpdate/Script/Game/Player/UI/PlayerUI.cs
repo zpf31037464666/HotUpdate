@@ -10,6 +10,7 @@ public class PlayerUI : MonoBehaviour
     [Header("Health")]
     [SerializeField] private Text nameText;
     [SerializeField] private Text hpText;
+    [SerializeField] Image headImage;
     [SerializeField] Image fillImageBack;
     [SerializeField] Image fillImagefront;
     [Header("MP")]
@@ -84,8 +85,6 @@ public class PlayerUI : MonoBehaviour
         PlayerSkill.OnSkillRemoveEvent+=SkillRemoveEvent;
         PlayerSkill.OnSkillUpdateEvent+=SkillUpdateEvent;
     }
-
-
     private void OnDisable()
     {
         Player.OnChangeHealthEvent-=TakeDamageEvent;
@@ -200,6 +199,11 @@ public class PlayerUI : MonoBehaviour
 
 
     #endregion
+
+    public void SetHeadImage(Sprite sprite)
+    {
+        headImage.sprite = sprite;
+    }
     public void SetMP(float currentMp, float maxMp)
     {
         mpText.text= currentMp.ToString()+"/"+maxMp.ToString();

@@ -6,27 +6,27 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     [Header("Bullets & Shells")]
-    [SerializeField] GameObject bulletPrefab;  // 子弹预制体
-    [SerializeField] Transform muzzlePoint;  // 枪口位置
-    [SerializeField] Transform shellPoint;  // 弹壳弹出位置
+    [SerializeField] protected GameObject bulletPrefab;  // 子弹预制体
+    [SerializeField] protected Transform muzzlePoint;  // 枪口位置
+    [SerializeField] protected Transform shellPoint;  // 弹壳弹出位置
 
     [Header("Weapon stats")]
-    [SerializeField] LayerMask enemyLayer;  // 敌人层
-    [SerializeField] WeaponInfo weaponInfo; //数据层
+    [SerializeField] protected LayerMask enemyLayer;  // 敌人层
+    [SerializeField] protected WeaponInfo weaponInfo; //数据层
 
     [Header("Aduio")]
-    [SerializeField] AudioData fireAudioData;
+    [SerializeField] protected AudioData fireAudioData;
 
 
-    Vector2 gunDirection;
-    SpriteRenderer spriteRenderer;
-    Animator animator;
+    protected Vector2 gunDirection;
+    protected SpriteRenderer spriteRenderer;
+    protected Animator animator;
 
-    Collider2D[] colliders;
-    float time;
-    Enemy lockedEnemy;
-    bool hasLockedEnemy = false;
-    Player player;
+    protected Collider2D[] colliders;
+    protected float time;
+    protected Enemy lockedEnemy;
+    protected  bool hasLockedEnemy = false;
+    protected Player player;
 
     private void Awake()
     {
@@ -80,7 +80,7 @@ public class Gun : MonoBehaviour
             transform.right = gunDirection;  // 朝向右边
         }
     }
-    void SingleFire()
+   public virtual void SingleFire()
     {
         if (hasLockedEnemy)
         {
@@ -107,25 +107,23 @@ public class Gun : MonoBehaviour
     {
         weaponInfo.damage += damage;
     }
-
+    //减少射击间隔
     public void AddFireSpeed(float precent)
     {
-        Debug.Log("增加射速 precent"+  precent);
         weaponInfo.interval*=(1-precent);
-
-        Debug.Log("增加射速"+  weaponInfo.interval);
     }
+    //增加射击间隔
     public void DecreateSpeed(float precent)
     {
-        Debug.Log("恢复射速 precent"+  precent);
         weaponInfo.interval*=(1+precent);
 
-        Debug.Log("恢复射速"+  weaponInfo.interval);
     }
+    //增加暴击几率
     public void AddCriticalRota(float precent)
     {
         weaponInfo.baseCriticalRate+=precent;
     }
+    //增加暴击效果
     public void AddCriticalEffect(float precent)
     {
         weaponInfo.criticalEffect+=precent;

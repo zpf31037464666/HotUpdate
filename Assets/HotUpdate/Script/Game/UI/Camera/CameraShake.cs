@@ -1,7 +1,6 @@
 using UnityEngine;
 using Cinemachine;
 using System.Collections;
-using TreeEditor;
 
 public class CameraShake : Singleton<CameraShake>
 {
