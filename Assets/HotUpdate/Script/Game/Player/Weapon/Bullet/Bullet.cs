@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody2D>();
     }
-    public void SetDiction(Vector2 direction)
+    public virtual void SetDiction(Vector2 direction)
     {
         rigidbody.velocity = direction * weaponInfo.speed;
         this.direction = direction;

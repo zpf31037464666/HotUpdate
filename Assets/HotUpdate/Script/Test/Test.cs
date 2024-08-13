@@ -17,15 +17,15 @@ public class Test : MonoBehaviour
     {
         if(Input.GetKeyUp(KeyCode.Space))
         {
-          //  var bullet = ObjectPool.Instance.GetObject(beboundBullet.gameObject);
-          //  bullet.transform.localPosition = transform.position;
-          ////  bullet.GetComponent<Bullet>().SetPlayer(player);
+            var bullet = ObjectPool.Instance.GetObject(beboundBullet.gameObject);
+            bullet.transform.localPosition = transform.position;
+            //  bullet.GetComponent<Bullet>().SetPlayer(player);
 
-          //   var weaponInfo=new WeaponInfo();
-          //    weaponInfo.speed=20;
-          //  var gunDirection = transform.right;
-          //  bullet.GetComponent<Bullet>().SetBulletInfo(weaponInfo);
-          //  bullet.GetComponent<Bullet>().SetDiction(gunDirection);
+            var weaponInfo = new WeaponInfo();
+            weaponInfo.speed=20;
+            var gunDirection = transform.right;
+            bullet.GetComponent<Bullet>().SetBulletInfo(weaponInfo);
+            bullet.GetComponent<Bullet>().SetDiction(gunDirection);
         }
     }
 

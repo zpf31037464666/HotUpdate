@@ -28,7 +28,7 @@ public class Gun : MonoBehaviour
     protected  bool hasLockedEnemy = false;
     protected Player player;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         animator = GetComponentInChildren<Animator>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -48,6 +48,7 @@ public class Gun : MonoBehaviour
         {
             hasLockedEnemy = false;
             lockedEnemy = null;
+            NoEnemyTarget();
         }
 
         if (!hasLockedEnemy)
@@ -60,6 +61,7 @@ public class Gun : MonoBehaviour
                 {
                     lockedEnemy = enemy;
                     hasLockedEnemy = true;
+  
                 }
             }
         }
@@ -80,7 +82,13 @@ public class Gun : MonoBehaviour
             transform.right = gunDirection;  // 朝向右边
         }
     }
-   public virtual void SingleFire()
+
+    public virtual void NoEnemyTarget()
+    {
+
+    }
+
+    public virtual void SingleFire()
     {
         if (hasLockedEnemy)
         {

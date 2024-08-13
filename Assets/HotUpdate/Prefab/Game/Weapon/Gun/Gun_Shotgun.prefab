@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba318ff1ec317054fbe84b86b6e0c884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 6129032536376018216, guid: 2db8397051324574a815944a5c774cde, type: 3}
+  bulletPrefab: {fileID: 2552792643425612047, guid: ab51c92575cabfe4782135c35e673520, type: 3}
   muzzlePoint: {fileID: 4825339996172638425}
   shellPoint: {fileID: 3537964023477425506}
   enemyLayer:
@@ -73,7 +73,7 @@ MonoBehaviour:
   weaponInfo:
     id: 1
     name: Gun_Shotgun
-    damage: 10
+    damage: 1
     backForce: 10
     speed: 20
     interval: 1

@@ -7,10 +7,20 @@ using UnityEngine;
 public class ReboundsBullet : Bullet
 {
     public int maxBounces = 3; // 最大反弹次数
+    public bool isStayScene=false;
     private int bounceCount = 0; // 当前反弹次数
 
     private float stayTime = 0f; // 停留时间
     private bool isCollidingWithWall = false; // 是否碰到墙壁
+    private void Update()
+    {
+        transform.position +=(Vector3) direction.normalized * weaponInfo.speed * Time.deltaTime;
+    }
+    public override void SetDiction(Vector2 direction)
+    {
+       this.direction=direction.normalized;
+    }
+
     public override void OnTriggerEnter2D(Collider2D other)
     {
         AudioManager.instance.PlayRandomSFXaudio(hitAudioData);
@@ -42,20 +52,18 @@ public class ReboundsBullet : Bullet
         if (collision.gameObject.CompareTag("Wall"))
         {
             isCollidingWithWall = true; // 开始与墙壁碰撞
+            direction = Vector2.Reflect(direction, collision.contacts[0].normal).normalized;
             stayTime = 0f; // 重置停留时间
             bounceCount++; // 增加反弹次数
 
-            if (bounceCount < maxBounces)
+            if (bounceCount > maxBounces)
             {
-                // 计算反弹方向
-                direction = Vector2.Reflect(direction, collision.contacts[0].normal);
-                rigidbody.velocity = direction * weaponInfo.speed; // 更新子弹速度
-            }
-            else
-            {
-                ObjectPool.Instance.PushObject(gameObject);
-                CreateBooldEffect();
-                bounceCount = 0;
+                if(!isStayScene)//是否永久停留在场上
+                {
+                    ObjectPool.Instance.PushObject(gameObject);
+                    CreateBooldEffect();
+                    bounceCount = 0;
+                }
             }
         }
     }
@@ -65,18 +73,21 @@ public class ReboundsBullet : Bullet
         if (isCollidingWithWall && collision.gameObject.CompareTag("Wall"))
         {
             stayTime += Time.deltaTime; // 增加停留时间
-
             // 如果停留时间超过 1 秒，增加反弹次数
-            if (stayTime >= 1f)
+            if (stayTime >= 0.1f)
             {
-                bounceCount++; // 增加反弹次数
+                direction = -direction; // 反转方向
                 stayTime = 0f; // 重置停留时间
 
+                bounceCount++; // 增加反弹次数
                 if (bounceCount >= maxBounces)
                 {
-                    ObjectPool.Instance.PushObject(gameObject);
-                    CreateBooldEffect();
-                    bounceCount = 0;
+                    if (!isStayScene)//是否永久停留在场上
+                    {
+                        ObjectPool.Instance.PushObject(gameObject);
+                        CreateBooldEffect();
+                        bounceCount = 0;
+                    }
                 }
             }
         }

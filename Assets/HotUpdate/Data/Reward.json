@@ -148,5 +148,15 @@
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Weapons/Weapons 2-Sheet.png[Weapons 2-Sheet_8]",
     "AddObjcetName": "Prefab/Game/Weapon/Gun/Gun_Shotgun.prefab"
+  },
+  {
+    "RewardID": 15,
+    "RewardName": "篮球",
+    "RewardType": "AddSpecialObjectReward",
+    "RewardValue": 1,
+    "Descript": "增加一个篮球",
+    "BG": "Card/Cards.png[Cards_0]",
+    "Icon": "Icon/star_gold.png",
+    "AddObjcetName": "Prefab/Game/Weapon/Special/BacketBall.prefab"
   }
 ]
