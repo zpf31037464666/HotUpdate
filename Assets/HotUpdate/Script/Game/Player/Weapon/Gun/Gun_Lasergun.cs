@@ -28,70 +28,88 @@ public class Gun_Lasergun : Gun
     {
         if (!hasLockedEnemy) return;
 
-        laser.enabled = true;
         effect.SetActive(true);
         animator.SetTrigger("Fire");
         AudioManager.instance.PlayRandomSFXaudio(fireAudioData);
 
-        int reflectionCount = 0;
-        Vector2 currentPosition = muzzlePoint.position;
-        laser.positionCount = 1;
-        laser.SetPosition(0, currentPosition);
+        laser.enabled = true;
+        laser.positionCount = 1; // 初始化 LineRenderer 的位置数量为 1
+        laser.SetPosition(0, muzzlePoint.position); // 设置起始位置为发射点
+
+        int reflectionCount = 0; // 反射计数
+        Vector2 currentPosition = muzzlePoint.position; // 从发射点开始
 
         int wallLayerMask = 1 << LayerMask.NameToLayer("Wall");
         int enemyLayerMask = 1 << LayerMask.NameToLayer("Enemy");
-        int combinedLayerMask = enemyLayerMask | wallLayerMask;
 
-        while (reflectionCount < maxReflections)
+        for (int i = 0; i < maxReflections; i++)
         {
-            RaycastHit2D hit = Physics2D.Raycast(currentPosition, gunDirection, maxLength, combinedLayerMask);
+            // 先检测敌人
+            RaycastHit2D[] hitsEnemies = Physics2D.RaycastAll(currentPosition, gunDirection, maxLength, enemyLayerMask);
+            bool hitWall = false;
 
-            // 更新粒子特效位置
-            effect.transform.position = hit.point;
-            effect.transform.forward = -gunDirection;
-
-            // 检查是否击中任何物体
-            if (hit.collider != null)
+            foreach (var hitEnemy in hitsEnemies)
             {
-                // 碰到墙壁反弹
-                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Wall"))
-                {
-                    reflectionCount++;
-                    laser.positionCount = reflectionCount + 1;
-                    laser.SetPosition(reflectionCount, hit.point);
-                    gunDirection = Vector2.Reflect(gunDirection, hit.normal);
-                    currentPosition = hit.point + gunDirection * 0.01f; // 避免连续两次射线检测命中同一物体
-                }
-                // 检查是否击中敌人
-                else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-                {
-                    GameObject other = hit.collider.gameObject;
+                Debug.Log(hitEnemy.collider.gameObject.name + " 击中了");
 
-                    if (other.TryGetComponent<Enemy>(out Enemy enemy) && isCanHit)
+                if (hitEnemy.collider.gameObject.TryGetComponent<Enemy>(out Enemy enemy) && isCanHit)
+                {
+                    Vector3 hitPos= hitEnemy.collider.gameObject.transform.position;
+                    Debug.Log("射线击中敌人");
+                    Vector2 blackdiction = -gunDirection;
+
+                    bool isCriticalHit = UnityEngine.Random.Range(0f, 1f) < weaponInfo.baseCriticalRate;//计算暴击
+
+                    float damage = isCriticalHit ? weaponInfo.damage*weaponInfo.criticalEffect : weaponInfo.damage;
+
+                    if (isCriticalHit)
                     {
-                        Debug.Log("射线击中敌人");
-                        enemy.TakeDamage(weaponInfo.damage);
-                        StartCoroutine(nameof(HitIntervalCoroutine));
+                        enemy.TakeDamageDiction((int)damage, -blackdiction.normalized, weaponInfo.backForce, hitPos);
+                        DamageShowManager.instance.CreateRedDamage((int)damage, hitPos);
                     }
+                    else
+                    {
+                        enemy.TakeDamageDiction((int)damage, -blackdiction.normalized, weaponInfo.backForce, hitPos);
+                        DamageShowManager.instance.CreateDamage(weaponInfo.damage, hitPos);
+                    }
+                    player.AddHealth(damage*weaponInfo.vampire);//吸血
 
-                    // 在击中敌人后继续射击
-                    currentPosition = hit.point + gunDirection * 0.01f; // 继续向前移动，避免连续命中
-                    laser.positionCount = reflectionCount + 2; // 增加一个位置点
-                    laser.SetPosition(reflectionCount + 1, currentPosition);
                 }
             }
-            else
+
+            if (isCanHit)
             {
-                // 如果没有击中任何物体，更新激光位置并退出循环
-                currentPosition += maxLength * gunDirection;
-                laser.positionCount = reflectionCount + 2;
-                laser.SetPosition(reflectionCount + 1, currentPosition);
-                break;
+                StartCoroutine(nameof(HitIntervalCoroutine));
+            }
+
+            // 然后检测墙壁
+            RaycastHit2D hitWallDetection = Physics2D.Raycast(currentPosition, gunDirection, maxLength, wallLayerMask);
+            Debug.DrawLine(currentPosition, currentPosition + gunDirection * maxLength, Color.green, 0.1f);
+            if (hitWallDetection.collider != null)
+            {
+                Debug.Log(hitWallDetection.collider.gameObject.name + " 击中了");
+                gunDirection = Vector2.Reflect(gunDirection, hitWallDetection.normal); // 计算反射方向
+                currentPosition = hitWallDetection.point; // 将当前位置设置为墙壁的碰撞点
+
+                hitWall = true;
+
+                reflectionCount++;
+                laser.positionCount = reflectionCount + 1; // 更新 LineRenderer 的位置数量
+                laser.SetPosition(reflectionCount, currentPosition); // 设置反射点位置
+
+                effect.transform.position = currentPosition;
+            }
+            // 如果没有击中墙壁，延伸激光
+            if (!hitWall)
+            {
+                currentPosition += gunDirection * maxLength;
+
+                reflectionCount++;
+                laser.positionCount = reflectionCount + 1; // 更新 LineRenderer 的位置数量
+                laser.SetPosition(reflectionCount, currentPosition); // 设置延伸点位置
+                break; // 退出循环
             }
         }
-
-        // 确保激光的最后位置被更新
-        laser.SetPosition(laser.positionCount - 1, currentPosition);
     }
 
     public void StopFire()

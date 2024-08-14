@@ -5143,7 +5143,7 @@ MonoBehaviour:
   weaponInfo:
     id: 3
     name: Gun_Lasergun
-    damage: 0
+    damage: 10
     backForce: 10
     speed: 0
     interval: 0
@@ -5154,7 +5154,7 @@ MonoBehaviour:
   fireAudioData:
     audioClip: {fileID: 8300000, guid: 73ce2d15eab081d43ae8edc368d26f2b, type: 3}
     volume: 1
-  maxReflections: 2
-  maxLength: 100
-  hitInterval: 0
+  maxReflections: 1
+  maxLength: 1000
+  hitInterval: 0.1
   isCanHit: 1

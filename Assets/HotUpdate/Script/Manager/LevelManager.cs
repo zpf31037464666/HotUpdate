@@ -71,14 +71,14 @@ public class LevelManager : PersistentSingleton<LevelManager>, ISaveable<List<Le
         playerSaveManager.SaveGameData("Save1", GetType().Name);
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            Debug.Log("测试解锁场景");
-            UnlockLevel(1);
-        }
-    }
+    //private void Update()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.Escape))
+    //    {
+    //        Debug.Log("测试解锁场景");
+    //        UnlockLevel(1);
+    //    }
+    //}
 
     public string GetDataID()
     {

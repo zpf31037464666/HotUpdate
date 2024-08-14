@@ -1,0 +1,28 @@
+[
+  {
+    "Id": 0,
+    "Name": "金币收集者",
+    "TaskType": "CoinTask",
+    "Description": "收集金币",
+    "IconPath": "Card/Items samples 1.png[Example items_12]",
+    "CurrentCount": 0,
+    "TargetCount": 10,
+    "RewardIconPath": "Card/Items samples 1.png[Example items_12]",
+    "RewardType": "暂无",
+    "RewardValue": 10,
+    "State": "fault"
+  },
+  {
+    "Id": 1,
+    "Name": "金币收藏家",
+    "TaskType": "CoinTask",
+    "Description": "收集金币",
+    "IconPath": "Card/Items samples 1.png[Example items_12]",
+    "CurrentCount": 0,
+    "TargetCount": 15,
+    "RewardIconPath": "Card/Items samples 1.png[Example items_12]",
+    "RewardType": "透明度",
+    "RewardValue": 10,
+    "State": "fault"
+  }
+]

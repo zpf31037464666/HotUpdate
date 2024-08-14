@@ -142,8 +142,6 @@ public class Enemy : MonoBehaviour
         isHurt=true;
         HurtEffect();
         yield return new WaitForSeconds(hurtPresistTime);
-
-
         foreach (var spriteRenderer in spriteRenderers)
         {
             spriteRenderer.material.SetFloat("_FlashAmount", 0);

@@ -158,5 +158,15 @@
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/star_gold.png",
     "AddObjcetName": "Prefab/Game/Weapon/Special/BacketBall.prefab"
+  },
+  {
+    "RewardID": 16,
+    "RewardName": "激光",
+    "RewardType": "AddWeaponReward",
+    "RewardValue": 1,
+    "Descript": "增加一个激光枪",
+    "BG": "Card/Cards.png[Cards_0]",
+    "Icon": "Weapons/Weapons 3-Sheet.png[Weapons 3-Sheet_55]",
+    "AddObjcetName": "Prefab/Game/Weapon/Gun/Gun_Lasergun.prefab"
   }
 ]

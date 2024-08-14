@@ -73,7 +73,7 @@ MonoBehaviour:
   weaponInfo:
     id: 1
     name: Gun_Shotgun
-    damage: 1
+    damage: 20
     backForce: 10
     speed: 20
     interval: 1
