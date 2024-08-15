@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 
 public class TaskInfo
@@ -11,7 +12,9 @@ public class TaskInfo
     public int targetValue;
     public string state;
 
+    public string rewardName;
     public int rewardValue;
     public Sprite rewardSprite;
 
+    public  Action rewardAction;
 }

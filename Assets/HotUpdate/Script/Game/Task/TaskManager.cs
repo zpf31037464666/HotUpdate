@@ -8,15 +8,15 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class TaskManager : PersistentSingleton<TaskManager>
 {
-    private List<TaskData> taskDataList = new List<TaskData>();
-    private List<Task> taskList = new List<Task>();
+    public List<TaskData> taskDataList = new List<TaskData>();
+    public List<Task> taskList = new List<Task>();
 
     private void Start()
     {
         LoadJson();
         foreach (string name in TaskFactory.GetTaskNames())
         {
-            Debug.Log("buff 具体"+   name);
+            Debug.Log("task 具体"+   name);
         }
     }
     private void LoadJson()
@@ -84,7 +84,6 @@ public class TaskManager : PersistentSingleton<TaskManager>
             if (task.TaskData.TaskType == taskType)
             {
                 Debug.Log("更新任务状态");
-
                 task.UpdateState(value);
             }
         }
@@ -102,15 +101,15 @@ public class TaskManager : PersistentSingleton<TaskManager>
     //        }
     //    }
     //}
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            Debug.Log("测试任务");
-            UpdateTaskState("CoinTask", 1);
-           // UpdateTaskState("CoinTask", 1);
+    //private void Update()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.Escape))
+    //    {
+    //        Debug.Log("测试任务");
+    //        UpdateTaskState("CoinTask", 1);
+    //       // UpdateTaskState("CoinTask", 1);
 
-        }
-    }
+    //    }
+    //}
 
 }

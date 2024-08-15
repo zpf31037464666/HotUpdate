@@ -67,19 +67,6 @@ public class UIManager : StateMachina
         {
             if (panelObject != null)
             {
-                //// 如果栈不为空，则将当前面板名称推入栈中
-                //if (panelHistory.Count > 0)
-                //{
-                //    string currentPanelName = panelHistory.Peek(); // 获取当前面板名称
-                //    if (currentPanelName != name)
-                //    {
-                //        panelHistory.Push(currentPanelName); // 将当前面板推入栈中
-                //    }
-                //}
-                //else
-                //{
-                //    panelHistory.Push(name); // 第一次切换时，直接推入栈
-                //}
                 panelHistory.Push(name); 
 
                 UIState newState = panelObject.GetComponent<UIState>();

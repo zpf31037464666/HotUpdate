@@ -8,9 +8,10 @@
     "CurrentCount": 0,
     "TargetCount": 10,
     "RewardIconPath": "Card/Items samples 1.png[Example items_12]",
+    "RewardName": "金币",
     "RewardType": "暂无",
     "RewardValue": 10,
-    "State": "fault"
+    "State": "未完成"
   },
   {
     "Id": 1,
@@ -21,8 +22,9 @@
     "CurrentCount": 0,
     "TargetCount": 15,
     "RewardIconPath": "Card/Items samples 1.png[Example items_12]",
+    "RewardName": "金币",
     "RewardType": "透明度",
     "RewardValue": 10,
-    "State": "fault"
+    "State": "未完成"
   }
 ]

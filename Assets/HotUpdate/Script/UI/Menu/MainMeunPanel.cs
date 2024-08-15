@@ -20,8 +20,8 @@ public class MainMeunPanel : UIState
     {
         startButton.onClick.AddListener(() =>
         {
-            //UIManager.Instance.SwitchPanel(My_UIConst.LevelSelectPanel);
-            UIManager.Instance.SwitchPanel(My_UIConst.SelectPlayerPanel);
+            UIManager.Instance.SwitchPanel(My_UIConst.ComprehensivePanel);
+            //UIManager.Instance.SwitchPanel(My_UIConst.SelectPlayerPanel);
         });
         optionButton.onClick.AddListener(() =>
         {

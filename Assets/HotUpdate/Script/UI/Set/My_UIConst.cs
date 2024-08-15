@@ -10,6 +10,8 @@ public class My_UIConst
     public const string PausePanel = "Prefab/UI/Panel/Game/PausePanel.prefab";
     public const string SelectPlayerPanel = "Prefab/UI/Panel/Game/SelectPlayerPanel.prefab";
     public const string PlayerInfoPanel = "Prefab/UI/Panel/Game/PlayerInfoPanel.prefab";
+    public const string TaskPanel = "Prefab/UI/Panel/Game/TaskPanel.prefab";
+    public const string ComprehensivePanel = "Prefab/UI/Panel/Game/ComprehensivePanel.prefab";
 
 
     // 你可以根据需要添加更多的 UI 名称

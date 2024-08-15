@@ -23,7 +23,10 @@ public class Task : ITask
         info.currentValue=TaskData.CurrentCount;
         info.targetValue=TaskData.TargetCount;
         info.state=TaskData.State;
+
+        info.rewardName=TaskData.RewardName;
         info.rewardValue=TaskData.RewardValue;
+        info.rewardAction+=Reward;
     }
 
     public virtual void UpdateState(int value)
@@ -33,17 +36,23 @@ public class Task : ITask
         Debug.Log(GetType().Name+"更新值为"+info.currentValue);
         if (info.currentValue >= info.targetValue)
         {
-            info.state="Compelet";
+            info.state="完成";
 
             Debug.Log(GetType().Name+"完成");
         }
     }
     public virtual void Reward()
     {
-        if (info.state=="Compelet")
+        if (info.state=="完成")
         {
-           
+            //临时
+            GameManager.instance.ReMoveTask(TaskData.Id);
+            Effect();
         }
+    }
+    public virtual void Effect()
+    {
+        
     }
     public void ReturnTaskInfo(Action<TaskInfo> callback)
     {
@@ -58,6 +67,7 @@ public class Task : ITask
                     if (handle.Status == AsyncOperationStatus.Succeeded)
                     {
                         info.rewardSprite= handle.Result;
+
                         callback?.Invoke(info);
                     }
                 };
