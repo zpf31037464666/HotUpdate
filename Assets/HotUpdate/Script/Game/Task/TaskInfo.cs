@@ -16,5 +16,5 @@ public class TaskInfo
     public int rewardValue;
     public Sprite rewardSprite;
 
-    public  Action rewardAction;
+    public  Action rewardAction;//任务事件
 }

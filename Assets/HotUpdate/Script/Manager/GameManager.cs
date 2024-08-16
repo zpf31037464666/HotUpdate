@@ -17,45 +17,45 @@ public class GameManager : PersistentSingleton<GameManager>
 
     public string currentSelectSenceName;
 
-    public List<Task> owerTaskList=new List<Task>();
+    //public List<Task> owerTaskList=new List<Task>();
 
-    private void Start()
-    {
-        owerTaskList=TaskManager.instance.taskList;
-    }
+    //private void Start()
+    //{
+    //    owerTaskList=TaskManager.instance.taskList;
+    //}
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Debug.Log("测试gameManger任务");
-            UpdateTaskState("CoinTask", 1);
-        }
-    }
-    public void ReMoveTask(int id)
-    {
-        Task delectTask=new Task(new TaskData());
-        foreach (var task in owerTaskList)
-        {
-            if (task.TaskData.Id == id)
-            {
-                Debug.Log("移除奖励"+task.TaskData.Name);
-                delectTask = task;
-            }
-        }
-         owerTaskList.Remove(delectTask);
-    }
-    public void UpdateTaskState(string taskType, int value)
-    {
-        foreach (var task in owerTaskList)
-        {
-            if (task.TaskData.TaskType == taskType)
-            {
-                Debug.Log("更新任务状态");
-                task.UpdateState(value);
-            }
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Escape))
+    //    {
+    //        Debug.Log("测试gameManger任务");
+    //        UpdateTaskState("CoinTask", 1);
+    //    }
+    //}
+    //public void ReMoveTask(int id)
+    //{
+    //    Task delectTask=new Task(new TaskData());
+    //    foreach (var task in owerTaskList)
+    //    {
+    //        if (task.TaskData.Id == id)
+    //        {
+    //            Debug.Log("移除奖励"+task.TaskData.Name);
+    //            delectTask = task;
+    //        }
+    //    }
+    //     owerTaskList.Remove(delectTask);
+    //}
+    //public void UpdateTaskState(string taskType, int value)
+    //{
+    //    foreach (var task in owerTaskList)
+    //    {
+    //        if (task.TaskData.TaskType == taskType)
+    //        {
+    //            Debug.Log("更新任务状态");
+    //            task.UpdateState(value);
+    //        }
+    //    }
+    //}
 }
 public enum GameState
 {

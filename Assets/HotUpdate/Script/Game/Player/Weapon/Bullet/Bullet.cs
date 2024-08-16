@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -61,9 +62,12 @@ public class Bullet : MonoBehaviour
                 DamageShowManager.instance.CreateDamage(weaponInfo.damage, transform.position);
             }
             player.AddHealth(damage*weaponInfo.vampire);//吸血
+
         }
 
     }
+
+
     protected virtual void CreateBooldEffect()
     {
         GameObject exp = ObjectPool.Instance.GetObject(explosionPrefab);

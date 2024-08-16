@@ -14,7 +14,6 @@ public class PlayerItemManager : PersistentSingleton<PlayerItemManager>, ISaveab
         playerSaveManager.Register(this);
         LoadJson();
     }
-
     private void LoadJson()
     {
         // 使用 Addressables 异步加载 JSON 文件
@@ -40,18 +39,18 @@ public class PlayerItemManager : PersistentSingleton<PlayerItemManager>, ISaveab
             Debug.LogError("Failed to load JSON: " + handle);
         }
     }
-
-    private void SaveData()
+    public void SaveData()
     {
         var playerSaveManager = SaveLoadManager<List<PlayerItemData>>.GetInstance(GetType().Name);
         playerSaveManager.SaveGameData("Save1", GetType().Name);
     }
-    private void LoadData()
+    public void LoadData()
     {
         //加载场景
         var playerSaveManager = SaveLoadManager<List<PlayerItemData>>.GetInstance(GetType().Name);
         playerSaveManager.LoadGameData("Save1", GetType().Name);
     }
+
     public string GetDataID()
     {
         return GetType().Name;

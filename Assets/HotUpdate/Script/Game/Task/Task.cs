@@ -9,23 +9,24 @@ public class Task : ITask
 {
     public string Name => GetType().Name;
 
-    public TaskData TaskData { get; set; }//数据层;
+    public TaskData taskData { get; set; }//数据层
+
 
     public TaskInfo info;
 
     public Task(TaskData taskData)
     {
-        TaskData=taskData;
+       this.taskData=taskData;
 
         info=new TaskInfo();
-        info.name=TaskData.Name;
-        info.description=TaskData.Description;
-        info.currentValue=TaskData.CurrentCount;
-        info.targetValue=TaskData.TargetCount;
-        info.state=TaskData.State;
+        info.name=taskData.Name;
+        info.description=taskData.Description;
+        info.currentValue=taskData.CurrentCount;
+        info.targetValue=taskData.TargetCount;
+        info.state=taskData.State;
 
-        info.rewardName=TaskData.RewardName;
-        info.rewardValue=TaskData.RewardValue;
+        info.rewardName=taskData.RewardName;
+        info.rewardValue=taskData.RewardValue;
         info.rewardAction+=Reward;
     }
 
@@ -33,10 +34,16 @@ public class Task : ITask
     {
         Debug.Log(info.name+"正在更新");
         info.currentValue+=value;
+
+        taskData.CurrentCount=info.currentValue;
+
+     
         Debug.Log(GetType().Name+"更新值为"+info.currentValue);
         if (info.currentValue >= info.targetValue)
         {
             info.state="完成";
+
+            taskData.State="完成";
 
             Debug.Log(GetType().Name+"完成");
         }
@@ -46,7 +53,7 @@ public class Task : ITask
         if (info.state=="完成")
         {
             //临时
-            GameManager.instance.ReMoveTask(TaskData.Id);
+            TaskManager.instance.ReMoveTask(taskData.Id);
             Effect();
         }
     }
@@ -56,13 +63,13 @@ public class Task : ITask
     }
     public void ReturnTaskInfo(Action<TaskInfo> callback)
     {
-        Addressables.LoadAssetAsync<Sprite>(TaskData.IconPath).Completed+=(handle) =>
+        Addressables.LoadAssetAsync<Sprite>(taskData.IconPath).Completed+=(handle) =>
         {
             if (handle.Status == AsyncOperationStatus.Succeeded)
             {
                  info.iconSprite= handle.Result;
 
-                Addressables.LoadAssetAsync<Sprite>(TaskData.RewardIconPath).Completed+=(handle) =>
+                Addressables.LoadAssetAsync<Sprite>(taskData.RewardIconPath).Completed+=(handle) =>
                 {
                     if (handle.Status == AsyncOperationStatus.Succeeded)
                     {

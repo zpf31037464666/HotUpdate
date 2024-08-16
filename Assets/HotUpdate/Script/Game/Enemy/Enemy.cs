@@ -126,6 +126,9 @@ public class Enemy : MonoBehaviour
         if (health <= 0f)
         {
             health = 0f;
+            Debug.Log("敌人死亡临时 增加金币");
+            TaskManager.instance.UpdateTaskState("CoinTask", 1);
+
             Die();
         }
 

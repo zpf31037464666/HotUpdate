@@ -21,7 +21,7 @@ public class TaskPanel : UIState
     {
         base.Enter();
        // UpdateUI(TaskManager.instance.taskList);
-       UpdateUI(GameManager.instance.owerTaskList);
+       UpdateUI(TaskManager.instance.owerTaskList);
     }
 
     public override void LogicUpdata()
@@ -39,21 +39,21 @@ public class TaskPanel : UIState
         // 更新 UI
         foreach (var task in tasks)
         {
-            task.ReturnTaskInfo((info) => { });//加载图片
-
-            GameObject clone = Instantiate(taskItem.gameObject, taskListContainer);
-            TaskItem taskItemUI = clone.GetComponent<TaskItem>();
-            taskItemUI.SetInfo(task.info);
-            taskItemUI.AddReceiveButtonEvent(() =>
+            task.ReturnTaskInfo((info) => //当图片加载完毕时
             {
-                if (task.info.state=="完成")
+                GameObject clone = Instantiate(taskItem.gameObject, taskListContainer);
+                TaskItem taskItemUI = clone.GetComponent<TaskItem>();
+                taskItemUI.SetInfo(task.info);
+                taskItemUI.AddReceiveButtonEvent(() =>
                 {
-                    Debug.Log("按钮 任务完成");
-                    UpdateUI(GameManager.instance.owerTaskList);
-                }
+                    if (task.info.state=="完成")
+                    {
+                        Debug.Log("按钮 任务完成");
+                        UpdateUI(TaskManager.instance.owerTaskList);
+                    }
+                });
+
             });
-
-
         }
 
     }

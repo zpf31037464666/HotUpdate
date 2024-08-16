@@ -12,19 +12,12 @@ public class LevelManager : PersistentSingleton<LevelManager>, ISaveable<List<Le
     public List<LevelData> levelDataList = new List<LevelData>();
     private void Start()
     {
-
-        var playerSaveManager = SaveLoadManager<List<LevelData>>.GetInstance(GetType().Name);
-        playerSaveManager.Register(this);
+        RegisterSaveData();
 
         LoadJson();
     }
 
-    private void LoadSaveData()
-    {
-        //加载场景
-        var playerSaveManager = SaveLoadManager<List<LevelData>>.GetInstance(GetType().Name);
-        playerSaveManager.LoadGameData("Save1", GetType().Name);
-    }
+    
 
     private void LoadJson()
     {
@@ -64,13 +57,22 @@ public class LevelManager : PersistentSingleton<LevelManager>, ISaveable<List<Le
         SaveData();
 
     }
-
+    private void RegisterSaveData()
+    {
+        var playerSaveManager = SaveLoadManager<List<LevelData>>.GetInstance(GetType().Name);
+        playerSaveManager.Register(this);
+    }
     private void SaveData()
     {
         var playerSaveManager = SaveLoadManager<List<LevelData>>.GetInstance(GetType().Name);
         playerSaveManager.SaveGameData("Save1", GetType().Name);
     }
-
+    private void LoadSaveData()
+    {
+        //加载场景
+        var playerSaveManager = SaveLoadManager<List<LevelData>>.GetInstance(GetType().Name);
+        playerSaveManager.LoadGameData("Save1", GetType().Name);
+    }
     //private void Update()
     //{
     //    if(Input.GetKeyDown(KeyCode.Escape))

@@ -20,6 +20,6 @@ public class CoinTask : Task
     public override void Effect()
     {
         //测试
-        Debug.Log("奖励金币*2"+TaskData.RewardType);
+        Debug.Log("奖励金币*2"+taskData.RewardType);
     }
 }

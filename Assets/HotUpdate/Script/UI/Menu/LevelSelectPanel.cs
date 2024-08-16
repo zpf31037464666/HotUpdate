@@ -35,7 +35,7 @@ public class LevelSelectPanel : UIState
 
         backButton.onClick.AddListener(() =>
         {
-            UIManager.Instance.SwitchPanel(My_UIConst.MainMenuPanel);
+            UIManager.Instance.ReturnToPreviousPanel();
         });
 
        // Initial();

@@ -11,7 +11,8 @@ public class Skill : ISkill
     {
         this.SkillData = skillData;
 
-        coolDownTime=skillData.CoolDownTime;
+        //coolDownTime=skillData.CoolDownTime;
+        coolDownTime=0;
     }
     public string Name => GetType().Name;
 
