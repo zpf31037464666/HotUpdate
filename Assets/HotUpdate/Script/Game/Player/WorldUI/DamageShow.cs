@@ -24,11 +24,17 @@ public class DamageShow : MonoBehaviour
         Vector3 localPositon = transform.position;
         UIEffect.Instance.SetUIMove(gameObject, localPositon+ movement, perisistTime, () => Original());
     }
+
+    public virtual void SetTextColor(Color color)
+    {
+        damageText.color = color;
+    }
     public void Original()
     {
         canvas.enabled=false;
         gameObject.transform.localPosition = Vector3.zero;
         gameObject.transform.localScale = Vector3.one;
+        damageText.color = Color.white;
         ObjectPool.Instance.PushObject(gameObject);
     }
 }

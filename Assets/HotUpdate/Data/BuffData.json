@@ -49,5 +49,39 @@
     "tickTime": 0.5,
     "updateTimeType": "Add",
     "removeStackUpdateType": "Reduce"
+  },
+  {
+    "id": 3,
+    "buffname": "毒药子弹",
+    "BuffType": "PoisonTakeDamageEnemyBuff",
+    "description": "给敌人施加中毒效果，每秒伤害为10",
+    "BuffValue": 10,
+    "icon": "Card/Details.png[Details_12]",
+    "curStack": 1,
+    "priority": 1,
+    "maxStack": 10,
+    "tags": "Buff",
+    "isForever": false,
+    "duration": 10,
+    "tickTime": 0.5,
+    "updateTimeType": "Replace",
+    "removeStackUpdateType": "Clear"
+  },
+  {
+    "id": 4,
+    "buffname": "剧毒子弹",
+    "BuffType": "PoisonTakeDamageEnemyBuff",
+    "description": "给人叠加中毒效果，每秒造成层数*10的伤害",
+    "BuffValue": 10,
+    "icon": "Card/Details.png[Details_12]",
+    "curStack": 1,
+    "priority": 1,
+    "maxStack": 10,
+    "tags": "Buff",
+    "isForever": false,
+    "duration": 10,
+    "tickTime": 1,
+    "updateTimeType": "Add",
+    "removeStackUpdateType": "Clear"
   }
 ]

@@ -57,6 +57,7 @@ public class PlayerBuffHandle : BuffHandle
                 {
                     OnBuffExit?.Invoke(this);//玩家自己的委托
 
+                    //复原自己的层数
                     buffInfo.curStack = buffInfo.buffData.curStack;
                     buffInfo.OnRemove();
                     buffList.Remove(buffInfo);

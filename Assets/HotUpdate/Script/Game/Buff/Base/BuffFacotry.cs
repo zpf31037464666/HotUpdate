@@ -46,9 +46,8 @@ public class BuffFacotry
         }
         return null;
     }
-    public static IEnumerable<string> GetRewardNames()
+    public static IEnumerable<string> GetBuffNames()
     {
-        //Debug.Log("获取所有奖励名称");
         Init();
         return buffDiction.Keys;
     }

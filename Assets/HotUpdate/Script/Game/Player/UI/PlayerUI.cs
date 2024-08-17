@@ -18,14 +18,13 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] TMP_Text mpText;
     [Header("Level")]
     [SerializeField] Image levelImage;
-
-    [Header("Dash")]
     [SerializeField] Image dashImage;
     [SerializeField] Image hurtImage;
     [Header("Buff")]
     [SerializeField] BuffItem buffItem;
     [SerializeField] Transform buffItemGroup;
     public List<GameObject> iconList = new List<GameObject>();
+    [SerializeField] Text coinText;
 
     [Header("Skill")]
     [SerializeField] SkillItem skillItem;
@@ -220,6 +219,10 @@ public class PlayerUI : MonoBehaviour
     public void SetNameText(string name)
     {
         nameText.text = name;
+    }
+    public void SetCoinText(int  coin)
+    {
+        coinText.text = coin.ToString();
     }
     public void SetHealth(float currentValue, float maxValue)
     {

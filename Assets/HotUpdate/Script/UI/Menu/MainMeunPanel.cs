@@ -38,7 +38,6 @@ public class MainMeunPanel : UIState
     }
     public override void Enter()
     {
-        Debug.Log("进入主菜单");
         titleText.text ="武器大师";
 
         base.Enter();

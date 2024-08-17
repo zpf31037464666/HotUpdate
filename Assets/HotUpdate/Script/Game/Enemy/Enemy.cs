@@ -27,20 +27,23 @@ public class Enemy : MonoBehaviour
     protected float health;  // 角色血量
     protected Vector2 moveDirection;  // 角色移动方向
 
-    new CircleCollider2D collider2D;
+    Coroutine hurtCoroutine;
+    protected new CircleCollider2D collider2D;
 
     protected GameObject target;
-    Ray ray;
-    bool isBlocked;
+    protected Ray ray;
+    protected bool isBlocked;
 
-    bool isHurt;
-    float hurtPresistTime=.1f;
+    protected bool isHurt;
+    protected  float hurtPresistTime=.1f;
+
+    protected LootSpawner lootSpawner;
 
     protected virtual void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
-
+        lootSpawner=GetComponent<LootSpawner>();
         collider2D = GetComponent<CircleCollider2D>();
         target = GameObject.FindGameObjectWithTag("Player");
     }
@@ -64,7 +67,7 @@ public class Enemy : MonoBehaviour
         WaveUI.OnRewardEvent += onRewardEvent;
         WaveUI.OnGameWin+=GameWin;
     }
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         headHealthBar.EmptyStates();
         StopAllCoroutines();
@@ -72,11 +75,11 @@ public class Enemy : MonoBehaviour
         WaveUI.OnRewardEvent -= onRewardEvent;
         WaveUI.OnGameWin-=GameWin;
     }
-    public virtual void onRewardEvent()
+    protected virtual void onRewardEvent()
     {
         Die();
     }
-    private void GameWin()
+    protected void GameWin()
     {
         Die();
     }
@@ -84,6 +87,31 @@ public class Enemy : MonoBehaviour
     public virtual  void Update()
     {
         SimpleMove();
+
+        //if (Input.GetKeyDown(KeyCode.Space)) // 按下空格键时改变颜色
+        //{
+        //    Debug.Log("测试shader 随机颜色");
+        //    var color = Color.green;
+        //    foreach (var spriteRenderer in spriteRenderers)
+        //    {
+        //        spriteRenderer.material.SetColor("_Color", color); // 随机颜色
+        //        spriteRenderer.material.SetColor("_FlashColor", color); // 随机闪烁颜色
+        //        spriteRenderer.material.SetFloat("_FlashAmount", 0.2f);
+        //    }
+        //}
+        //if (Input.GetKeyDown(KeyCode.P)) // 按下空格键时改变颜色
+        //{
+        //    Debug.Log("测试shader 还原颜色");
+        //    var color = Color.white;
+        //    foreach (var spriteRenderer in spriteRenderers)
+        //    {
+        //        spriteRenderer.material.SetColor("_Color", color); // 随机颜色
+        //        spriteRenderer.material.SetColor("_FlashColor", color); // 随机闪烁颜色
+        //        spriteRenderer.material.SetFloat("_FlashAmount", 0);
+        //    }
+        //}
+
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -99,7 +127,7 @@ public class Enemy : MonoBehaviour
             player.TakeDamage(damage);
         }
     }
-    public virtual void FlipCharacter()
+    protected virtual void FlipCharacter()
     {
         if (moveDirection.x>0.1)
         {
@@ -117,7 +145,25 @@ public class Enemy : MonoBehaviour
         rigidbody2D.velocity=knockbackDirection*knockbackForce;
         TakeDamage(damage);
     }
-    Coroutine hurtCoroutine;
+    public virtual void SetMaterial(Color color)
+    {
+        foreach (var spriteRenderer in spriteRenderers)
+        {
+            spriteRenderer.material.SetColor("_Color", color); // 随机颜色
+            spriteRenderer.material.SetColor("_FlashColor", color); // 随机闪烁颜色
+            spriteRenderer.material.SetFloat("_FlashAmount", 0.2f);
+        }
+    }
+    public virtual void RestoreMaterial()
+    {
+        var color = Color.white;
+        foreach (var spriteRenderer in spriteRenderers)
+        {
+            spriteRenderer.material.SetColor("_Color", color); // 随机颜色
+            spriteRenderer.material.SetColor("_FlashColor", color); // 随机闪烁颜色
+            spriteRenderer.material.SetFloat("_FlashAmount", 0);
+        }
+    }
     public virtual void TakeDamage(int damage)
     {
         health -= damage;
@@ -126,6 +172,8 @@ public class Enemy : MonoBehaviour
         if (health <= 0f)
         {
             health = 0f;
+
+            lootSpawner.Spaw(transform.position);
             Debug.Log("敌人死亡临时 增加金币");
             TaskManager.instance.UpdateTaskState("CoinTask", 1);
 
@@ -153,8 +201,7 @@ public class Enemy : MonoBehaviour
         isHurt = false;
         hurtCoroutine=null;
     }
-
-    public virtual void HurtEffect()
+    protected virtual void HurtEffect()
     {
         foreach (var spriteRenderer in spriteRenderers)
         {
@@ -162,7 +209,7 @@ public class Enemy : MonoBehaviour
         }
         animator.SetTrigger("attack");//像是受击动作
     }
-    public virtual void Die()
+    protected virtual void Die()
     {
         isDead=true;
         headHealthBar.EmptyStates();

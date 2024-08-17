@@ -404,6 +404,8 @@ GameObject:
   - component: {fileID: 6217209382365764911}
   - component: {fileID: 8377652557204494136}
   - component: {fileID: 6541733248968446889}
+  - component: {fileID: 1990588536764168631}
+  - component: {fileID: 7108145388669009027}
   m_Layer: 7
   m_Name: Enemy_Remote
   m_TagString: Untagged
@@ -530,6 +532,37 @@ MonoBehaviour:
     vampire: 0
     baseCriticalRate: 0
     criticalEffect: 2
+--- !u!114 &1990588536764168631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8929739656850012512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab31bb833ca9404c903861987516eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootSettings:
+  - prefab: {fileID: 7949408919477742915, guid: 1995ee6f8b881454f9ea34b2ac6f1554, type: 3}
+    dropPercentage: 1
+    numebr: 1
+  - prefab: {fileID: 3443325417798297444, guid: 8326b854e2d0c564fb0e1555401c57c3, type: 3}
+    dropPercentage: 1
+    numebr: 1
+--- !u!114 &7108145388669009027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8929739656850012512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b870489b3a712ba44a191ace098d5177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7897435858232568842
 PrefabInstance:
   m_ObjectHideFlags: 0

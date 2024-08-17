@@ -373,6 +373,8 @@ GameObject:
   - component: {fileID: 6146209474210250236}
   - component: {fileID: 4585241108844404224}
   - component: {fileID: 2753079350798229746}
+  - component: {fileID: 7935544576545218432}
+  - component: {fileID: 3831652543462059707}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -485,6 +487,37 @@ CircleCollider2D:
   m_Offset: {x: -0.20455265, y: 0}
   serializedVersion: 2
   m_Radius: 0.7345526
+--- !u!114 &7935544576545218432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8656523933653098815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab31bb833ca9404c903861987516eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootSettings:
+  - prefab: {fileID: 7949408919477742915, guid: 1995ee6f8b881454f9ea34b2ac6f1554, type: 3}
+    dropPercentage: 1
+    numebr: 1
+  - prefab: {fileID: 3443325417798297444, guid: 8326b854e2d0c564fb0e1555401c57c3, type: 3}
+    dropPercentage: 1
+    numebr: 1
+--- !u!114 &3831652543462059707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8656523933653098815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b870489b3a712ba44a191ace098d5177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8925816287201491943
 PrefabInstance:
   m_ObjectHideFlags: 0

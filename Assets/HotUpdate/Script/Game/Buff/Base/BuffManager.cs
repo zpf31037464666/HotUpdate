@@ -13,7 +13,7 @@ public class BuffManager : PersistentSingleton<BuffManager>
     private void Start()
     {
         LoadJson();
-        foreach (string name in BuffFacotry.GetRewardNames())
+        foreach (string name in BuffFacotry.GetBuffNames())
         {
             Debug.Log("buff 具体"+   name);
         }
@@ -69,6 +69,12 @@ public class BuffManager : PersistentSingleton<BuffManager>
         Debug.LogWarning($"Buff with ID {buffID} not found.");
         return null; // 如果没有找到，返回 null
     }
+
+    /// <summary>
+    /// 这个是全局共享，只有一个实例
+    /// </summary>
+    /// <param name="buffName"></param>
+    /// <returns></returns>
     public Buff GetBuff(string  buffName)
     {
         foreach (var buff in buffs)
@@ -81,4 +87,11 @@ public class BuffManager : PersistentSingleton<BuffManager>
         Debug.LogWarning($"Buff with buffName {buffName} not found.");
         return null; // 如果没有找到，返回 null
     }
+    public Buff GetNewBuff(string buffName)
+    {
+        BuffData buffdata = buffdataList.Find(r => r.buffname == buffName);
+        Buff buff = BuffFacotry.GetBuff(buffdata.BuffType, buffdata);
+        return buff; // 如果没有找到，返回 null
+    }
+
 }

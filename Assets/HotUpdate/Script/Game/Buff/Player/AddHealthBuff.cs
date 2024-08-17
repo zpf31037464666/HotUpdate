@@ -11,7 +11,6 @@ public class AddHealthBuff : Buff
     {
         Debug.Log("进入时增加血量");
         ower.GetComponent<Player>()?.AddHealth(buffData.BuffValue);
-
     }
     public override void OnUpdate()
     {

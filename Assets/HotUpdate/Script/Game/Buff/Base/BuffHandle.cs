@@ -52,6 +52,11 @@ public class BuffHandle : MonoBehaviour
             if(buff.buffData.updateTimeType=="Add")
             {
                 findBuffInfo.curStack+=buff.buffData.curStack;
+
+                if (findBuffInfo.curStack>=buff.buffData.maxStack)
+                {
+                    findBuffInfo.curStack=buff.buffData.maxStack;
+                }
                 findBuffInfo.duationTimer=buff.buffData.duration;
             }
             if (buff.buffData.updateTimeType=="Replace")
@@ -84,6 +89,8 @@ public class BuffHandle : MonoBehaviour
             if (buffInfo.buffData.removeStackUpdateType=="Clear")
             {
                 buffInfo.OnRemove();
+                buffInfo.curStack = buffInfo.buffData.curStack;
+                buffInfo.duationTimer = buffInfo.buffData .duration;
                 buffList.Remove(buffInfo);
             }
             else if(buffInfo.buffData.removeStackUpdateType=="Reduce")
@@ -94,6 +101,7 @@ public class BuffHandle : MonoBehaviour
                 {
                     buffInfo.OnRemove();
                     buffInfo.curStack = buffInfo.buffData.curStack;
+                    buffInfo.duationTimer = buffInfo.buffData.duration;
                     buffList.Remove(buffInfo);
                 }
             }

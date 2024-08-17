@@ -168,5 +168,15 @@
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Weapons/Weapons 3-Sheet.png[Weapons 3-Sheet_55]",
     "AddObjcetName": "Prefab/Game/Weapon/Gun/Gun_Lasergun.prefab"
+  },
+  {
+    "RewardID": 17,
+    "RewardName": "剧毒枪",
+    "RewardType": "AddWeaponReward",
+    "RewardValue": 1,
+    "Descript": "增加一把带毒子弹的枪",
+    "BG": "Card/Cards.png[Cards_0]",
+    "Icon": "Weapons/Weapons 3-Sheet.png[Weapons 3-Sheet_25]",
+    "AddObjcetName": "Prefab/Game/Weapon/Gun/Gun_Poison.prefab"
   }
 ]
