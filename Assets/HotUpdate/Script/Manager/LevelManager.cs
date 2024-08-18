@@ -16,9 +16,6 @@ public class LevelManager : PersistentSingleton<LevelManager>, ISaveable<List<Le
 
         LoadJson();
     }
-
-    
-
     private void LoadJson()
     {
         // 使用 Addressables 异步加载 JSON 文件
@@ -44,7 +41,6 @@ public class LevelManager : PersistentSingleton<LevelManager>, ISaveable<List<Le
             Debug.LogError("Failed to load JSON: " + handle);
         }
     }
-
     public void UnlockLevel(int levelId)
     {
         LevelData level = levelDataList.Find(l => l.Id == levelId);
@@ -55,7 +51,6 @@ public class LevelManager : PersistentSingleton<LevelManager>, ISaveable<List<Le
         }
         //保存场景
         SaveData();
-
     }
     private void RegisterSaveData()
     {

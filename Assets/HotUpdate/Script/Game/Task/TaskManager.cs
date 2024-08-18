@@ -166,7 +166,6 @@ public class TaskManager : PersistentSingleton<TaskManager> ,ISaveable<List<Task
     {
        return owerDataList;
     }
-
     public void RestoreGameData(List<TaskData> data)
     {
         owerDataList = data;

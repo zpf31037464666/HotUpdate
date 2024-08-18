@@ -47,7 +47,11 @@ public class Skill : ISkill
         if (SkillData.BuffName!="null")
         {
             Buff buff = BuffManager.instance.GetBuff(SkillData.BuffName);
-            buff.ReturnBuffDataInfo((info) => { });
+            buff.ReturnBuffDataInfo((info) => {
+            
+            
+            
+            });//加载图片完毕
             GameObject player = GameObject.FindAnyObjectByType<Player>().gameObject;
             buff.Apply(player);
             player.GetComponent<BuffHandle>().AddBuff(buff);

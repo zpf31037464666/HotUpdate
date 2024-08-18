@@ -54,6 +54,7 @@ public class Task : ITask
         {
             //临时
             TaskManager.instance.ReMoveTask(taskData.Id);
+
             Effect();
         }
     }

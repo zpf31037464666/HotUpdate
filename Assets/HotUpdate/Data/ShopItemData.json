@@ -1,0 +1,26 @@
+[
+  {
+    "Id": 0,
+    "Name": "土匪",
+    "Description": "解锁土匪",
+    "IconPath": "Enemy/characters.png[characters_30]",
+    "BGPath": "Plane/HUD/Stats Bars/StandardFill.png[StandardFill]",
+    "PriceSpritePath": "UIResource/ZOSMA/Main/Coin.png",
+    "Price": 1000,
+    "Type": "UnLockCharacterShopItem",
+    "UnLockName": "土匪",
+    "Tag": "Character"
+  },
+  {
+    "Id": 1,
+    "Name": "猎人",
+    "Description": "解锁猎人",
+    "IconPath": "Enemy/characters.png[characters_34]",
+    "BGPath": "Plane/HUD/Stats Bars/StandardFill.png[StandardFill]",
+    "PriceSpritePath": "UIResource/ZOSMA/Main/Coin.png",
+    "Price": 1000,
+    "Type": "UnLockCharacterShopItem",
+    "UnLockName": "猎人",
+    "Tag": "Character"
+  }
+]

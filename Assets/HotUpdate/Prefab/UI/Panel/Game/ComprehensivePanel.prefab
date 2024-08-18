@@ -1881,6 +1881,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gamePlayButton: {fileID: 7349777512613095518}
   taskPaneButton: {fileID: 3663378652183395532}
+  shopPaneButton: {fileID: 7232834933561706390}
+  coinText: {fileID: 7730655817706668559}
+  gemText: {fileID: 4441437932212685173}
 --- !u!1 &4422632127231866137
 GameObject:
   m_ObjectHideFlags: 0

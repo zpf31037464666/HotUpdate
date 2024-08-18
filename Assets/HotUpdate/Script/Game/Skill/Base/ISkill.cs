@@ -11,5 +11,4 @@ public interface ISkill
     void Apply();
 
     void ReturnSkillDataInfo(Action<SkillInfo> callback);
-
 }

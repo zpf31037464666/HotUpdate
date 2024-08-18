@@ -51,6 +51,30 @@ public class PlayerItemManager : PersistentSingleton<PlayerItemManager>, ISaveab
         playerSaveManager.LoadGameData("Save1", GetType().Name);
     }
 
+    public void UnlockCharacter(int id)
+    {
+        var character = PlayerItemDataList.Find(l => l.Id == id);
+        if (character != null)
+        {
+            Debug.Log(character.Name+"解锁人物");
+            character.IsUnLock = true;
+        }
+        //保存场景
+        SaveData();
+    }
+
+    public void UnlockCharacter(string name)
+    {
+        var character = PlayerItemDataList.Find(l => l.Name == name);
+        if (character != null)
+        {
+            Debug.Log(character.Name+"解锁人物");
+            character.IsUnLock = true;
+        }
+        //保存场景
+        SaveData();
+    }
+
     public string GetDataID()
     {
         return GetType().Name;
