@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class SelectPlayerPanel : UIState
 {
+    [SerializeField] private Button backButton;
+
+
+
     [SerializeField] private PlayerItem playerItem;
     [SerializeField] private Transform playerItemGroup;
     [Header("Show Stage")]
@@ -21,6 +25,10 @@ public class SelectPlayerPanel : UIState
         startButton.onClick.AddListener(() =>
         {
             UIManager.Instance.SwitchPanel(My_UIConst.PlayerInfoPanel);
+        });
+        backButton.onClick.AddListener(() =>
+        {
+            UIManager.Instance.SwitchPanel(My_UIConst.ComprehensivePanel);
         });
     }
     public override void Enter()

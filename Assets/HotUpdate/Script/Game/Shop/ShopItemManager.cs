@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -51,5 +52,11 @@ public class ShopItemManager : PersistentSingleton<ShopItemManager>
             shopItemList.Add(baseShopItem);
         }
     }
+    public List<ShopItemBase> GetItemsByTag(string tag)
+    {
+        return shopItemList.Where(ShopItemBase => ShopItemBase.shopItemData.Tag == tag).ToList();
+    }
+
+
 
 }

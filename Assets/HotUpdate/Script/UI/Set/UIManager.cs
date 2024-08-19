@@ -22,13 +22,10 @@ public class UIManager : StateMachina
             Destroy(gameObject);
         }
     }
-
     private void Start()
     {
-
        SwitchPanel(My_UIConst.MainMenuPanel);
     }
-
     public void CreatePanel(string name, System.Action<GameObject> onLoaded)
     {
         if (prefabDict.ContainsKey(name))
@@ -43,7 +40,6 @@ public class UIManager : StateMachina
             OnPanelLoaded(handle, onLoaded, name);
         };
     }
-
     private void OnPanelLoaded(AsyncOperationHandle<GameObject> handle, System.Action<GameObject> onLoaded, string name)
     {
         if (handle.Status == AsyncOperationStatus.Succeeded)
@@ -60,7 +56,6 @@ public class UIManager : StateMachina
             onLoaded?.Invoke(null); // 加载失败时返回 null
         }
     }
-
     public void SwitchPanel(string name)
     {
         CreatePanel(name, panelObject =>
@@ -92,5 +87,26 @@ public class UIManager : StateMachina
             Debug.LogWarning("No previous panel to return to.");
         }
     }
+
+    public void OpenPanelWithData(string panelName, Dictionary<string, object> data)
+    {
+        CreatePanel(panelName, panelObject =>
+        {
+            if (panelObject != null)
+            {
+                panelHistory.Push(panelName);
+                UIState newState = panelObject.GetComponent<UIState>();
+                newState.SetData(data); // 传递数据
+                SwitchState(newState);
+            }
+            else
+            {
+                Debug.LogError($"Failed to create panel: {panelName}");
+            }
+        });
+    }
+
+
+
 
 }

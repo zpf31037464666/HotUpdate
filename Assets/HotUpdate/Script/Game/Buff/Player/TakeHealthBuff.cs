@@ -1,17 +1,23 @@
 using Aliyun.OSS;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class TakeHealthBuff : Buff
 {
     public TakeHealthBuff(BuffData buffData) : base(buffData)
     {
     }
+
+
     public override void OnEnter()
     {
         Debug.Log("进入时扣除血量");
         ower.GetComponent<Player>().TakeDamage(buffData.BuffValue);
+
 
     }
     public override void OnUpdate()
@@ -23,5 +29,7 @@ public class TakeHealthBuff : Buff
     {
         Debug.Log("移除时扣除更新血量");
         ower.GetComponent<Player>().TakeDamage(buffData.BuffValue);
+
+
     }
 }

@@ -48,13 +48,13 @@ public class Skill : ISkill
         {
             Buff buff = BuffManager.instance.GetBuff(SkillData.BuffName);
             buff.ReturnBuffDataInfo((info) => {
-            
-            
-            
+
+                GameObject player = GameObject.FindAnyObjectByType<Player>().gameObject;
+                buff.Apply(player);
+                player.GetComponent<BuffHandle>().AddBuff(buff);
+
             });//加载图片完毕
-            GameObject player = GameObject.FindAnyObjectByType<Player>().gameObject;
-            buff.Apply(player);
-            player.GetComponent<BuffHandle>().AddBuff(buff);
+
         }
     }
 

@@ -22,5 +22,29 @@
     "Type": "UnLockCharacterShopItem",
     "UnLockName": "猎人",
     "Tag": "Character"
+  },
+  {
+    "Id": 2,
+    "Name": "手枪",
+    "Description": "解锁手枪",
+    "IconPath": "Weapons/Weapons 3-Sheet.png[Weapons 3-Sheet_28]",
+    "BGPath": "Plane/HUD/Stats Bars/StandardFill.png[StandardFill]",
+    "PriceSpritePath": "UIResource/ZOSMA/Main/Coin.png",
+    "Price": 1000,
+    "Type": "UnLockCharacterShopItem",
+    "UnLockName": "手枪",
+    "Tag": "Weapon"
+  },
+  {
+    "Id": 3,
+    "Name": "护盾",
+    "Description": "增加护盾",
+    "IconPath": "Icon/shield_gold.png",
+    "BGPath": "Plane/HUD/Stats Bars/StandardFill.png[StandardFill]",
+    "PriceSpritePath": "UIResource/ZOSMA/Main/Coin.png",
+    "Price": 1000,
+    "Type": "UnLockCharacterShopItem",
+    "UnLockName": "护盾",
+    "Tag": "Tool"
   }
 ]

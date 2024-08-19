@@ -42,4 +42,8 @@ public class UIState : MonoBehaviour, IState
     {
 
     }
+    public virtual void SetData(Dictionary<string, object> data)
+    {
+        // 可以在这里处理不同类型的数据
+    }
 }

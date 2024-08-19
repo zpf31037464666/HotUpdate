@@ -13,6 +13,20 @@ public class ShopItem : MonoBehaviour
     [SerializeField] private Image priceImage;
     [SerializeField] private Text priceText;
 
+    private Button shopItemButton;
+    private float doubleTime = .5f;
+    bool isDouble = false;
+
+    private void Awake()
+    {
+        shopItemButton = GetComponent<Button>();
+    }
+    IEnumerator DoubleCoroutine()
+    {
+        isDouble=true;
+        yield return new WaitForSeconds(doubleTime);
+        isDouble=false;
+    }
 
     public void SetInfo(ShopItemInfo info)
     {
@@ -22,11 +36,25 @@ public class ShopItem : MonoBehaviour
         priceImage.sprite=info.priceSprite;
         priceText.text=info.price.ToString();
 
-        buyButton.onClick.AddListener(() =>
+        //buyButton.onClick.AddListener(() =>
+        //{
+        //    info.action?.Invoke();
+        //});
+    }
+    public void AddShopItemDoubleButtonEvent(Action action)
+    {
+        shopItemButton.onClick.AddListener(() =>
         {
-            info.action?.Invoke();
+            if (isDouble)
+            {
+                action?.Invoke();
+                return;
+            }
+            StartCoroutine(DoubleCoroutine());
         });
     }
+
+
     public void AddButtonEvent(Action action)
     {
         buyButton.onClick.AddListener(() =>

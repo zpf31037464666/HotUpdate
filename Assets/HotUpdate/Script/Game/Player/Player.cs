@@ -45,6 +45,9 @@ public class Player : MonoBehaviour
 
     private PlayerWeapon playerWeapon;
     private PlayerUI playerUI;
+    private SpriteRenderer spriteRenderer;
+
+    Material originalMaterial;
 
 
     public float Health { get => health; set => health=value; }
@@ -62,12 +65,17 @@ public class Player : MonoBehaviour
     {
         playerWeapon = GetComponent<PlayerWeapon>();
         playerUI=FindAnyObjectByType<PlayerUI>();
+        impulseSource=GetComponent<CinemachineImpulseSource>();
+
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Start()
     {
-        impulseSource=GetComponent<CinemachineImpulseSource>();
+
         CameraShake.instance.SetFollowPlayer(transform);
+
+        originalMaterial=spriteRenderer.material;
     }
 
     public void Init(PlayerItemData playerItemData)
@@ -183,6 +191,15 @@ public class Player : MonoBehaviour
     {
         attackSpeed*=percent;
         playerWeapon.AddWeaponFireSpeed(attackSpeed);
+    }
+
+    public virtual void SetMaterial(Material material)
+    {
+        spriteRenderer.material = material;
+    }
+    public virtual void OriginalMaterial()
+    {
+        spriteRenderer.material=originalMaterial;
     }
     public virtual void DecreateAttackSpeed(float percent)
     {

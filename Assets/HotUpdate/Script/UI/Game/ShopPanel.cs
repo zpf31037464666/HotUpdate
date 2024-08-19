@@ -24,12 +24,25 @@ public class ShopPanel : UIState
         {
             UIManager.Instance.ReturnToPreviousPanel();
         });
+
+        characterButton.onClick.AddListener(() =>
+        {
+            UpdateShopItemBase(ShopItemManager.instance.GetItemsByTag("Character"));
+        });
+        weaponButton.onClick.AddListener(() =>
+        {
+            UpdateShopItemBase(ShopItemManager.instance.GetItemsByTag("Weapon"));
+        });
+        propsButton.onClick.AddListener(() =>
+        {
+            UpdateShopItemBase(ShopItemManager.instance.GetItemsByTag("Tool"));
+        });
     }
     public override void Enter()
     {
         base.Enter();
 
-        UpdateShopItemBase(ShopItemManager.instance.shopItemList);
+        UpdateShopItemBase(ShopItemManager.instance.GetItemsByTag("Character"));
 
         Init();
     }
@@ -61,11 +74,38 @@ public class ShopPanel : UIState
                     {
                         Debug.Log("钱不够");
                         Init();
+
+                        // 创建一个数据字典并传递 info
+                        Dictionary<string, object> data = new Dictionary<string, object>
+                        {
+                             { "itemInfo", info } // 将物品信息放入字典中
+                        };
+                        // 打开详情面板并传递数据
+                        UIManager.Instance.OpenPanelWithData(My_UIConst.ItemDetailPanel, data);
                     }
                     else
                     {
                         Init();
+
+                        // 创建一个数据字典并传递 info
+                        Dictionary<string, object> data = new Dictionary<string, object>
+                        {
+                             { "itemInfo", info } // 将物品信息放入字典中
+                        };
+                        // 打开详情面板并传递数据
+                        UIManager.Instance.OpenPanelWithData(My_UIConst.ItemDetailPanel, data);
                     }
+                });
+                //双击
+                item.AddShopItemDoubleButtonEvent(() =>
+                {
+                    // 创建一个数据字典并传递 info
+                    Dictionary<string, object> data = new Dictionary<string, object>
+                        {
+                             { "itemInfo", info } // 将物品信息放入字典中
+                        };
+                    // 打开详情面板并传递数据
+                    UIManager.Instance.OpenPanelWithData(My_UIConst.ItemDetailPanel, data);
                 });
             });
         }
