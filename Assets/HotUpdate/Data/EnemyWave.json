@@ -1,42 +1,93 @@
 [
   {
+    "LevelName": "地牢",
     "WaveNumber": 0,
     "EnemyType": "Prefab/Game/Enemy/Enemy.prefab",
     "Count": 3,
     "SpawnTime": 5,
     "RewardTime": 5,
+    "EnenyData": [
+      "10",
+      "10"
+    ],
     "IsOverGame": false
   },
   {
+    "LevelName": "地牢",
     "WaveNumber": 1,
     "EnemyType": "Prefab/Game/Enemy/Enemy.prefab",
     "Count": 5,
     "SpawnTime": 5,
     "RewardTime": 10,
+    "EnenyData": [
+      "10",
+      "10"
+    ],
     "IsOverGame": false
   },
   {
+    "LevelName": "地牢",
     "WaveNumber": 2,
     "EnemyType": "Prefab/Game/Enemy/Enemy.prefab",
     "Count": 5,
     "SpawnTime": 5,
     "RewardTime": 10,
+    "EnenyData": [
+      "10",
+      "10"
+    ],
     "IsOverGame": false
   },
   {
+    "LevelName": "地牢",
     "WaveNumber": 2,
     "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
     "Count": 5,
     "SpawnTime": 5,
     "RewardTime": 10,
+    "EnenyData": [
+      "10",
+      "10"
+    ],
     "IsOverGame": false
   },
   {
+    "LevelName": "地牢",
     "WaveNumber": 3,
     "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
     "Count": 10,
     "SpawnTime": 2,
-    "RewardTime": 15,
+    "RewardTime": 10,
+    "EnenyData": [
+      "10",
+      "10"
+    ],
+    "IsOverGame": false
+  },
+  {
+    "LevelName": "地牢",
+    "WaveNumber": 4,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 10,
+    "SpawnTime": 2,
+    "RewardTime": 10,
+    "EnenyData": [
+      "10",
+      "10"
+    ],
+    "IsOverGame": false
+  },
+  {
+    "LevelName": "地牢",
+    "WaveNumber": 5,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 10,
+    "SpawnTime": 2,
+    "RewardTime": 30,
+    "EnenyData": [
+      "1000",
+      "100"
+    ],
     "IsOverGame": true
   }
 ]

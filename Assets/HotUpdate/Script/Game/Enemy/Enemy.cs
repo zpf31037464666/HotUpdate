@@ -9,10 +9,8 @@ public class Enemy : MonoBehaviour
     [Header("Health")]
     [SerializeField] protected float maxHealth;
     [SerializeField] protected StatesBar headHealthBar;
-    [Header("Movement")]
     [SerializeField] protected float moveSpeed = 0.2f;
     [SerializeField] protected int damage = 1;
-    [Header("Movement")]
     [SerializeField] protected SpriteRenderer[] spriteRenderers; 
 
     [Header("Raycast")]
@@ -187,6 +185,16 @@ public class Enemy : MonoBehaviour
             StopCoroutine(hurtCoroutine);
         }
         hurtCoroutine=StartCoroutine(HurtCoroutine());
+    }
+
+    public virtual void SetMaxHealth(float health)
+    {
+        maxHealth = health;
+        this.health=maxHealth;
+    }
+    public virtual void SetDamage(int amout)
+    {
+        damage = amout;
     }
     IEnumerator HurtCoroutine()
     {

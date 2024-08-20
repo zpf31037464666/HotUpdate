@@ -31,7 +31,6 @@ public class Player : MonoBehaviour
     private float currentExp = 0;
     private float requiteExp = 10;
 
-
     private bool isInvincible=false;
     private Coroutine invincibleTimeCoroutine;
     private CinemachineImpulseSource impulseSource;//震动源头
@@ -223,7 +222,7 @@ public class Player : MonoBehaviour
     public virtual void Die()
     {
         StopAllCoroutines();
-        gameObject.SetActive(false);
+       // gameObject.SetActive(false);
         OnPlayerDeathEvent?.Invoke();
     }
     IEnumerator InvincibleTimeCoroutine()

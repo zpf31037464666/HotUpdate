@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -15,10 +17,15 @@ public class EnemyManager : MonoBehaviour
 
     float waitSpawnWarningTime = 1f;
 
+    private List<EnemyWaveData> currentEnemyWaveData=new List<EnemyWaveData>();
+
 
     private void Awake()
     {
         waveUI = FindAnyObjectByType<WaveUI>();
+
+        currentEnemyWaveData=EnemyWaveManager.instance.GetEnemyWaveData(GameManager.instance.currentSelectSenceName);
+
     }
 
     private void OnEnable()
@@ -46,29 +53,33 @@ public class EnemyManager : MonoBehaviour
     IEnumerator CreateEnemyCorount()
     {
         yield return new WaitUntil(() => GameManager.GameState == GameState.Playing);
-        var enemyWaveList = EnemyWaveManager.instance.GetEnemyWaveData(waveUI.waveNumber);
+
+      //  var enemyWaveList = EnemyWaveManager.instance.GetEnemyWaveData(waveUI.waveNumber);
+        var enemyWaveList =GetEnemyWaveData(waveUI.waveNumber);
+       
         float t = enemyWaveList[0].RewardTime;
         int currentIndex = 0;
         while (t > 0)
         {  
-             yield return  StartCoroutine(SpawnEnemiesCoroutine(enemyWaveList[currentIndex].Count, enemyWaveList[currentIndex].EnemyType));
+             yield return  StartCoroutine(SpawnEnemiesCoroutine(enemyWaveList[currentIndex].Count, enemyWaveList[currentIndex].EnemyType, enemyWaveList));
              currentIndex++;
              currentIndex %= enemyWaveList.Count;
             yield return new WaitForSeconds(enemyWaveList[currentIndex].SpawnTime);
             t-=enemyWaveList[currentIndex].SpawnTime;
+
             if (GameManager.GameState != GameState.Playing)
             {
                 yield break;
             }
         }
     }
-    IEnumerator SpawnEnemiesCoroutine(int enemyNum, string enemyPrefabPath)
+    IEnumerator SpawnEnemiesCoroutine(int enemyNum, string enemyPrefabPath,List<EnemyWaveData> enemyWaveList)
     {
         spawnPosList.Clear();
         // 随机出生地
         for (int i = 0; i < enemyNum; i++)
         {
-            spawnPosList.Add(spawnList[Random.Range(0, spawnList.Count)].position);
+            spawnPosList.Add(spawnList[UnityEngine. Random.Range(0, spawnList.Count)].position);
         }
 
         // 生成红叉
@@ -98,6 +109,16 @@ public class EnemyManager : MonoBehaviour
             {
                 // 确保敌人对象在敌人列表中
                 var enemyComponent = clone.GetComponent<Enemy>();
+                //返回对应数据
+                EnemyWaveData enemyWaveData= enemyWaveList.FirstOrDefault(wave => wave.EnemyType.Equals(enemyPrefabPath, StringComparison.OrdinalIgnoreCase));
+                string[] enemyData = enemyWaveData.EnenyData;
+                float Health = float.Parse(enemyData[0]);
+                int Damage = int.Parse(enemyData[1]);
+
+                enemyComponent.SetMaxHealth(Health);
+                enemyComponent.SetDamage(Damage);
+
+
                 clone.transform.position = spawnPosList[i]; // 设置敌人位置
             }
             else
@@ -106,6 +127,30 @@ public class EnemyManager : MonoBehaviour
             }
         }
     }
+    public List<EnemyWaveData> GetEnemyWaveData(int currentWave)
+    {
+        List<EnemyWaveData> currentWaves = currentEnemyWaveData.FindAll(w => w.WaveNumber == currentWave);
 
+        // 如果没有找到，返回一个空的列表
+        if (currentWaves.Count == 0)
+        {
+            Debug.LogWarning($"No enemy wave data found for wave number: {currentWave}");
+            return null;
+        }
+
+        return currentWaves; // 返回找到的波数据（可能是空列表）
+    }
+    //判断是否为最后一波
+    public bool IsLastEnemyWaveData(int currentWave)
+    {
+        List<EnemyWaveData> currentWaves = currentEnemyWaveData.FindAll(w => w.WaveNumber == currentWave);
+        if (currentWaves.Count == 0)
+        {
+            Debug.LogWarning($"No enemy wave data found for wave number: {currentWave}");
+            return false;
+        }
+        return currentWaves[0].IsOverGame;
+
+    }
 
 }

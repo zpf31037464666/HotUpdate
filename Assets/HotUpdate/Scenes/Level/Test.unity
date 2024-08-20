@@ -2924,9 +2924,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1398279890232903978, guid: aa75300ff8cf7e34081c5321983ac4fc, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398279890232903978, guid: aa75300ff8cf7e34081c5321983ac4fc, type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1398279890232903978, guid: aa75300ff8cf7e34081c5321983ac4fc, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 568a8e430e6c59740a2c9b0b26dd1043, type: 2}
+      objectReference: {fileID: 2100000, guid: c198861e028ac204688ee145f009fd73, type: 2}
     - target: {fileID: 1859242113993250340, guid: aa75300ff8cf7e34081c5321983ac4fc, type: 3}
       propertyPath: m_Enabled
       value: 0

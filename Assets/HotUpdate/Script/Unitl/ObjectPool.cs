@@ -19,6 +19,7 @@ public class ObjectPool
             return instance;
         }
     }
+    //addressabel 加载对象
     public GameObject GetObject(string prefabPath)
     {
         if (string.IsNullOrEmpty(prefabPath))

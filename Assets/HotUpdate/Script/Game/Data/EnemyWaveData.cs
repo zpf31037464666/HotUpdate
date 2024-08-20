@@ -8,10 +8,12 @@
 
 public class EnemyWaveData
 {
+    public string LevelName; // 关卡名
     public int WaveNumber; // 敌人波数
     public string EnemyType; // 敌人类型
     public int Count; // 一次生成的数量
     public float SpawnTime; // 间隔时间
     public int RewardTime; // 持续时间
+    public string[] EnenyData; // 对人对象
     public bool IsOverGame; // 最终波数
 }

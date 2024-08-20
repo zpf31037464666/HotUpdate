@@ -25,17 +25,17 @@ Material:
     m_TexEnvs:
     - _MainTex:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 0, y: 0}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OutlineDistortTex:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 0, y: 0}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _OutlineAlpha: 0.804
+    - _OutlineAlpha: 1
     - _OutlineDistortAmount: 0
-    - _OutlineDistortTexXSpeed: -50
+    - _OutlineDistortTexXSpeed: -7.1
     - _OutlineDistortTexYSpeed: -50
     - _OutlinePixelWidth: 1
     m_Colors:
