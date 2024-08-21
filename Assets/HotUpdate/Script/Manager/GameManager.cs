@@ -15,6 +15,8 @@ public class GameManager : PersistentSingleton<GameManager>
 
     public PlayerItemData currentPlyaerItemData;
 
+    public LevelData currentLevelData;
+
     public string currentSelectSenceName;
 
 }

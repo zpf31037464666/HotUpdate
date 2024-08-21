@@ -18,6 +18,9 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] TMP_Text mpText;
     [Header("Level")]
     [SerializeField] Image levelImage;
+    [SerializeField] Text levelText;
+
+
     [SerializeField] Image dashImage;
     [SerializeField] Image hurtImage;
     [Header("Buff")]
@@ -121,12 +124,12 @@ public class PlayerUI : MonoBehaviour
 
     private void ChangeLevelEvent(Player player)
     {
-
+        levelText.text="Lv:"+player.CurrentLevel.ToString();
     }
 
     private void ChangeExpEvent(Player player)
     {
-        SetLevelImage(player.CurrentExp/ player.RequiteExp);
+        UpateExperice(player.CurrentExp, player.RequiteExp);
     }
     private void BuffEntry(BuffHandle handle)
     {
@@ -208,10 +211,7 @@ public class PlayerUI : MonoBehaviour
         mpText.text= currentMp.ToString()+"/"+maxMp.ToString();
         mpImage.fillAmount= currentMp/maxMp;
     }
-    public void SetLevelImage(float value)
-    {
-        levelImage.fillAmount = value;
-    }
+
     public void SetDashImageFill(float value)
     {
         dashImage.fillAmount = value;
@@ -259,11 +259,29 @@ public class PlayerUI : MonoBehaviour
             bufferedFillingCoroutine =  StartCoroutine(BufferedFillingCoroutine(fillImagefront));
         }
     }
+    Coroutine expericeBuffCoroutine;
+    private void UpateExperice(float currentValue, float maxValue)
+    {
+        float targetValue=currentValue/maxValue;
+
+        Debug.Log("currentValue"+currentValue);
+        Debug.Log("maxValue"+maxValue);
+        Debug.Log("targetValue"+targetValue);
+
+        if (expericeBuffCoroutine !=null)
+        {
+            StopCoroutine(expericeBuffCoroutine);
+        }
+        expericeBuffCoroutine=StartCoroutine(BufferedFillingCoroutine(levelImage, levelImage.fillAmount, targetValue));
+
+
+
+    }
     public void Hurt()
     {
         StartCoroutine(HurtCoroutine());
     }
-    //缓冲增加血量
+    //缓冲增加血量 
     protected virtual IEnumerator BufferedFillingCoroutine(Image image)
     {
         if (isDelayFill)
@@ -280,6 +298,27 @@ public class PlayerUI : MonoBehaviour
             yield return null;
         }
     }
+    /// <summary>
+    ///  通用缓存图片填充
+    /// </summary>
+    /// <param name="image"></param>
+    /// <param name="currentValue"></param>
+    /// <param name="targetValue"></param>
+    /// <returns></returns>
+    protected virtual IEnumerator BufferedFillingCoroutine(Image image,float currentValue,float targetValue)
+    {
+       float time=0f;
+       var previousFillAmount= currentValue;
+        while (time<1f)
+        {
+            time+=Time.fixedDeltaTime*fillSpeed;
+            currentValue=Mathf.Lerp(previousFillAmount, targetValue, time);
+            image.fillAmount=currentValue;
+            yield return null;
+        }
+    }
+
+
     IEnumerator HurtCoroutine()
     {
         hurtImage.gameObject.SetActive(true);

@@ -6,7 +6,8 @@
     "IconPath": "Enemy/characters.png[characters_15]",
     "BGPath": "Enemy/bg9.png[bg9]",
     "ScenceName": "Scenes/Level/0.unity",
-    "IsUnLock": true
+    "IsUnLock": true,
+    "UnLockNextLevel": "花园"
   },
   {
     "Id": 1,
@@ -15,7 +16,8 @@
     "IconPath": "Enemy/characters.png[characters_16]",
     "BGPath": "Enemy/bg9.png[bg9]",
     "ScenceName": "Scenes/Level/1.unity",
-    "IsUnLock": false
+    "IsUnLock": false,
+    "UnLockNextLevel": "荒野"
   },
   {
     "Id": 2,
@@ -24,7 +26,8 @@
     "IconPath": "Enemy/characters.png[characters_17]",
     "BGPath": "Enemy/bg9.png[bg9]",
     "ScenceName": "Scenes/Level/2.unity",
-    "IsUnLock": false
+    "IsUnLock": false,
+    "UnLockNextLevel": "海洋"
   },
   {
     "Id": 3,
@@ -33,7 +36,8 @@
     "IconPath": "Enemy/characters.png[characters_18]",
     "BGPath": "Enemy/bg9.png[bg9]",
     "ScenceName": "Scenes/Level/3.unity",
-    "IsUnLock": false
+    "IsUnLock": false,
+    "UnLockNextLevel": "天空"
   },
   {
     "Id": 4,
@@ -42,6 +46,7 @@
     "IconPath": "Enemy/characters.png[characters_19]",
     "BGPath": "Enemy/bg9.png[bg9]",
     "ScenceName": "Scenes/Level/4.unity",
-    "IsUnLock": false
+    "IsUnLock": false,
+    "UnLockNextLevel": "地牢"
   }
 ]

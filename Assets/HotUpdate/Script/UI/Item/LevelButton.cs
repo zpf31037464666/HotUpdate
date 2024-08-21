@@ -93,5 +93,10 @@ public class LevelButton : MonoBehaviour
         SceneLoadManager.instance.LoadScene(levelData.ScenceName, My_UIConst.GamePanel, levelSelector.moveDuration*2);
 
         GameManager.instance.currentSelectSenceName = levelData.Name;
+
+        GameManager.instance.currentLevelData = levelData;
+
+
+
     }
 }

@@ -11,6 +11,29 @@ public class AddSpinWeaponSpeedReward : Rewardable
     }
     public override void GetReward()
     {
-        GameObject.FindObjectOfType<PlayerSpinWeapon>().AddSpinWeaponSpeed(Reward.RewardValue);
+
+        if (GameObject.FindObjectOfType<PlayerSpinWeapon>().IsHaveWeapon())
+        {
+            GameObject.FindObjectOfType<PlayerSpinWeapon>().AddSpinWeaponSpeed(Reward.RewardValue);
+        }
+        else
+        {
+            //增加火球
+            AsyncOperationHandle<GameObject> bgHandle = Addressables.LoadAssetAsync<GameObject>(Reward.AddObjcetName);
+            bgHandle.Completed += (op) =>
+            {
+                if (op.Status == AsyncOperationStatus.Succeeded)
+                {
+                    GameObject weapon = op.Result;
+                    GameObject.FindAnyObjectByType<PlayerSpinWeapon>().AddSpinWeapon(weapon);
+                }
+                else
+                {
+                    Debug.LogError($"Failed to load sprite with key {Reward.BG}");
+                }
+            };
+            Debug.Log("增加旋转武器");
+        }
+        
     }
 }

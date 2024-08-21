@@ -551,6 +551,9 @@ MonoBehaviour:
   - prefab: {fileID: 3443325417798297444, guid: 8326b854e2d0c564fb0e1555401c57c3, type: 3}
     dropPercentage: 1
     numebr: 1
+  - prefab: {fileID: 4908531426688147235, guid: 9e34eb49066be9748bc90b48a2bb4309, type: 3}
+    dropPercentage: 100
+    numebr: 1
 --- !u!114 &7108145388669009027
 MonoBehaviour:
   m_ObjectHideFlags: 0

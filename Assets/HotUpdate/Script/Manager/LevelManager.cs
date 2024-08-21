@@ -52,6 +52,18 @@ public class LevelManager : PersistentSingleton<LevelManager>, ISaveable<List<Le
         //保存场景
         SaveData();
     }
+    public void UnlockLevel(string levelName)
+    {
+        LevelData level = levelDataList.Find(l => l.Name == levelName);
+        if (level != null)
+        {
+            Debug.Log(level.Name+"解锁场景");
+            level.IsUnLock = true;
+        }
+        //保存场景
+        SaveData();
+    }
+
     private void RegisterSaveData()
     {
         var playerSaveManager = SaveLoadManager<List<LevelData>>.GetInstance(GetType().Name);

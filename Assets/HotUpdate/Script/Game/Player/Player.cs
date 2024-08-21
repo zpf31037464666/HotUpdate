@@ -9,7 +9,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 public class Player : MonoBehaviour
 {
     [Header("Health")]
-    [SerializeField]  private float maxHealth;
+    [SerializeField]  private float maxHealth;//最大血量
     [SerializeField]  private float maxMP;//蓝量
     [SerializeField]  private float speed;//速度
     [SerializeField]  private float critical;//暴击率
@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
 
     private int currentLevel = 0;
     private float currentExp = 0;
-    private float requiteExp = 10;
+    private float requiteExp = 100;
 
     private bool isInvincible=false;
     private Coroutine invincibleTimeCoroutine;
@@ -120,6 +120,12 @@ public class Player : MonoBehaviour
         if (currentExp >= requiteExp)
         {
             Upgrade();
+            float number=currentExp-requiteExp;
+            if (number > 0)//
+            {
+                currentExp+=number;
+                OnChangeExpEvent?.Invoke(this);
+            }
         }
     }
     public virtual void Upgrade()//玩家升级
@@ -129,10 +135,20 @@ public class Player : MonoBehaviour
         requiteExp=requiteExp*1.2f;
 
         AddMp(maxMP);
-        AddHealth(maxMP);
+        AddHealth(maxHealth);
 
         OnChangeExpEvent?.Invoke(this);
         OnChangeLevelEvent?.Invoke(this);
+
+
+        //临时
+        GetComponent<PlayerWeapon>().AddWeaponDamage(currentLevel*10);//增加伤害
+        maxMP+=currentLevel*10;
+        maxHealth+=currentLevel*10;
+        AddMp(maxMP);
+        AddHealth(maxHealth);
+
+
     }
     public virtual void TakeDamage(float damage)
     {
@@ -191,7 +207,6 @@ public class Player : MonoBehaviour
         attackSpeed*=percent;
         playerWeapon.AddWeaponFireSpeed(attackSpeed);
     }
-
     public virtual void SetMaterial(Material material)
     {
         spriteRenderer.material = material;
@@ -222,7 +237,7 @@ public class Player : MonoBehaviour
     public virtual void Die()
     {
         StopAllCoroutines();
-       // gameObject.SetActive(false);
+        gameObject.SetActive(false);
         OnPlayerDeathEvent?.Invoke();
     }
     IEnumerator InvincibleTimeCoroutine()
@@ -233,5 +248,14 @@ public class Player : MonoBehaviour
         CameraShake.instance.CamerShake(impulseSource);
         yield return new WaitForSeconds(InvincibleTime);
         isInvincible=false;
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("人物升级");
+            Upgrade();
+        }
     }
 }

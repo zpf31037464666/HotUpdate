@@ -5,7 +5,8 @@ using UnityEngine;
 public enum ItemType
 {
     buff,
-    Skill
+    Skill,
+    Experience
 }
 
 public class WorldItem : MonoBehaviour
@@ -30,8 +31,11 @@ public class WorldItem : MonoBehaviour
                     skill.ReturnSkillDataInfo((info) => { });
                     collision.GetComponent<PlayerSkill>().AddSkill(skill);
                     break;
+                case ItemType.Experience:
+                    collision.GetComponent<Player>().AddExp(10);
+                    break;
             }
-            Destroy(gameObject);
+           ObjectPool.Instance.PushObject(gameObject);
         }
     }
 }

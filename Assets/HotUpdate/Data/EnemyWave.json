@@ -7,10 +7,11 @@
     "SpawnTime": 5,
     "RewardTime": 5,
     "EnenyData": [
-      "10",
+      "100",
       "10"
     ],
-    "IsOverGame": false
+    "IsOverGame": false,
+    "Other": "null"
   },
   {
     "LevelName": "地牢",
@@ -20,10 +21,11 @@
     "SpawnTime": 5,
     "RewardTime": 10,
     "EnenyData": [
-      "10",
+      "100",
       "10"
     ],
-    "IsOverGame": false
+    "IsOverGame": false,
+    "Other": "null"
   },
   {
     "LevelName": "地牢",
@@ -33,10 +35,11 @@
     "SpawnTime": 5,
     "RewardTime": 10,
     "EnenyData": [
-      "10",
+      "100",
       "10"
     ],
-    "IsOverGame": false
+    "IsOverGame": false,
+    "Other": "null"
   },
   {
     "LevelName": "地牢",
@@ -46,10 +49,11 @@
     "SpawnTime": 5,
     "RewardTime": 10,
     "EnenyData": [
-      "10",
+      "100",
       "10"
     ],
-    "IsOverGame": false
+    "IsOverGame": false,
+    "Other": "null"
   },
   {
     "LevelName": "地牢",
@@ -59,10 +63,11 @@
     "SpawnTime": 2,
     "RewardTime": 10,
     "EnenyData": [
-      "10",
+      "100",
       "10"
     ],
-    "IsOverGame": false
+    "IsOverGame": false,
+    "Other": "null"
   },
   {
     "LevelName": "地牢",
@@ -72,10 +77,11 @@
     "SpawnTime": 2,
     "RewardTime": 10,
     "EnenyData": [
-      "10",
+      "100",
       "10"
     ],
-    "IsOverGame": false
+    "IsOverGame": false,
+    "Other": "null"
   },
   {
     "LevelName": "地牢",
@@ -85,9 +91,458 @@
     "SpawnTime": 2,
     "RewardTime": 30,
     "EnenyData": [
-      "1000",
-      "100"
+      "100",
+      "10"
     ],
-    "IsOverGame": true
+    "IsOverGame": true,
+    "Other": "null"
+  },
+  {
+    "LevelName": "花园",
+    "WaveNumber": 0,
+    "EnemyType": "Prefab/Game/Enemy/Enemy.prefab",
+    "Count": 3,
+    "SpawnTime": 5,
+    "RewardTime": 5,
+    "EnenyData": [
+      "200",
+      "10"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "花园",
+    "WaveNumber": 1,
+    "EnemyType": "Prefab/Game/Enemy/Enemy.prefab",
+    "Count": 5,
+    "SpawnTime": 5,
+    "RewardTime": 10,
+    "EnenyData": [
+      "200",
+      "10"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "花园",
+    "WaveNumber": 2,
+    "EnemyType": "Prefab/Game/Enemy/Enemy.prefab",
+    "Count": 5,
+    "SpawnTime": 5,
+    "RewardTime": 10,
+    "EnenyData": [
+      "200",
+      "10"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "花园",
+    "WaveNumber": 2,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 5,
+    "SpawnTime": 5,
+    "RewardTime": 10,
+    "EnenyData": [
+      "200",
+      "10"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "花园",
+    "WaveNumber": 3,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 10,
+    "SpawnTime": 2,
+    "RewardTime": 10,
+    "EnenyData": [
+      "200",
+      "10"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "花园",
+    "WaveNumber": 4,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 10,
+    "SpawnTime": 2,
+    "RewardTime": 10,
+    "EnenyData": [
+      "200",
+      "10"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "花园",
+    "WaveNumber": 5,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 10,
+    "SpawnTime": 2,
+    "RewardTime": 30,
+    "EnenyData": [
+      "200",
+      "10"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "花园",
+    "WaveNumber": 6,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 10,
+    "SpawnTime": 2,
+    "RewardTime": 30,
+    "EnenyData": [
+      "200",
+      "10"
+    ],
+    "IsOverGame": true,
+    "Other": "null"
+  },
+  {
+    "LevelName": "荒野",
+    "WaveNumber": 0,
+    "EnemyType": "Prefab/Game/Enemy/Enemy.prefab",
+    "Count": 3,
+    "SpawnTime": 5,
+    "RewardTime": 5,
+    "EnenyData": [
+      "300",
+      "10"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "荒野",
+    "WaveNumber": 1,
+    "EnemyType": "Prefab/Game/Enemy/Enemy.prefab",
+    "Count": 5,
+    "SpawnTime": 5,
+    "RewardTime": 10,
+    "EnenyData": [
+      "300",
+      "11"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "荒野",
+    "WaveNumber": 2,
+    "EnemyType": "Prefab/Game/Enemy/Enemy.prefab",
+    "Count": 5,
+    "SpawnTime": 5,
+    "RewardTime": 10,
+    "EnenyData": [
+      "300",
+      "12"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "荒野",
+    "WaveNumber": 2,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 5,
+    "SpawnTime": 5,
+    "RewardTime": 10,
+    "EnenyData": [
+      "300",
+      "13"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "荒野",
+    "WaveNumber": 3,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 10,
+    "SpawnTime": 2,
+    "RewardTime": 10,
+    "EnenyData": [
+      "300",
+      "14"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "荒野",
+    "WaveNumber": 4,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 10,
+    "SpawnTime": 2,
+    "RewardTime": 10,
+    "EnenyData": [
+      "300",
+      "15"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "荒野",
+    "WaveNumber": 5,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 10,
+    "SpawnTime": 2,
+    "RewardTime": 30,
+    "EnenyData": [
+      "300",
+      "16"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "荒野",
+    "WaveNumber": 6,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 10,
+    "SpawnTime": 2,
+    "RewardTime": 30,
+    "EnenyData": [
+      "300",
+      "17"
+    ],
+    "IsOverGame": true,
+    "Other": "null"
+  },
+  {
+    "LevelName": "海洋",
+    "WaveNumber": 0,
+    "EnemyType": "Prefab/Game/Enemy/Enemy.prefab",
+    "Count": 3,
+    "SpawnTime": 5,
+    "RewardTime": 5,
+    "EnenyData": [
+      "300",
+      "10"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "海洋",
+    "WaveNumber": 1,
+    "EnemyType": "Prefab/Game/Enemy/Enemy.prefab",
+    "Count": 5,
+    "SpawnTime": 5,
+    "RewardTime": 10,
+    "EnenyData": [
+      "300",
+      "11"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "海洋",
+    "WaveNumber": 2,
+    "EnemyType": "Prefab/Game/Enemy/Enemy.prefab",
+    "Count": 5,
+    "SpawnTime": 5,
+    "RewardTime": 10,
+    "EnenyData": [
+      "300",
+      "12"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "海洋",
+    "WaveNumber": 2,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 5,
+    "SpawnTime": 5,
+    "RewardTime": 10,
+    "EnenyData": [
+      "300",
+      "13"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "海洋",
+    "WaveNumber": 3,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 10,
+    "SpawnTime": 2,
+    "RewardTime": 10,
+    "EnenyData": [
+      "300",
+      "14"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "海洋",
+    "WaveNumber": 4,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 10,
+    "SpawnTime": 2,
+    "RewardTime": 10,
+    "EnenyData": [
+      "300",
+      "15"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "海洋",
+    "WaveNumber": 5,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 10,
+    "SpawnTime": 2,
+    "RewardTime": 30,
+    "EnenyData": [
+      "300",
+      "16"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "海洋",
+    "WaveNumber": 6,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 10,
+    "SpawnTime": 2,
+    "RewardTime": 30,
+    "EnenyData": [
+      "300",
+      "17"
+    ],
+    "IsOverGame": true,
+    "Other": "null"
+  },
+  {
+    "LevelName": "天空",
+    "WaveNumber": 0,
+    "EnemyType": "Prefab/Game/Enemy/Enemy.prefab",
+    "Count": 3,
+    "SpawnTime": 5,
+    "RewardTime": 5,
+    "EnenyData": [
+      "300",
+      "10"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "天空",
+    "WaveNumber": 1,
+    "EnemyType": "Prefab/Game/Enemy/Enemy.prefab",
+    "Count": 5,
+    "SpawnTime": 5,
+    "RewardTime": 10,
+    "EnenyData": [
+      "300",
+      "11"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "天空",
+    "WaveNumber": 2,
+    "EnemyType": "Prefab/Game/Enemy/Enemy.prefab",
+    "Count": 5,
+    "SpawnTime": 5,
+    "RewardTime": 10,
+    "EnenyData": [
+      "300",
+      "12"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "天空",
+    "WaveNumber": 2,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 5,
+    "SpawnTime": 5,
+    "RewardTime": 10,
+    "EnenyData": [
+      "300",
+      "13"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "天空",
+    "WaveNumber": 3,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 10,
+    "SpawnTime": 2,
+    "RewardTime": 10,
+    "EnenyData": [
+      "300",
+      "14"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "天空",
+    "WaveNumber": 4,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 10,
+    "SpawnTime": 2,
+    "RewardTime": 10,
+    "EnenyData": [
+      "300",
+      "15"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "天空",
+    "WaveNumber": 5,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 10,
+    "SpawnTime": 2,
+    "RewardTime": 30,
+    "EnenyData": [
+      "300",
+      "16"
+    ],
+    "IsOverGame": false,
+    "Other": "null"
+  },
+  {
+    "LevelName": "天空",
+    "WaveNumber": 6,
+    "EnemyType": "Prefab/Game/Enemy/Enemy_Remote.prefab",
+    "Count": 10,
+    "SpawnTime": 2,
+    "RewardTime": 30,
+    "EnenyData": [
+      "300",
+      "17"
+    ],
+    "IsOverGame": true,
+    "Other": "null"
   }
 ]

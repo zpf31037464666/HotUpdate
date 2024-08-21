@@ -7,6 +7,7 @@ public class LevelData
     public string BGPath; // 背景图
     public string ScenceName; // 场景名字
     public bool IsUnLock; // 是否解锁
+    public string UnLockNextLevel; // 解锁下一关
 }
 
 

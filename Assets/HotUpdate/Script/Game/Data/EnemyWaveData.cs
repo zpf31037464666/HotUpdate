@@ -16,4 +16,5 @@ public class EnemyWaveData
     public int RewardTime; // 持续时间
     public string[] EnenyData; // 对人对象
     public bool IsOverGame; // 最终波数
+    public string Other; // 其他的物品
 }

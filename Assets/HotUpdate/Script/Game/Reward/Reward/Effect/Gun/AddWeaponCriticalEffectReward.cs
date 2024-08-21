@@ -7,6 +7,7 @@ public class AddWeaponCriticalEffectReward : Rewardable
     }
     public override void GetReward()
     {
+
         GameObject.FindAnyObjectByType<PlayerWeapon>().AddWeaponCriticalEffect(Reward.RewardValue/100.0f);
     }
 }

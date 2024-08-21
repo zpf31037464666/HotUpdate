@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,35 @@ public class Enemy_Bullet : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody2D>();
     }
+
+    private void OnEnable()
+    {
+        WaveUI.OnRewardEvent += onRewardEvent;
+        WaveUI.OnGameWin+=GameWin;
+
+        Player.OnPlayerDeathEvent+=PlayerDeathEvent;
+    }
+
+    private void OnDisable()
+    {
+        WaveUI.OnRewardEvent -= onRewardEvent;
+        WaveUI.OnGameWin-=GameWin;
+
+        Player.OnPlayerDeathEvent-=PlayerDeathEvent;
+    }
+    private void PlayerDeathEvent()
+    {
+        ObjectPool.Instance.PushObject(gameObject);
+    }
+    protected virtual void onRewardEvent()
+    {
+        ObjectPool.Instance.PushObject(gameObject);
+    }
+    protected void GameWin()
+    {
+        ObjectPool.Instance.PushObject(gameObject);
+    }
+
     public void SetDiction(Vector2 direction)
     {
         rigidbody.velocity = direction * weaponInfo.speed;

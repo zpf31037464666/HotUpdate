@@ -39,6 +39,8 @@ public class PlayerSpinWeapon : MonoBehaviour
     //    }
 
     //}
+
+    public bool IsHaveWeapon()=> bulletList.Count > 0;
     public void AddSpinWeaponDamage(int damage)
     {
         foreach (var bullet in bulletList)
@@ -91,7 +93,6 @@ public class PlayerSpinWeapon : MonoBehaviour
         UpdateWeaponSpeed(speed);
         UpdateWeaponRange(radius);
     }
-
     IEnumerator BufferedUpdateRangeCoroutine(float target)
     {
         var t = 0f;

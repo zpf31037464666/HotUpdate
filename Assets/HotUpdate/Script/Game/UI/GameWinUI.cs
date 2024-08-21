@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class GameWinUI : MonoBehaviour
 {
-    public int unLockId;
+  //  public int unLockId;
 
     [SerializeField] Button restButton;
     [SerializeField] Button exitButton;
@@ -19,7 +19,7 @@ public class GameWinUI : MonoBehaviour
     {
         restButton.onClick.AddListener(() =>
         {
-            LevelManager.instance.UnlockLevel(unLockId);
+
           //  SceneLoadManager.instance.LoadScene("Scenes/Main.unity", My_UIConst.MainMenuPanel, .5f);
 
             SceneLoadManager.instance.LoadScene("Scenes/Main.unity");
@@ -31,7 +31,7 @@ public class GameWinUI : MonoBehaviour
 
         exitButton.onClick.AddListener(() =>
         {
-            LevelManager.instance.UnlockLevel(unLockId);
+
             SceneLoadManager.instance.LoadScene("Scenes/Main.unity", My_UIConst.MainMenuPanel, .5f);
 
             GameManager.GameState=GameState.Playing;
@@ -50,7 +50,7 @@ public class GameWinUI : MonoBehaviour
     {
         Open();
         //解锁场景
-        LevelManager.instance.UnlockLevel(unLockId);
+        LevelManager.instance.UnlockLevel(GameManager.instance.currentLevelData.UnLockNextLevel);
     }
 
     void Open()

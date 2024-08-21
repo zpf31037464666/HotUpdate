@@ -97,7 +97,7 @@
     "Descript": "增加旋转武器伤害5",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/Power.png",
-    "AddObjcetName": "null"
+    "AddObjcetName": "Prefab/Game/Weapon/Bullet/Spin/FireBall.prefab"
   },
   {
     "RewardID": 10,
@@ -107,7 +107,7 @@
     "Descript": "增加旋转武器范围1",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/Power.png",
-    "AddObjcetName": "null"
+    "AddObjcetName": "Prefab/Game/Weapon/Bullet/Spin/FireBall.prefab"
   },
   {
     "RewardID": 11,
@@ -117,7 +117,7 @@
     "Descript": "增加旋转武器速度1",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/Power.png",
-    "AddObjcetName": "null"
+    "AddObjcetName": "Prefab/Game/Weapon/Bullet/Spin/FireBall.prefab"
   },
   {
     "RewardID": 12,

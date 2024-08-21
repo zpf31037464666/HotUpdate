@@ -9,7 +9,8 @@ public class AddLevelReward : Rewardable
     }
     public override void GetReward()
     {
-        Debug.Log("增加经验");
+        //玩家升级
+        GameObject.FindAnyObjectByType<Player>().Upgrade();
     }
 }
 

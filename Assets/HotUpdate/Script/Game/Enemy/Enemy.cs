@@ -64,7 +64,12 @@ public class Enemy : MonoBehaviour
 
         WaveUI.OnRewardEvent += onRewardEvent;
         WaveUI.OnGameWin+=GameWin;
+
+        Player.OnPlayerDeathEvent+=PlayerDeathEvent;
     }
+
+
+
     protected virtual void OnDisable()
     {
         headHealthBar.EmptyStates();
@@ -72,12 +77,17 @@ public class Enemy : MonoBehaviour
 
         WaveUI.OnRewardEvent -= onRewardEvent;
         WaveUI.OnGameWin-=GameWin;
+        Player.OnPlayerDeathEvent-=PlayerDeathEvent;
     }
     protected virtual void onRewardEvent()
     {
         Die();
     }
     protected void GameWin()
+    {
+        Die();
+    }
+    private void PlayerDeathEvent()
     {
         Die();
     }

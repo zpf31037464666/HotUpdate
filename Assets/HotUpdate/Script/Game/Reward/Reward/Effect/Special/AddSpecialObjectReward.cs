@@ -26,7 +26,6 @@ public class AddSpecialObjectReward : Rewardable
 
                 bullet.GetComponent<Bullet>().SetPlayer(player);
                 bullet.GetComponent<Bullet>().SetBulletInfo(weaponInfo);
-               // bullet.GetComponent<Bullet>().SetDiction(new Vector2(Random.Range(0,1), Random.Range(0, 1)));
                 bullet.GetComponent<Bullet>().SetDiction(Vector2.one*Random.Range(0.5f, 1));
             }
             else
