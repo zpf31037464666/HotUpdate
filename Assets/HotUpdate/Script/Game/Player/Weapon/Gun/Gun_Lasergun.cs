@@ -50,7 +50,7 @@ public class Gun_Lasergun : Gun
 
             foreach (var hitEnemy in hitsEnemies)
             {
-                Debug.Log(hitEnemy.collider.gameObject.name + " 击中了");
+               // Debug.Log(hitEnemy.collider.gameObject.name + " 击中了");
 
                 if (hitEnemy.collider.gameObject.TryGetComponent<Enemy>(out Enemy enemy) && isCanHit)
                 {
@@ -87,7 +87,7 @@ public class Gun_Lasergun : Gun
             Debug.DrawLine(currentPosition, currentPosition + gunDirection * maxLength, Color.green, 0.1f);
             if (hitWallDetection.collider != null)
             {
-                Debug.Log(hitWallDetection.collider.gameObject.name + " 击中了");
+               // Debug.Log(hitWallDetection.collider.gameObject.name + " 击中了");
                 gunDirection = Vector2.Reflect(gunDirection, hitWallDetection.normal); // 计算反射方向
                 currentPosition = hitWallDetection.point; // 将当前位置设置为墙壁的碰撞点
 

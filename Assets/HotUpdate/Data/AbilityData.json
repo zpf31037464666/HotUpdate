@@ -1,0 +1,22 @@
+[
+  {
+    "Id": 0,
+    "Name": "增伤能力",
+    "Type": "KillEnemyIncreaseDamageAbility",
+    "Description": "击杀10个敌人，增加武器伤害100",
+    "IconPath": "Card/Items samples 1.png[Example items_12]",
+    "CurrentCount": 0,
+    "TargetCount": 10,
+    "Value": 100
+  },
+  {
+    "Id": 1,
+    "Name": "加血能力",
+    "Type": "KillEnemyIncreaseHealthAbility",
+    "Description": "击杀10个敌人，增加回血100",
+    "IconPath": "Card/Items samples 1.png[Example items_12]",
+    "CurrentCount": 0,
+    "TargetCount": 10,
+    "Value": 100
+  }
+]

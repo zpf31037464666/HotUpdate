@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour
     protected  float hurtPresistTime=.1f;
 
     protected LootSpawner lootSpawner;
+    protected Player player;
 
     protected virtual void Awake()
     {
@@ -44,6 +45,7 @@ public class Enemy : MonoBehaviour
         lootSpawner=GetComponent<LootSpawner>();
         collider2D = GetComponent<CircleCollider2D>();
         target = GameObject.FindGameObjectWithTag("Player");
+        player=FindAnyObjectByType<Player>();
     }
     protected virtual void Start()
     {
@@ -95,31 +97,6 @@ public class Enemy : MonoBehaviour
     public virtual  void Update()
     {
         SimpleMove();
-
-        //if (Input.GetKeyDown(KeyCode.Space)) // 按下空格键时改变颜色
-        //{
-        //    Debug.Log("测试shader 随机颜色");
-        //    var color = Color.green;
-        //    foreach (var spriteRenderer in spriteRenderers)
-        //    {
-        //        spriteRenderer.material.SetColor("_Color", color); // 随机颜色
-        //        spriteRenderer.material.SetColor("_FlashColor", color); // 随机闪烁颜色
-        //        spriteRenderer.material.SetFloat("_FlashAmount", 0.2f);
-        //    }
-        //}
-        //if (Input.GetKeyDown(KeyCode.P)) // 按下空格键时改变颜色
-        //{
-        //    Debug.Log("测试shader 还原颜色");
-        //    var color = Color.white;
-        //    foreach (var spriteRenderer in spriteRenderers)
-        //    {
-        //        spriteRenderer.material.SetColor("_Color", color); // 随机颜色
-        //        spriteRenderer.material.SetColor("_FlashColor", color); // 随机闪烁颜色
-        //        spriteRenderer.material.SetFloat("_FlashAmount", 0);
-        //    }
-        //}
-
-
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -182,8 +159,9 @@ public class Enemy : MonoBehaviour
             health = 0f;
 
             lootSpawner.Spaw(transform.position);
-            Debug.Log("敌人死亡临时 增加金币");
+            Debug.Log("敌人死亡临时 增加金币 ");
             TaskManager.instance.UpdateTaskState("CoinTask", 1);
+            player.AddKillEnemy(1);
 
             Die();
         }
@@ -196,7 +174,6 @@ public class Enemy : MonoBehaviour
         }
         hurtCoroutine=StartCoroutine(HurtCoroutine());
     }
-
     public virtual void SetMaxHealth(float health)
     {
         maxHealth = health;

@@ -5,6 +5,7 @@ using UnityEngine;
 using Cinemachine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using System.Linq;
 
 public class Player : MonoBehaviour
 {
@@ -45,6 +46,10 @@ public class Player : MonoBehaviour
     private PlayerWeapon playerWeapon;
     private PlayerUI playerUI;
     private SpriteRenderer spriteRenderer;
+    private PlayerAbility playerAbility;
+    //private List<Ability> abilities = new List<Ability>(); // 能力列表
+
+    private int killEnemyNumber;
 
     Material originalMaterial;
 
@@ -60,23 +65,29 @@ public class Player : MonoBehaviour
     public float AttackSpeed { get => attackSpeed; set => attackSpeed=value; }
     public float Critical { get => critical; set => critical=value; }
     public float Speed { get => speed; set => speed=value; }
-    private void Awake()
+    protected virtual void Awake()
     {
         playerWeapon = GetComponent<PlayerWeapon>();
         playerUI=FindAnyObjectByType<PlayerUI>();
         impulseSource=GetComponent<CinemachineImpulseSource>();
-
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-    }
+        playerAbility = GetComponent<PlayerAbility>();
 
-    private void Start()
+    }
+    protected virtual void Start()
     {
-
         CameraShake.instance.SetFollowPlayer(transform);
-
         originalMaterial=spriteRenderer.material;
-    }
 
+        // abilities.Add(new KillEnemyIncreaseDamageAbility());//增加玩家击杀敌人能力 
+        // abilities.Add(new KillEnemyIncreaseHealthAbility());//增加玩家击杀敌人能力 加血
+        //abilities.Add(AbilityManager.instance.GetAbility("增伤能力"));
+        //abilities.Add(AbilityManager.instance.GetAbility("加血能力"));
+
+
+
+        // ...添加其他能力
+    }
     public void Init(PlayerItemData playerItemData)
     {
         maxHealth=playerItemData.Health;
@@ -207,6 +218,11 @@ public class Player : MonoBehaviour
         attackSpeed*=percent;
         playerWeapon.AddWeaponFireSpeed(attackSpeed);
     }
+    public virtual void AddAttackDamage(int  damage)
+    {
+        playerWeapon.AddWeaponDamage(damage);
+    }
+
     public virtual void SetMaterial(Material material)
     {
         spriteRenderer.material = material;
@@ -220,7 +236,7 @@ public class Player : MonoBehaviour
         attackSpeed/=percent;
         playerWeapon.DecreateFireSpeed(attackSpeed);
     }
-    private void Invincble()
+    private void Invincble()//无敌时间
     {
         if (!gameObject.activeInHierarchy)
             return;
@@ -240,6 +256,21 @@ public class Player : MonoBehaviour
         gameObject.SetActive(false);
         OnPlayerDeathEvent?.Invoke();
     }
+
+    public virtual void AddKillEnemy(int amout)
+    {
+        killEnemyNumber+=amout;
+
+        playerAbility.OnKillEnemy();
+
+        //var KillEmenyAbilitys = abilities.OfType<KillEnemyAbillity>().ToList();
+
+        //foreach(var ablility in KillEmenyAbilitys)
+        //{
+        //    ablility.Activate(this);
+        //}
+    }
+
     IEnumerator InvincibleTimeCoroutine()
     {
         isInvincible = true;

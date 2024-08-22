@@ -128,20 +128,20 @@ public class TaskManager : PersistentSingleton<TaskManager> ,ISaveable<List<Task
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Debug.Log("测试更新金币任务");
-            UpdateTaskState("CoinTask", 1);
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("测试增加任务任务");
-            AddTask(0);
-            AddTask(1);
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Escape))
+    //    {
+    //        Debug.Log("测试更新金币任务");
+    //        UpdateTaskState("CoinTask", 1);
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        Debug.Log("测试增加任务任务");
+    //        AddTask(0);
+    //        AddTask(1);
+    //    }
+    //}
     private void RegisterSaveData()
     {
         var playerSaveManager = SaveLoadManager<List<TaskData>>.GetInstance(GetType().Name);

@@ -17,4 +17,5 @@ public class PlayerItemData
     public float AttackSpeed; // 攻速
     public string Special; // 特殊效果
     public string[] SkillName; // 开局的技能
+    public string[] AbilityName; // 开局的特殊能力
 }

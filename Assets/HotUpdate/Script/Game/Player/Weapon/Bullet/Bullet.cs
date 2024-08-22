@@ -54,7 +54,7 @@ public class Bullet : MonoBehaviour
             if (isCriticalHit)
             {
                 enemy.TakeDamageDiction((int)damage, -blackdiction.normalized, weaponInfo.backForce, hitPos);
-                DamageShowManager.instance.CreateRedDamage((int)damage, transform.position);
+                DamageShowManager.instance.CreateDamage((int)damage, transform.position,Color.red);
             }
             else
             {
