@@ -13,6 +13,9 @@ public class ComprehensivePanel : UIState
 
     [SerializeField] Text coinText;
     [SerializeField] Text gemText;
+
+    private int currentCoins = 100; // 当前金币数量
+    private float animatorPersistTime = 1f;
     private void Start()
     {
         gamePlayButton.onClick.AddListener(() =>
@@ -35,8 +38,33 @@ public class ComprehensivePanel : UIState
     }
     void Init()
     {
-        coinText.text=PlayerDataManager.instance.GetCoin().ToString();
         gemText.text=PlayerDataManager.instance.GetGem().ToString();
+        StartCoroutine(AnimateCoinIncrease(currentCoins, PlayerDataManager.instance.GetCoin(), animatorPersistTime)); // 动画持续时间为2秒
     }
+    IEnumerator AnimateCoinIncrease(int startValue, int endValue, float duration)
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            // 计算当前的金币数量
+            float t = elapsedTime / duration; // 计算时间进度
+            int currentValue = Mathf.RoundToInt(Mathf.Lerp(startValue, endValue, t)); // 线性插值
+            UpdateCoinText(currentValue); // 更新文本显示
+
+            elapsedTime += Time.deltaTime; // 增加经过的时间
+            yield return null; // 等待下一帧
+        }
+
+        // 确保最后的值是目标值
+        UpdateCoinText(endValue);
+        currentCoins = endValue; // 更新当前金币数量
+    }
+
+    private void UpdateCoinText(int value)
+    {
+        coinText.text = value.ToString(); // 更新金币文本
+    }
+
 
 }

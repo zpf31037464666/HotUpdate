@@ -7,7 +7,7 @@
     "IconPath": "Card/Items samples 1.png[Example items_12]",
     "CurrentCount": 0,
     "TargetCount": 10,
-    "Value": 100
+    "Value": 10
   },
   {
     "Id": 1,
@@ -17,6 +17,6 @@
     "IconPath": "Card/Items samples 1.png[Example items_12]",
     "CurrentCount": 0,
     "TargetCount": 10,
-    "Value": 100
+    "Value": 10
   }
 ]

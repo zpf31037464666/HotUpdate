@@ -18,6 +18,10 @@ public class ShopPanel : UIState
     [SerializeField] private Transform shopItemGroup;
     [SerializeField] private ShopItem shopItem;
 
+
+    private int currentCoins = 100; // 当前金币数量
+    private float animatorPersistTime=1f;
+
     private void Start()
     {
         backButton.onClick.AddListener(() =>
@@ -48,8 +52,9 @@ public class ShopPanel : UIState
     }
     void Init()
     {
-        coinText.text=PlayerDataManager.instance.GetCoin().ToString();
         genText.text=PlayerDataManager.instance.GetGem().ToString();
+
+        StartCoroutine(AnimateCoinIncrease(currentCoins, PlayerDataManager.instance.GetCoin(), animatorPersistTime)); // 动画持续时间为2秒
     }
 
 
@@ -73,15 +78,7 @@ public class ShopPanel : UIState
                     if(!PlayerDataManager.instance.ComPareCoin(info.price))
                     {
                         Debug.Log("钱不够");
-                        Init();
-
-                        // 创建一个数据字典并传递 info
-                        Dictionary<string, object> data = new Dictionary<string, object>
-                        {
-                             { "itemInfo", info } // 将物品信息放入字典中
-                        };
-                        // 打开详情面板并传递数据
-                        UIManager.Instance.OpenPanelWithData(My_UIConst.ItemDetailPanel, data);
+                        MessageManager.instance.SendMeesage("钱不够");
                     }
                     else
                     {
@@ -112,5 +109,28 @@ public class ShopPanel : UIState
     }
 
 
+   IEnumerator AnimateCoinIncrease(int startValue, int endValue, float duration)
+    {
+        float elapsedTime = 0f;
 
+        while (elapsedTime < duration)
+        {
+            // 计算当前的金币数量
+            float t = elapsedTime / duration; // 计算时间进度
+            int currentValue = Mathf.RoundToInt(Mathf.Lerp(startValue, endValue, t)); // 线性插值
+            UpdateCoinText(currentValue); // 更新文本显示
+
+            elapsedTime += Time.deltaTime; // 增加经过的时间
+            yield return null; // 等待下一帧
+        }
+
+        // 确保最后的值是目标值
+        UpdateCoinText(endValue);
+        currentCoins = endValue; // 更新当前金币数量
+    }
+
+    private void UpdateCoinText(int value)
+    {
+        coinText.text = value.ToString(); // 更新金币文本
+    }
 }
