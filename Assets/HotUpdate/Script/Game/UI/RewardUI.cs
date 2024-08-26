@@ -42,7 +42,7 @@ public class RewardUI : MonoBehaviour
             Destroy(item.gameObject);
         }
 
-        IRewardable[] rewardables = RewardManager.instance.GetRewardble(cardCount);
+        IRewardable[] rewardables = RewardManager.instance.GetOwerRewardable(cardCount);
 
         int cardNumber =cardCount;
 

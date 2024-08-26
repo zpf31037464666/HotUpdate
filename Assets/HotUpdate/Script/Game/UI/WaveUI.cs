@@ -21,9 +21,8 @@ public class WaveUI : MonoBehaviour
     {
         canvas = GetComponent<Canvas>();
 
-        Debug.Log(GameManager.instance.currentSelectSenceName);
 
-        currentEnemyWaveData=EnemyWaveManager.instance.GetEnemyWaveData(GameManager.instance.currentSelectSenceName);
+        currentEnemyWaveData=EnemyWaveManager.instance.GetEnemyWaveData(GameManager.instance.currentLevelData.Name);
 
         if(currentEnemyWaveData == null)
         {
@@ -77,6 +76,20 @@ public class WaveUI : MonoBehaviour
         {
             GameManager.GameState= GameState.GameOver;
             OnGameWin?.Invoke();
+
+            Debug.Log("测试传递数据 面板");
+            VictorData info = new VictorData();
+            info.coinNumber=20;
+            info.genNumber=20;
+
+            Dictionary<string, object> data = new Dictionary<string, object>
+                        {
+                             { "VictorData", info } // 将物品信息放入字典中
+                        };
+            // 打开详情面板并传递数据
+            UIManager.Instance.OpenPanelWithData(My_UIConst.VictorPanel, data);
+
+
             yield break;
         }
         GameManager.GameState=GameState.Reward;

@@ -7,7 +7,10 @@
     "Descript": "增加玩家血量",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/star_gold.png",
-    "AddObjcetName": "null"
+    "AddObjcetName": "null",
+    "MaxCount": 2,
+    "CumulativeProbability": 0.5,
+    "Level": "初级"
   },
   {
     "RewardID": 1,
@@ -17,7 +20,10 @@
     "Descript": "增加玩家蓝量",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/star_silver.png",
-    "AddObjcetName": "null"
+    "AddObjcetName": "null",
+    "MaxCount": 2,
+    "CumulativeProbability": 0.5,
+    "Level": "初级"
   },
   {
     "RewardID": 2,
@@ -27,7 +33,10 @@
     "Descript": "大量增加玩家血量",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/shield_gold.png",
-    "AddObjcetName": "null"
+    "AddObjcetName": "null",
+    "MaxCount": 2,
+    "CumulativeProbability": 0.5,
+    "Level": "初级"
   },
   {
     "RewardID": 3,
@@ -37,7 +46,10 @@
     "Descript": "增加玩家金币",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/Power.png",
-    "AddObjcetName": "null"
+    "AddObjcetName": "null",
+    "MaxCount": 2,
+    "CumulativeProbability": 0.5,
+    "Level": "初级"
   },
   {
     "RewardID": 4,
@@ -47,7 +59,10 @@
     "Descript": "增加玩家经验",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/star_gold.png",
-    "AddObjcetName": "null"
+    "AddObjcetName": "null",
+    "MaxCount": 2,
+    "CumulativeProbability": 0.5,
+    "Level": "初级"
   },
   {
     "RewardID": 5,
@@ -57,7 +72,10 @@
     "Descript": "增加一把手枪",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Weapons/Weapons 2-Sheet.png[Weapons 2-Sheet_0]",
-    "AddObjcetName": "Prefab/Game/Weapon/Gun/Gun_Mini.prefab"
+    "AddObjcetName": "Prefab/Game/Weapon/Gun/Gun_Mini.prefab",
+    "MaxCount": 2,
+    "CumulativeProbability": 0.5,
+    "Level": "初级"
   },
   {
     "RewardID": 6,
@@ -67,7 +85,10 @@
     "Descript": "增加枪支射速30%",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/Power.png",
-    "AddObjcetName": "null"
+    "AddObjcetName": "null",
+    "MaxCount": 2,
+    "CumulativeProbability": 0.5,
+    "Level": "初级"
   },
   {
     "RewardID": 7,
@@ -77,7 +98,10 @@
     "Descript": "增加枪支伤害10",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/Power.png",
-    "AddObjcetName": "null"
+    "AddObjcetName": "null",
+    "MaxCount": 2,
+    "CumulativeProbability": 0.5,
+    "Level": "初级"
   },
   {
     "RewardID": 8,
@@ -87,7 +111,10 @@
     "Descript": "增加一个火球",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/star_gold.png",
-    "AddObjcetName": "Prefab/Game/Weapon/Bullet/Spin/FireBall.prefab"
+    "AddObjcetName": "Prefab/Game/Weapon/Bullet/Spin/FireBall.prefab",
+    "MaxCount": 2,
+    "CumulativeProbability": 0.5,
+    "Level": "初级"
   },
   {
     "RewardID": 9,
@@ -97,7 +124,10 @@
     "Descript": "增加旋转武器伤害5",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/Power.png",
-    "AddObjcetName": "Prefab/Game/Weapon/Bullet/Spin/FireBall.prefab"
+    "AddObjcetName": "Prefab/Game/Weapon/Bullet/Spin/FireBall.prefab",
+    "MaxCount": 2,
+    "CumulativeProbability": 0.5,
+    "Level": "初级"
   },
   {
     "RewardID": 10,
@@ -107,7 +137,10 @@
     "Descript": "增加旋转武器范围1",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/Power.png",
-    "AddObjcetName": "Prefab/Game/Weapon/Bullet/Spin/FireBall.prefab"
+    "AddObjcetName": "Prefab/Game/Weapon/Bullet/Spin/FireBall.prefab",
+    "MaxCount": 2,
+    "CumulativeProbability": 0.5,
+    "Level": "初级"
   },
   {
     "RewardID": 11,
@@ -117,7 +150,10 @@
     "Descript": "增加旋转武器速度1",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/Power.png",
-    "AddObjcetName": "Prefab/Game/Weapon/Bullet/Spin/FireBall.prefab"
+    "AddObjcetName": "Prefab/Game/Weapon/Bullet/Spin/FireBall.prefab",
+    "MaxCount": 2,
+    "CumulativeProbability": 0.5,
+    "Level": "初级"
   },
   {
     "RewardID": 12,
@@ -127,7 +163,10 @@
     "Descript": "增加武器暴击率10%",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/star_gold.png",
-    "AddObjcetName": "null"
+    "AddObjcetName": "null",
+    "MaxCount": 2,
+    "CumulativeProbability": 0.5,
+    "Level": "初级"
   },
   {
     "RewardID": 13,
@@ -137,7 +176,10 @@
     "Descript": "增加武器暴击效果10%",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/star_gold.png",
-    "AddObjcetName": "null"
+    "AddObjcetName": "null",
+    "MaxCount": 2,
+    "CumulativeProbability": 0.5,
+    "Level": "初级"
   },
   {
     "RewardID": 14,
@@ -147,7 +189,10 @@
     "Descript": "增加一把散弹枪",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Weapons/Weapons 2-Sheet.png[Weapons 2-Sheet_8]",
-    "AddObjcetName": "Prefab/Game/Weapon/Gun/Gun_Shotgun.prefab"
+    "AddObjcetName": "Prefab/Game/Weapon/Gun/Gun_Shotgun.prefab",
+    "MaxCount": 2,
+    "CumulativeProbability": 0.5,
+    "Level": "中级"
   },
   {
     "RewardID": 15,
@@ -157,7 +202,10 @@
     "Descript": "增加一个篮球",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Icon/star_gold.png",
-    "AddObjcetName": "Prefab/Game/Weapon/Special/BacketBall.prefab"
+    "AddObjcetName": "Prefab/Game/Weapon/Special/BacketBall.prefab",
+    "MaxCount": 2,
+    "CumulativeProbability": 0.5,
+    "Level": "中级"
   },
   {
     "RewardID": 16,
@@ -167,7 +215,10 @@
     "Descript": "增加一个激光枪",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Weapons/Weapons 3-Sheet.png[Weapons 3-Sheet_55]",
-    "AddObjcetName": "Prefab/Game/Weapon/Gun/Gun_Lasergun.prefab"
+    "AddObjcetName": "Prefab/Game/Weapon/Gun/Gun_Lasergun.prefab",
+    "MaxCount": 2,
+    "CumulativeProbability": 0.5,
+    "Level": "中级"
   },
   {
     "RewardID": 17,
@@ -177,6 +228,9 @@
     "Descript": "增加一把带毒子弹的枪",
     "BG": "Card/Cards.png[Cards_0]",
     "Icon": "Weapons/Weapons 3-Sheet.png[Weapons 3-Sheet_25]",
-    "AddObjcetName": "Prefab/Game/Weapon/Gun/Gun_Poison.prefab"
+    "AddObjcetName": "Prefab/Game/Weapon/Gun/Gun_Poison.prefab",
+    "MaxCount": 2,
+    "CumulativeProbability": 0.5,
+    "Level": "中级"
   }
 ]

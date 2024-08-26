@@ -1,6 +1,16 @@
 using System.Collections;
 using UnityEngine;
 
+class TestData
+{
+   public int i;
+
+    public TestData(int i)
+    {
+        this.i=i;
+    }
+}
+
 public class Test : MonoBehaviour
 {
     public Transform muzzlePos; // 激光发射点
@@ -16,14 +26,34 @@ public class Test : MonoBehaviour
 
     private void Awake()
     {
-        laser = muzzlePos.GetComponent<LineRenderer>();
+      //  laser = muzzlePos.GetComponent<LineRenderer>();
+        TestData testData1=new TestData(1);
+        TestData testData2 = testData1;
+        TestData[] testDatas=new TestData[2];
+        TestData testData3 = new TestData(100);
+
+        testDatas[0]=testData1;
+        testDatas[1]=testData2;
+
+        testData2.i=10;
+
+        testDatas[0]=testData3;
+
+        Debug.Log("testData1 "+testData1.i);
+        Debug.Log("testData2 "+testData2.i);
+
+        foreach(TestData testData in testDatas)
+        {
+            Debug.Log("testData LIST "+testData.i);
+        }
+
     }
 
-    private void Update()
-    {
-        Filp();
-        Fire();
-    }
+    //private void Update()
+    //{
+    //    Filp();
+    //    Fire();
+    //}
 
     private void Fire()
     {

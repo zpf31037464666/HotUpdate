@@ -9,23 +9,24 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 public class RewardManager :PersistentSingleton<RewardManager>
 {
-    private List<Reward> rewardsList = new List<Reward>();
+    private List<Reward> rewardDataList = new List<Reward>();
+    private List<Rewardable> rewardList = new List<Rewardable>();
+
+    private List<Rewardable> owerRawardList = new List<Rewardable>();
+
     void Start()
     {
-        //    LoadRewards();
         LoadJson();
         foreach (string name in RewardFactory.GetRewardNames())
         {
            // Debug.Log("奖励名字"+   name);
         }
     }
-
     private void LoadJson()
     {
         // 使用 Addressables 异步加载 JSON 文件
         Addressables.LoadAssetAsync<TextAsset>("Data/Reward.json").Completed += OnJsonLoaded;
     }
-
     private void OnJsonLoaded(AsyncOperationHandle<TextAsset> handle)
     {
         if (handle.Status == AsyncOperationStatus.Succeeded)
@@ -33,56 +34,92 @@ public class RewardManager :PersistentSingleton<RewardManager>
             // JSON 文件加载成功
             TextAsset jsonAsset = handle.Result;
             string json = jsonAsset.text;
-            rewardsList = JsonConvert.DeserializeObject<List<Reward>>(json);
-            foreach (var reward in rewardsList)
+            rewardDataList = JsonConvert.DeserializeObject<List<Reward>>(json);
+            foreach (var reward in rewardDataList)
             {
                 GrantReward(reward.RewardID);
             }
             // 在这里处理 JSON 数据
+            //暂时获得全部奖励 
+            owerRawardList=rewardList;
+            //每次被重新生成了
+            Debug.Log("重新刷新奖励-------------------------");
+
         }
         else
         {
             Debug.LogError("Failed to load JSON: " + handle);
         }
     }
-    public void GrantReward(int rewardID)
+
+    private void GrantReward(int rewardID)
     {
-        Reward reward = rewardsList.Find(r => r.RewardID == rewardID);
-
-        IRewardable reawd = RewardFactory.GetReward(reward.RewardType, reward);
-
-        Resiter(reawd);
-    }
-
-    private List<IRewardable> rewardables = new List<IRewardable>();
-    public void Resiter(IRewardable rewardable)
-    {
-        if (!rewardables.Contains(rewardable))
+        var data = rewardDataList.Find(r => r.RewardID == rewardID);
+        Rewardable rewardable = RewardFactory.GetReward(data.RewardType, data);
+        if (!rewardList.Contains(rewardable))
         {
-            Debug.Log(rewardable.Name + " 注册了奖励");
-            rewardables.Add(rewardable);
+            rewardList.Add(rewardable);
         }
     }
-    public void Unregister(IRewardable rewardable)
+
+    public Rewardable[] GetOwerRewardable(int number)
     {
-        if (rewardables.Contains(rewardable))
+        Rewardable[] newRewards=new Rewardable[number];
+        HashSet<int> rewardIdList = new HashSet<int>();
+        int i = 0;
+        while (i<number)
         {
-            Debug.Log(rewardable.Name + " 注消了奖励");
-            rewardables.Remove(rewardable);
+            float randomValue =UnityEngine.Random.Range(0f, 1f);
+            Rewardable reward = owerRawardList[UnityEngine.Random.Range(0, owerRawardList.Count)];
+     
+            if (reward.Reward.CumulativeProbability>randomValue&&reward.CanDraw())
+            {
+                if (!rewardIdList.Contains(reward.Reward.RewardID))
+                {
+                    rewardIdList.Add(reward.Reward.RewardID);
+                    newRewards[i] = reward;
+                    i++;
+                }
+
+            }
         }
-    }
-    public IRewardable[] GetRewardble(int number)
-    {
-        IRewardable[] newRewards = new IRewardable[number];
-        var shuffleRewards = Utilities.ShuffleList(rewardables);
-        for (int i = 0; i<number; i++)
-        {
-            newRewards[i] = shuffleRewards[i];
-           // Unregister(newRewards[i]);
-        }
+
+        //for (int i = number - 1; i >= 0; i--)
+        //{
+        //    Rewardable reward = owerRawardList[UnityEngine.Random.Range(0, owerRawardList.Count)];
+        //    newRewards[i] = reward;
+        //}
         return newRewards;
     }
+
+    //public IRewardable[] GetRewardble(int number)
+    //{
+    //    IRewardable[] newRewards = new IRewardable[number];
+    //    // 存储已抽到的物品
+    //    HashSet<int> rewardIdList = new HashSet<int>();
+    //    int i = 0;
+    //    while (i<number)
+    //    {
+    //        float randomValue =UnityEngine.Random.Range(0f, 1f);
+    //        IRewardable reward= rewardables[UnityEngine.Random.Range(0, rewardables.Count)];
+    //        if (reward.Reward.CumulativeProbability>randomValue)
+    //        {
+    //            if(!rewardIdList.Contains(reward.Reward.RewardID))
+    //            {
+    //                rewardIdList.Add(reward.Reward.RewardID);
+    //                reward.Reward.currentCount++;
+    //                newRewards[i] = reward;
+    //                i++;
+    //            }
+    //        }
+    //    }
+
+    //    return newRewards;
+    //}
 }
+
+
+
 public static class RewardFactory
 {
     private static Dictionary<string, Type> rewardByName;
@@ -98,11 +135,10 @@ public static class RewardFactory
         foreach (var rewardType in rewardTypes)
         {
             var tempEffect = Activator.CreateInstance(rewardType, new Reward()) as IRewardable;
-            //Debug.Log(tempEffect.Name);
             rewardByName.Add(tempEffect.Name, rewardType);
         }
     }
-    public static IRewardable GetReward(string rewardType, Reward reward)
+    public static Rewardable GetReward(string rewardType, Reward reward)
     {
         Init();
         if (rewardByName.ContainsKey(rewardType))
@@ -110,7 +146,7 @@ public static class RewardFactory
             Type type = rewardByName[rewardType];
             try
             {
-                var rewardInstance = Activator.CreateInstance(type, reward) as IRewardable;
+                var rewardInstance = Activator.CreateInstance(type, reward) as Rewardable;
                 return rewardInstance;
             }
             catch (Exception ex)

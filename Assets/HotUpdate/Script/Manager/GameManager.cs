@@ -17,7 +17,6 @@ public class GameManager : PersistentSingleton<GameManager>
 
     public LevelData currentLevelData;
 
-    public string currentSelectSenceName;
 
 }
 public enum GameState

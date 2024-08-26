@@ -16,6 +16,10 @@ public class Reward
 	public string BG; // 背景图
 	public string Icon; // 图标
 	public string AddObjcetName; // 增加物体
+
+    public int MaxCount; // 最多出现次数
+    public float CumulativeProbability; // 出现概率
+    public string Level; // 奖励品质
 }
 
 

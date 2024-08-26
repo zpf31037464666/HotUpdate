@@ -255,6 +255,8 @@ public class Player : MonoBehaviour
         StopAllCoroutines();
         gameObject.SetActive(false);
         OnPlayerDeathEvent?.Invoke();
+
+        UIManager.Instance.SwitchPanel(My_UIConst.GameOverPanel);
     }
 
     public virtual void AddKillEnemy(int amout)

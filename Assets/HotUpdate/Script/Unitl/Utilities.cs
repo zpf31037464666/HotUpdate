@@ -14,17 +14,20 @@ public class Utilities
     public static List<T> ShuffleList<T>(List<T> inputList)
     {
         List<T> shuffledList = new List<T>(inputList);
-
         int n = shuffledList.Count;
+
+        // 创建一个 Random 实例
+        System.Random random = new System.Random();
+
         while (n > 1)
         {
             n--;
-            System.Random random = new System.Random();
-            int k = random.Next(n + 1);
+            int k = random.Next(n + 1); // 生成一个随机索引
             T value = shuffledList[k];
             shuffledList[k] = shuffledList[n];
             shuffledList[n] = value;
         }
+
         return shuffledList;
     }
 

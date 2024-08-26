@@ -11,6 +11,8 @@ public class AddWeaponReward : Rewardable
     }
     public override void GetReward()
     {
+        info.currentConut++;//计入使用次数
+
         AsyncOperationHandle<GameObject> bgHandle = Addressables.LoadAssetAsync<GameObject>(Reward.AddObjcetName);
         bgHandle.Completed += (op) =>
         {

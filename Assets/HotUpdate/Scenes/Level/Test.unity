@@ -3597,6 +3597,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae562ce80655ce740abc91f555849b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1927743280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1927743282}
+  - component: {fileID: 1927743281}
+  m_Layer: 0
+  m_Name: Test
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1927743281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927743280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3914d172d4da4824bb742802efae6ea8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  muzzlePos: {fileID: 0}
+  maxReflections: 3
+  maxLength: 100
+  hitInterval: 0.1
+  isCanHit: 1
+--- !u!4 &1927743282
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927743280}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1950145220 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 9004148123409344354, guid: 34a3833850ccfea4d8e03f8f79f95a8e, type: 3}
@@ -7960,3 +8009,4 @@ SceneRoots:
   - {fileID: 1770729747}
   - {fileID: 1736235087}
   - {fileID: 666111107}
+  - {fileID: 1927743282}

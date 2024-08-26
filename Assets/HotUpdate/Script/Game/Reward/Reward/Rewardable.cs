@@ -8,19 +8,22 @@ public class Rewardable : IRewardable
     public Reward Reward { get; set; }
 
     public string Name => GetType().Name;
+    public RewardInfo info;
 
     public Rewardable(Reward reward)
     {
         Debug.Log("初始化数据"+Name);
 
         Reward = reward;
+        info = new RewardInfo();
+        info.name = Reward.RewardName;
+        info.description = Reward.Descript;
+        info.maxCount = Reward.MaxCount;
+        info.currentConut=0;
     }
 
     public void ReturnRewardInfo(Action<RewardInfo> callback)
     {
-        RewardInfo info = new RewardInfo();
-        info.name = Reward.RewardName;
-        info.description = Reward.Descript;
         // 异步加载背景图
         AsyncOperationHandle<Sprite> bgHandle = Addressables.LoadAssetAsync<Sprite>(Reward.BG);
         bgHandle.Completed += (op) =>
@@ -56,5 +59,9 @@ public class Rewardable : IRewardable
     public virtual void GetReward()
     {
         // 实现领取奖励的逻辑
+    }
+    public bool CanDraw()//是否能抽取
+    {
+        return info.currentConut < info.maxCount; // 检查是否可以抽取
     }
 }

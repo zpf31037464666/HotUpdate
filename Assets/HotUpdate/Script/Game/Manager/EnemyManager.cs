@@ -24,7 +24,7 @@ public class EnemyManager : MonoBehaviour
     {
         waveUI = FindAnyObjectByType<WaveUI>();
 
-        currentEnemyWaveData=EnemyWaveManager.instance.GetEnemyWaveData(GameManager.instance.currentSelectSenceName);
+        currentEnemyWaveData=EnemyWaveManager.instance.GetEnemyWaveData(GameManager.instance.currentLevelData.Name);
 
     }
 

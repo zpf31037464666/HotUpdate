@@ -23,4 +23,7 @@ public class RewardInfo
     public Sprite bgSprite;   // 背景图片
     public Sprite headSprite; // 头像图片
     public string description; // 描述
+
+    public int currentConut;
+    public int maxCount;
 }
