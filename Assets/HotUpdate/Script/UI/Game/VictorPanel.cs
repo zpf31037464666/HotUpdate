@@ -21,6 +21,7 @@ public class VictorPanel : UIState
         {
             UIManager.Instance.SwitchPanel(My_UIConst.MainMenuPanel);
             GameManager.GameState=GameState.Playing;
+            SceneLoadManager.instance.LoadScene("Scenes/Main.unity", My_UIConst.MainMenuPanel, .5f);
         });
     }
     public override void Enter()

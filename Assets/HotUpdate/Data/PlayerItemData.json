@@ -28,7 +28,7 @@
     "IconPath": "Enemy/characters.png[characters_34]",
     "BGPath": "Card/Cards.png[Cards_11]",
     "PrefabPath": "Prefab/Game/Player/Player.prefab",
-    "IsUnLock": true,
+    "IsUnLock": false,
     "Health": 70,
     "Armor": 0,
     "MP": 100,

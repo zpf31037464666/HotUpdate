@@ -35,13 +35,11 @@ public class ItemDetailPanel : UIState
             //临时只有判断金币 ，后面根据类型来判断
             if (!PlayerDataManager.instance.ComPareCoin(info.price))
             {
-                Debug.Log("钱不够");
                 MessageManager.instance.SendMeesage("钱不够");
             }
             else
             {
                 info.action?.Invoke();
-                MessageManager.instance.SendMeesage("购买成功");
                 UIManager.Instance.ReturnToPreviousPanel();
             }
         });

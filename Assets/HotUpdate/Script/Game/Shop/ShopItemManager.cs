@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
-public class ShopItemManager : PersistentSingleton<ShopItemManager>
+public class ShopItemManager : PersistentSingleton<ShopItemManager>, ISaveable<List<ShopItemData>>
 {
     public List<ShopItemData> dataList = new List<ShopItemData>();
     public List<ShopItemBase> shopItemList = new List<ShopItemBase>();
@@ -14,6 +14,7 @@ public class ShopItemManager : PersistentSingleton<ShopItemManager>
     private void Start()
     {
         LoadJson();
+        RegisterSaveData();
         foreach (string name in ShopItemFactory.GetNames())
         {
             Debug.Log("ShopItemManager 具体  "+   name);
@@ -37,6 +38,7 @@ public class ShopItemManager : PersistentSingleton<ShopItemManager>
                 GrantShopItem(data.Id);
             }
             // 在这里处理 JSON 数据
+            LoadSaveData();//加载本地数据
         }
         else
         {
@@ -57,6 +59,57 @@ public class ShopItemManager : PersistentSingleton<ShopItemManager>
         return shopItemList.Where(ShopItemBase => ShopItemBase.shopItemData.Tag == tag).ToList();
     }
 
+    public void RemoveShopItem(int id)
+    {
+        ShopItemData data=new ShopItemData();
+        ShopItemBase delectData=new ShopItemBase(data);
+        foreach (var item in shopItemList)
+        {
+            if(item.shopItemData.Id == id)
+            {
+                delectData = item;
+                break;
+            }
+        }
+        shopItemList.Remove(delectData);
+        dataList.RemoveAll(delectData=>delectData.Id == id);
+        SaveData();
+    }
 
 
+    private void RegisterSaveData()
+    {
+        var playerSaveManager = SaveLoadManager<List<ShopItemData>>.GetInstance(GetType().Name);
+        playerSaveManager.Register(this);
+    }
+    private void SaveData()
+    {
+        var playerSaveManager = SaveLoadManager<List<ShopItemData>>.GetInstance(GetType().Name);
+        playerSaveManager.SaveGameData("Save1", GetType().Name);
+    }
+    private void LoadSaveData()
+    {
+        //加载场景
+        var playerSaveManager = SaveLoadManager<List<ShopItemData>>.GetInstance(GetType().Name);
+        playerSaveManager.LoadGameData("Save1", GetType().Name);
+    }
+    public string GetDataID()
+    {
+       return GetType().Name;
+    }
+    public List<ShopItemData> GenerateGameData()
+    {
+        return dataList;
+    }
+    public void RestoreGameData(List<ShopItemData> data)
+    {
+        dataList = data;
+        shopItemList.Clear();
+
+        foreach (var item in dataList)
+        {
+            GrantShopItem(item.Id);
+        }
+
+    }
 }

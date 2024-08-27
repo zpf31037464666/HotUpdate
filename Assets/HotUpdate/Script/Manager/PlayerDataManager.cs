@@ -59,16 +59,16 @@ public class PlayerDataManager : PersistentSingleton<PlayerDataManager>, ISaveab
     }
 
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            Debug.Log("增加金币"+GetType().Name);
+    //private void Update()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.Escape))
+    //    {
+    //        Debug.Log("增加金币"+GetType().Name);
 
-            AddCoin(1000);
+    //        AddCoin(1000);
 
-        }
-    }
+    //    }
+    //}
 
 
     private void RegisterSaveData()

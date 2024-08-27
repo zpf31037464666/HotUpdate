@@ -14,15 +14,28 @@ public class TaskManager : PersistentSingleton<TaskManager> ,ISaveable<List<Task
 
     public List<TaskData> owerDataList = new List<TaskData>();//拥有的任务的数据
     public List<Task> owerTaskList = new List<Task>();//拥有的任务
-    private void Start()
+
+    protected override void Awake()
     {
+        base.Awake();
+
         RegisterSaveData();
         LoadJson();
         foreach (string name in TaskFactory.GetTaskNames())
         {
             Debug.Log("task 具体"+   name);
         }
+
     }
+    //private void Start()
+    //{
+    //    RegisterSaveData();
+    //    LoadJson();
+    //    foreach (string name in TaskFactory.GetTaskNames())
+    //    {
+    //        Debug.Log("task 具体"+   name);
+    //    }
+    //}
     private void LoadJson()
     {
         // 使用 Addressables 异步加载 JSON 文件
@@ -113,7 +126,10 @@ public class TaskManager : PersistentSingleton<TaskManager> ,ISaveable<List<Task
             if (task.taskData.Id == id)
             {
                 Debug.Log("增加新任务");
-                owerTaskList.Add(task);
+                if(!owerTaskList.Contains(task))
+                {
+                    owerTaskList.Add(task);
+                }
             }
         }
         UpateOverTaskData();//更新拥有任务的数据
@@ -128,20 +144,16 @@ public class TaskManager : PersistentSingleton<TaskManager> ,ISaveable<List<Task
         }
     }
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Escape))
-    //    {
-    //        Debug.Log("测试更新金币任务");
-    //        UpdateTaskState("CoinTask", 1);
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.Space))
-    //    {
-    //        Debug.Log("测试增加任务任务");
-    //        AddTask(0);
-    //        AddTask(1);
-    //    }
-    //}
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("测试任务");
+            AddTask(0);
+            AddTask(1);
+        }
+    }
+
     private void RegisterSaveData()
     {
         var playerSaveManager = SaveLoadManager<List<TaskData>>.GetInstance(GetType().Name);
