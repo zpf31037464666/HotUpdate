@@ -15,8 +15,7 @@ public class UnLockCharacterShopItem : ShopItemBase
             PlayerDataManager.instance.RemoveCoin(shopItemData.Price);
             ShopItemManager.instance.RemoveShopItem(shopItemData.Id);
             MessageManager.instance.SendMeesage("购买成功");
-
-
+            UIManager.Instance.ReturnToPreviousPanel();
             Debug.Log("购买成功 解锁人物"+shopItemData.Name);
         }
 

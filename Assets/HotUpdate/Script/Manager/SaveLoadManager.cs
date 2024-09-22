@@ -82,7 +82,17 @@ public class SaveLoadManager<T> where T : class
         var saveDataDic = new Dictionary<string, T>();
         foreach (var saveable in saveableList)
         {
-            saveDataDic.Add(saveable.GetDataID(), saveable.GenerateGameData());
+            //saveDataDic.Add(saveable.GetDataID(), saveable.GenerateGameData());
+            var dataID = saveable.GetDataID();
+            if (!saveDataDic.ContainsKey(dataID))
+            {
+                saveDataDic.Add(dataID, saveable.GenerateGameData());
+            }
+            else
+            {
+                Debug.LogWarning($"Key {dataID} already exists in saveDataDic. Consider updating its value.");
+                saveDataDic[dataID] = saveable.GenerateGameData(); // 或者选择更新值
+            }
         }
         saveDataDict[saveIdentifier] = saveDataDic;
 
@@ -126,10 +136,10 @@ public class SaveLoadManager<T> where T : class
         }
     }
     /// <summary>
-    ///  
+    ///  读取文件数据
     /// </summary>
-    /// <param name="saveIdentifier"></param>
-    /// <param name="jsonName"></param>
+    /// <param name="saveIdentifier">文件夹名，存档名</param>
+    /// <param name="jsonName">数据名</param>
     public void LoadGameData(string saveIdentifier, string jsonName)
     {
         var resultPath = Application.persistentDataPath + "/Save/" + saveIdentifier + "/" + jsonName + ".json";

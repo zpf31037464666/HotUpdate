@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TaskItem : MonoBehaviour
+public class TaskItem : MonoBehaviour,IInitializable<TaskInfo>
 {
     [SerializeField]  Image Bg;
     [SerializeField]  Image iconImage;
@@ -34,7 +34,6 @@ public class TaskItem : MonoBehaviour
             taskInfo.rewardAction?.Invoke();
         });
     }
-
     public void AddReceiveButtonEvent(Action action)
     {
         receiveButton.onClick.AddListener(()=> {
@@ -42,6 +41,9 @@ public class TaskItem : MonoBehaviour
         });
 
     }
-
-
+    public void Init(TaskInfo item)
+    {
+        receiveButton.onClick.RemoveAllListeners();
+        SetInfo(item);
+    }
 }

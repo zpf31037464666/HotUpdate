@@ -6,7 +6,7 @@
     "IconPath": "Enemy/characters.png[characters_30]",
     "BGPath": "Plane/HUD/Stats Bars/StandardFill.png[StandardFill]",
     "PriceSpritePath": "UIResource/ZOSMA/Main/Coin.png",
-    "Price": 1000,
+    "Price": 500,
     "Type": "UnLockCharacterShopItem",
     "UnLockName": "土匪",
     "Tag": "Character"

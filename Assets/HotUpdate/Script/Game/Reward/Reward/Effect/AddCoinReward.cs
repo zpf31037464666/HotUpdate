@@ -9,6 +9,7 @@ public class AddCoinReward : Rewardable
     }
     public override void GetReward()
     {
-        Debug.Log("增加金币");
+       // MessageManager.instance.SendMeesage("增加金币"+Reward.RewardValue.ToString());
+        PlayerDataManager.instance.AddCoin(Reward.RewardValue);
     }
 }

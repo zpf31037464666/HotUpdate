@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
+using System;
 
 public class SceneLoadManager : PersistentSingleton<SceneLoadManager>
 {
@@ -16,9 +17,9 @@ public class SceneLoadManager : PersistentSingleton<SceneLoadManager>
     {
         StartCoroutine(LoadSceneAsync(sceneName));
     }
-    public void LoadScene(string sceneName,string switchUIName,float waitFinalUITime)
+    public void LoadScene(string sceneName,Action action)
     {
-        StartCoroutine(LoadSceneAsync(sceneName,switchUIName, waitFinalUITime));
+        StartCoroutine(LoadSceneAsync(sceneName, action));
     }
 
     private IEnumerator LoadSceneAsync(string sceneName)
@@ -52,14 +53,14 @@ public class SceneLoadManager : PersistentSingleton<SceneLoadManager>
         loadingScreen.SetActive(false); // 隐藏加载界面
     }
 
-    private IEnumerator LoadSceneAsync(string sceneName,string switchUIName,float waitFinalUITime)
+
+
+    private IEnumerator LoadSceneAsync(string sceneName,Action action)
     {
-        UIManager.Instance.SwitchPanel(switchUIName);
-        yield return new WaitForSeconds(waitFinalUITime);
         // 显示加载界面
         loadingScreen.SetActive(true);
         loadingAnimator.SetTrigger("StartLoading");
-
+        yield return new WaitForSeconds(1f); // 等待动画播放完成
         // 异步加载场景
         var asyncLoad = Addressables.LoadSceneAsync(sceneName, LoadSceneMode.Single);
 
@@ -83,6 +84,8 @@ public class SceneLoadManager : PersistentSingleton<SceneLoadManager>
         loadingAnimator.SetTrigger("EndLoading");
         yield return new WaitForSeconds(1f); // 等待动画播放完成
         loadingScreen.SetActive(false); // 隐藏加载界面
+
+        action?.Invoke();
 
 
     }

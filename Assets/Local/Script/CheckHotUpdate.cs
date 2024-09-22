@@ -30,14 +30,12 @@ public class CheckHotUpdate : MonoBehaviour
             if (Input.touchCount > 0)
             {
                 Touch touch = Input.GetTouch(0);
-
                 // 检测触摸状态是否为已按下
                 if (touch.phase == TouchPhase.Began)
                 {
                     // 触摸屏幕时的逻辑
                     Debug.Log("屏幕被点击!");
                     LoadMainScene();
-                    // 在这里添加您的逻辑，例如调用某个方法
                 }
             }
         }
@@ -107,8 +105,6 @@ public class CheckHotUpdate : MonoBehaviour
         await loadDall.Task;
         Assembly hotUpdate = Assembly.Load(loadDall.Result.bytes);
         isFinal=true;
-
-
     }
 
     private void UpdateFinalUI()

@@ -39,6 +39,7 @@ public class LevelButton : MonoBehaviour
     public void RegisterLevelSelector(LevelSelectPanel levelSelector, LevelData levelData)
     {
         levelButton.onClick.RemoveAllListeners();
+       this. levelSelector=levelSelector;
 
         this.levelSelector = levelSelector;
         levelButton.onClick.AddListener(() =>
@@ -90,7 +91,11 @@ public class LevelButton : MonoBehaviour
     }
     public void Effcet()
     {
-        SceneLoadManager.instance.LoadScene(levelData.ScenceName, My_UIConst.GamePanel, levelSelector.moveDuration*2);
+        levelSelector.ActionEvent(() =>
+        {
+            UIManager.Instance.SwitchPanel(My_UIConst.GamePanel);
+            SceneLoadManager.instance.LoadScene(levelData.ScenceName);
+        });
 
         GameManager.instance.currentLevelData = levelData;
     }

@@ -39,10 +39,12 @@ public class Enemy_Bullet : MonoBehaviour
     protected virtual void onRewardEvent()
     {
         ObjectPool.Instance.PushObject(gameObject);
+        gameObject.SetActive(false);
     }
     protected void GameWin()
     {
         ObjectPool.Instance.PushObject(gameObject);
+        gameObject.SetActive(false);
     }
 
     public void SetDiction(Vector2 direction)

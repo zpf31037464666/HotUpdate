@@ -29,13 +29,13 @@ public class GameOverUI : MonoBehaviour
         restButton.onClick.AddListener(() =>
         {
             //测试
-            SceneLoadManager.instance.LoadScene("Scenes/Main.unity", My_UIConst.MainMenuPanel, .5f);
+            SceneLoadManager.instance.LoadScene("Scenes/Main.unity", () => UIManager.Instance.SwitchPanel(My_UIConst.MainMenuPanel));
         });
         exitButton.onClick.AddListener(() =>
         {
             //临时
             // ReloadCurrentScene();
-            SceneLoadManager.instance.LoadScene("Scenes/Main.unity", My_UIConst.MainMenuPanel,.5f);
+            SceneLoadManager.instance.LoadScene("Scenes/Main.unity", ()=>UIManager.Instance.SwitchPanel(My_UIConst.MainMenuPanel));
 
         });
     }

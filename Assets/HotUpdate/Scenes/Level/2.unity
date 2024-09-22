@@ -7379,7 +7379,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1399056328}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a1a253a24845d04cb58be2cd60d3e4b, type: 3}
   m_Name: 
@@ -8270,7 +8270,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameState: 0
-  currentSelectSenceName: 
 --- !u!1 &1645875279
 GameObject:
   m_ObjectHideFlags: 0

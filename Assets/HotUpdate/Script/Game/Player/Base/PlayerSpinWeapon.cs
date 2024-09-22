@@ -11,8 +11,6 @@ public class PlayerSpinWeapon : MonoBehaviour
     [SerializeField] GameObject initSpinWeapon;
     [SerializeField] Transform spinWeaponGorup;
 
-
-
     public List<AutoRotationToPlayer> rotationObjectList;
     public List<Bullet> bulletList;
 

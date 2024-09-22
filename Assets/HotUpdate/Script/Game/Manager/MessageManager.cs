@@ -10,7 +10,7 @@ public class MessageManager : PersistentSingleton<MessageManager>
     public void SendMeesage(string message, Action action = null)
     {
         GameObject clone=ObjectPool.Instance.GetObject(messageUI.gameObject);
-        clone.transform.parent = transform;
+        clone.transform.SetParent(transform,true);//使用世界坐标
         clone.GetComponent<MessageUI>().ShowMessage(message, action);   
     }
 

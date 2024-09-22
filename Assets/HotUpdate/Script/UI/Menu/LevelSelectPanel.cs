@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -53,23 +54,41 @@ public class LevelSelectPanel : UIState
     }
     public override void Exit()
     {
-        rectTransform.DOScale(Vector3.one*scalePrecet, moveDuration)
-            .OnComplete(
-               () => {
-                   rectTransform.DOScale(Vector3.zero, moveDuration)
-                   .OnComplete(() =>
-                   {
-                       Close();
-                   });
-               }
-           );
+        base.Exit();
+        //rectTransform.DOScale(Vector3.one*scalePrecet, moveDuration)
+        //    .OnComplete(
+        //       () => {
+        //           rectTransform.DOScale(Vector3.zero, moveDuration)
+        //           .OnComplete(() =>
+        //           {
+        //               Close();
+        //           });
+        //       }
+        //   );
 
     }
     public void Close()
     {
         canvas.enabled = false;
     }
-
+    /// <summary>
+    /// 动画结束时调用事件
+    /// </summary>
+    /// <param name="action"></param>
+    public void ActionEvent(Action action)
+    {
+        rectTransform.DOScale(Vector3.one*scalePrecet, moveDuration)
+            .OnComplete(
+               () =>
+               {
+                   rectTransform.DOScale(Vector3.zero, moveDuration)
+                   .OnComplete(() =>
+                   {
+                       action?.Invoke();
+                   });
+               }
+           );
+    }
     private void Initial()
     {
         foreach (Transform t in levelGroup)

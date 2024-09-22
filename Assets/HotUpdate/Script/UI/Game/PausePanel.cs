@@ -23,15 +23,15 @@ public class PausePanel : UIState
         });
         exitButton.onClick.AddListener(() =>
         {
-            SceneLoadManager.instance.LoadScene("Scenes/Main.unity");
             UIManager.Instance.SwitchPanel(My_UIConst.MainMenuPanel);
-            //SceneLoadManager.instance.LoadScene("Main", My_UIConst.MainMenuPanel, moveDuration);
+            SceneLoadManager.instance.LoadScene("Scenes/Main.unity");
+            // SceneLoadManager.instance.LoadScene("Scenes/Main.unity", () => UIManager.Instance.SwitchPanel(My_UIConst.MainMenuPanel));
         });
     }
     public override void Enter()
     {
         base.Enter();
-        canvas.sortingOrder=99;
+        canvas.sortingOrder=2;
         Time.timeScale=0f;
     }
     public override void Exit()

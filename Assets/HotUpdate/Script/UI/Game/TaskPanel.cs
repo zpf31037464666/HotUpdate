@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,60 +6,42 @@ using UnityEngine.UI;
 
 public class TaskPanel : UIState
 {
-    [SerializeField] TaskItem taskItem;
-    [SerializeField] Transform taskListContainer;
-
     [SerializeField] Button closeButton;
-
+    [SerializeField] private Task_UIAnimatorCotrol task_UIAnimatorCotrol;
     private void Start()
     {
         closeButton.onClick.AddListener(() =>
         {
             UIManager.Instance.ReturnToPreviousPanel();
         });
+        TaskManager.instance.onTaskListChanged+=OnTaskListChanged;
+    }
+    private void OnDestroy()
+    {
+        TaskManager.instance.onTaskListChanged-=OnTaskListChanged;
     }
     public override void Enter()
     {
         base.Enter();
-       // UpdateUI(TaskManager.instance.taskList);
-       UpdateUI(TaskManager.instance.owerTaskList);
+
+        task_UIAnimatorCotrol.UpdateUI(TaskManager.instance.owerTaskList);
     }
 
-    public override void LogicUpdata()
+    private void OnTaskListChanged(List<Task> list)
     {
-      //  UpdateUI(TaskManager.instance.taskList);
-    }
+        Debug.LogWarning("TaskManager.instance.owerTaskList"+TaskManager.instance.owerTaskList.Count.ToString());
 
-    public void UpdateUI(List<Task> tasks)
-    {
-        // 清空当前任务列表
-        foreach (Transform child in taskListContainer)
+        if (TaskManager.instance.owerTaskList.Count<=0)
         {
-            Destroy(child.gameObject);
+            Debug.LogWarning("owerTaskList 列表为0");
+            task_UIAnimatorCotrol.RefreshDataNumber(0);
+            task_UIAnimatorCotrol.ClearData();
         }
-        // 更新 UI
-        foreach (var task in tasks)
+        else
         {
-            task.ReturnTaskInfo((info) => //当图片加载完毕时
-            {
-                GameObject clone = Instantiate(taskItem.gameObject, taskListContainer);
-                TaskItem taskItemUI = clone.GetComponent<TaskItem>();
-                taskItemUI.SetInfo(task.info);
-                taskItemUI.AddReceiveButtonEvent(() =>
-                {
-                    if (task.info.state=="完成")
-                    {
-                        Debug.Log("按钮 任务完成");
-                        UpdateUI(TaskManager.instance.owerTaskList);
-                    }
-                });
-
-            });
+            task_UIAnimatorCotrol.UpdateUI(list);
         }
-
     }
-
-
 
 
 }

@@ -159,8 +159,11 @@ public class Enemy : MonoBehaviour
             health = 0f;
 
             lootSpawner.Spaw(transform.position);
+
             Debug.Log("敌人死亡临时 增加金币 ");
             TaskManager.instance.UpdateTaskState("CoinTask", 1);
+
+
             player.AddKillEnemy(1);
 
             Die();

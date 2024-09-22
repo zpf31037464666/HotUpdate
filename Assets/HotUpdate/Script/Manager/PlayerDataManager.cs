@@ -29,6 +29,7 @@ public class PlayerDataManager : PersistentSingleton<PlayerDataManager>, ISaveab
     public void AddCoin(int number)
     {
         playerData.coin+=number;
+      //  MessageManager.instance.SendMessage("增加金币"+number.ToString());
         SaveData();
     }
     public void AddGem(int number)
@@ -61,7 +62,7 @@ public class PlayerDataManager : PersistentSingleton<PlayerDataManager>, ISaveab
 
     //private void Update()
     //{
-    //    if(Input.GetKeyDown(KeyCode.Escape))
+    //    if (Input.GetKeyDown(KeyCode.Escape))
     //    {
     //        Debug.Log("增加金币"+GetType().Name);
 

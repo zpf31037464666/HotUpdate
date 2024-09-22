@@ -18,7 +18,8 @@ public class GameOverPanel : UIState
         backButton.onClick.AddListener(() =>
         {
             UIManager.Instance.SwitchPanel(My_UIConst.MainMenuPanel);
-            SceneLoadManager.instance.LoadScene("Scenes/Main.unity", My_UIConst.MainMenuPanel, .5f);
+            SceneLoadManager.instance.LoadScene("Scenes/Main.unity", () => UIManager.Instance.SwitchPanel(My_UIConst.MainMenuPanel));
+
         });
     }
 

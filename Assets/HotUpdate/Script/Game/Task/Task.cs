@@ -19,6 +19,8 @@ public class Task : ITask
        this.taskData=taskData;
 
         info=new TaskInfo();
+
+        info.Id = taskData.Id;
         info.name=taskData.Name;
         info.description=taskData.Description;
         info.currentValue=taskData.CurrentCount;
@@ -35,15 +37,10 @@ public class Task : ITask
         Debug.Log(info.name+"正在更新");
         info.currentValue+=value;
 
-        taskData.CurrentCount=info.currentValue;
-
-     
         Debug.Log(GetType().Name+"更新值为"+info.currentValue);
         if (info.currentValue >= info.targetValue)
         {
             info.state="完成";
-
-            taskData.State="完成";
 
             Debug.Log(GetType().Name+"完成");
         }
@@ -52,8 +49,10 @@ public class Task : ITask
     {
         if (info.state=="完成")
         {
+            Debug.LogWarning("完成 物品ID"+info.Id.ToString());
+            Debug.LogWarning("完成 物品名字"+info.name);
             //临时
-            TaskManager.instance.ReMoveTask(taskData.Id);
+            TaskManager.instance.RemoveTask(taskData.Id);
 
             Effect();
         }

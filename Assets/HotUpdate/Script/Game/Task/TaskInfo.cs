@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TaskInfo
 {
+    public int Id;
     public string name;       // 奖励名称
     public Sprite iconSprite; // 头像图片
     public string description; // 描述

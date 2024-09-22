@@ -36,6 +36,10 @@ public class PlayerItem : MonoBehaviour
         });
 
     }
+    public void SelcetShowStaet()
+    {
+        selcetPanel.SetShowStage(data.IsUnLock, bgimage.sprite, headImage.sprite, data.Name, data.Description, data);
+    }
     private void SetPlayerItemInfo(PlayerItemData data)
     {
         nameText.text = data.Name;

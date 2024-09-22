@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Resouds
+  m_EditorClassIdentifier: 
+  m_GroupName: Resouds
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 5e0fa833e9f432b418e3077f2a74cace
+  m_SerializeEntries:
+  - m_GUID: 0b4766af116b5684aae8f7cf2355560c
+    m_Address: EnemyResources
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - HotUpdate
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0e95a12f7acb2b040855d66f754c1687
+    m_Address: Assets/Local/Animator
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - HotUpdate
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 028edec5c9187fd49a2c5f8612b7c5a0
+    m_Address: Assets/Local/Sprites
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - HotUpdate
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d92c4bf1a9272bd478922ba780df7879
+    m_Address: Assets/Local/Shaders
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - HotUpdate
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bcb8bd17f379b23469ee09efe1b9927b
+    m_Address: Assets/Local/PhysicsMaterial
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - HotUpdate
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: e53dea3910c638247a169bdabe09ce20, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 34037714329a317468c143d7dde0a675, type: 2}
+    - {fileID: 11400000, guid: 4906d083ac420a94cb40c8c5474058e9, type: 2}

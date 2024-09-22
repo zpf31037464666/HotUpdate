@@ -15,27 +15,20 @@ public class TaskManager : PersistentSingleton<TaskManager> ,ISaveable<List<Task
     public List<TaskData> owerDataList = new List<TaskData>();//拥有的任务的数据
     public List<Task> owerTaskList = new List<Task>();//拥有的任务
 
+    private Dictionary<int, Task> taskDictionary = new Dictionary<int, Task>();
+    private Dictionary<int, TaskData> taskDataDictionary = new Dictionary<int, TaskData>();
+
+    public event Action<List<Task>> onTaskListChanged = delegate { };
+
     protected override void Awake()
     {
         base.Awake();
 
         RegisterSaveData();
         LoadJson();
-        foreach (string name in TaskFactory.GetTaskNames())
-        {
-            Debug.Log("task 具体"+   name);
-        }
+
 
     }
-    //private void Start()
-    //{
-    //    RegisterSaveData();
-    //    LoadJson();
-    //    foreach (string name in TaskFactory.GetTaskNames())
-    //    {
-    //        Debug.Log("task 具体"+   name);
-    //    }
-    //}
     private void LoadJson()
     {
         // 使用 Addressables 异步加载 JSON 文件
@@ -54,12 +47,8 @@ public class TaskManager : PersistentSingleton<TaskManager> ,ISaveable<List<Task
                 GrantTask(buffdata.Id);
             }
             // 在这里处理 JSON 数据
-
              LoadSaveData();//加载本地数据
-            //Debug.Log("owerTask 临时的处理");
-            //owerTaskList=taskList;
-            //UpateOverTaskData();
-
+            CreateTaskDictionaries();
         }
         else
         {
@@ -76,6 +65,20 @@ public class TaskManager : PersistentSingleton<TaskManager> ,ISaveable<List<Task
             taskList.Add(task);
         }
     }
+
+    private void CreateTaskDictionaries()
+    {
+        foreach (var task in taskList)
+        {
+            taskDictionary[task.taskData.Id] = task;
+        }
+
+        foreach (var taskData in taskDataList)
+        {
+            taskDataDictionary[taskData.Id] = taskData;
+        }
+    }
+
     private Task GetTask(int id)//获得初始任务
     {
         return taskList.Find(r=>r.taskData.Id == id);
@@ -92,68 +95,95 @@ public class TaskManager : PersistentSingleton<TaskManager> ,ISaveable<List<Task
         {
             if (task.taskData.TaskType == taskType)
             {
-                Debug.Log("更新任务状态");
+                Debug.Log("更新任务状态"+task.taskData.TaskType);
                 task.UpdateState(value);
             }
         }
-        UpateOverTaskData();//更新拥有任务的数据
+        onTaskListChanged?.Invoke(owerTaskList);
+        UpdateOwnedTaskData();//更新拥有任务的数据
         SaveData();
     }
-    public void ReMoveTask(int id)
-    {
-        Task delectTask = new Task(new TaskData());
-        foreach (var task in owerTaskList)
-        {
-            if (task.taskData.Id == id)
-            {
-                Debug.Log("移除奖励"+task.taskData.Name);
-                delectTask = task;
-            }
-        }
-        owerTaskList.Remove(delectTask);
 
-        UpateOverTaskData();//更新拥有任务的数据
-        SaveData();
+    private Task GetOwerTaskById(int id)
+    {
+        return owerTaskList.Find(t => t.taskData.Id == id);
     }
-    /// <summary>
-    /// 增加新任务
-    /// </summary>
-    /// <param name="id"></param>
+    private Task GetTaskById(int id)
+    {
+        return taskList.Find(t => t.taskData.Id == id);
+    }
     public void AddTask(int id)
     {
-        foreach (var task in taskList)
+        if (owerTaskList.Exists(t => t.taskData.Id == id))
         {
-            if (task.taskData.Id == id)
-            {
-                Debug.Log("增加新任务");
-                if(!owerTaskList.Contains(task))
-                {
-                    owerTaskList.Add(task);
-                }
-            }
+            Debug.Log("任务已经存在");
+            return;
         }
-        UpateOverTaskData();//更新拥有任务的数据
-        SaveData();
+
+        if (taskDictionary.TryGetValue(id, out var task))
+        {
+            owerTaskList.Add(task);
+            onTaskListChanged?.Invoke(owerTaskList);
+            UpdateOwnedTaskData();
+            SaveData();
+            Debug.Log("增加任务: " + task.taskData.Name);
+        }
+        else
+        {
+            Debug.Log("任务不存在");
+        }
     }
-    private void UpateOverTaskData()
+
+    public void RemoveTask(int id)
+    {
+        if (GetOwerTaskById(id) is var task && task != null)
+        {
+            Debug.Log("移除奖励: " + task.taskData.Name);
+            owerTaskList.RemoveAll(t => t.taskData.Id == id);
+            onTaskListChanged?.Invoke(owerTaskList);
+            UpdateOwnedTaskData();
+            SaveData();
+        }
+        else
+        {
+            Debug.Log("奖励不存在");
+        }
+    }
+    private void UpdateOwnedTaskData()
     {
         owerDataList.Clear();
         foreach (var task in owerTaskList)
         {
-            owerDataList.Add(task.taskData);
+            var taskData = task.taskData;
+            taskData.CurrentCount = task.info.currentValue;
+            taskData.State = task.info.state;
+            owerDataList.Add(taskData);
         }
     }
+
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("测试任务");
-            AddTask(0);
-            AddTask(1);
+            for (int i = 0;i<100;i++)
+            {
+                AddTask(i);
+            }
+       
+            //AddTask(1);
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Debug.Log("移除任务");
+            for (int i = 0; i<100; i++)
+            {
+                RemoveTask(i);
+            }
         }
     }
-
+    #region SaveData
     private void RegisterSaveData()
     {
         var playerSaveManager = SaveLoadManager<List<TaskData>>.GetInstance(GetType().Name);
@@ -194,4 +224,5 @@ public class TaskManager : PersistentSingleton<TaskManager> ,ISaveable<List<Task
 
         }
     }
+    #endregion
 }

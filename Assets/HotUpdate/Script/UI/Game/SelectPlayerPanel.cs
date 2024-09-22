@@ -7,8 +7,6 @@ public class SelectPlayerPanel : UIState
 {
     [SerializeField] private Button backButton;
 
-
-
     [SerializeField] private PlayerItem playerItem;
     [SerializeField] private Transform playerItemGroup;
     [Header("Show Stage")]
@@ -50,12 +48,15 @@ public class SelectPlayerPanel : UIState
         ClearChildPlayerItem();
 
         playerItemList =PlayerItemManager.instance.PlayerItemDataList;
-
         foreach (PlayerItemData item in playerItemList)
         {
             var clone=Instantiate(playerItem.gameObject, playerItemGroup);
             clone.GetComponent<PlayerItem>().Init(item, this);
         }
+
+        PlayerItem slectPlayerItem= playerItemGroup.GetChild(0).GetComponent<PlayerItem>();
+        slectPlayerItem.SelcetShowStaet();
+
     }
 
     public void SetShowStage(bool isUnlock, Sprite bgSprite, Sprite headSprite, string name, string descript,PlayerItemData playerItemData)
@@ -66,6 +67,8 @@ public class SelectPlayerPanel : UIState
             descriptText.text = descript;
             lockImage.gameObject.SetActive(!isUnlock);
             startButton.interactable=isUnlock;
+
+            //当前选择的人
             GameManager.instance.currentPlyaerItemData = playerItemData;
     }
 

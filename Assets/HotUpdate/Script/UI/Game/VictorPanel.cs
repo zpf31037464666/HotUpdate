@@ -8,7 +8,6 @@ public class VictorData
     public int coinNumber;
     public int genNumber;
 }
-
 public class VictorPanel : UIState
 {
     [SerializeField] private Text coinText;
@@ -21,7 +20,11 @@ public class VictorPanel : UIState
         {
             UIManager.Instance.SwitchPanel(My_UIConst.MainMenuPanel);
             GameManager.GameState=GameState.Playing;
-            SceneLoadManager.instance.LoadScene("Scenes/Main.unity", My_UIConst.MainMenuPanel, .5f);
+            SceneLoadManager.instance.LoadScene("Scenes/Main.unity", () => UIManager.Instance.SwitchPanel(My_UIConst.MainMenuPanel));
+
+            PlayerDataManager.instance.AddCoin(int.Parse(coinText.text));
+            PlayerDataManager.instance.AddCoin(int.Parse(gemText.text));
+
         });
     }
     public override void Enter()

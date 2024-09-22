@@ -21,7 +21,6 @@ public class MainMeunPanel : UIState
         startButton.onClick.AddListener(() =>
         {
             UIManager.Instance.SwitchPanel(My_UIConst.ComprehensivePanel);
-            //UIManager.Instance.SwitchPanel(My_UIConst.SelectPlayerPanel);
         });
         optionButton.onClick.AddListener(() =>
         {
@@ -38,7 +37,7 @@ public class MainMeunPanel : UIState
     }
     public override void Enter()
     {
-        titleText.text ="武器大师";
+        titleText.text ="爱你默默的";
 
         base.Enter();
     }
