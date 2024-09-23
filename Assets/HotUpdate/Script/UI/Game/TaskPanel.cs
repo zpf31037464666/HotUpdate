@@ -39,6 +39,7 @@ public class TaskPanel : UIState
         }
         else
         {
+            Debug.LogWarning("更新TaskPanel"+TaskManager.instance.owerTaskList.Count.ToString());
             task_UIAnimatorCotrol.UpdateUI(list);
         }
     }

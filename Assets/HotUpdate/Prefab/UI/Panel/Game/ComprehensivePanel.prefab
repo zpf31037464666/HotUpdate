@@ -296,8 +296,10 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 65968ab583b98e249b212bdae0475ece, type: 3}
     volume: 1
   imageList: []
-  multiply: 1.2
   isVectorOne: 1
+  isRotation: 0
+  multiply: 1.2
+  diction: {x: 0, y: 0, z: 0}
   targetAlpha: 1
   originAlpha: 0
   duration: 0.5
@@ -524,8 +526,10 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 65968ab583b98e249b212bdae0475ece, type: 3}
     volume: 1
   imageList: []
-  multiply: 1.2
   isVectorOne: 1
+  isRotation: 0
+  multiply: 1.2
+  diction: {x: 0, y: 0, z: 0}
   targetAlpha: 1
   originAlpha: 0
   duration: 0.5
@@ -541,8 +545,9 @@ GameObject:
   - component: {fileID: 5362220145415935557}
   - component: {fileID: 460070084033813276}
   - component: {fileID: 5988530307935779662}
+  - component: {fileID: 7360271396938032270}
   m_Layer: 5
-  m_Name: Set
+  m_Name: SetButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -649,6 +654,35 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7360271396938032270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689038220192137965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e732892121c1034c97181fa47a88aa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enterAduioClip:
+    audioClip: {fileID: 0}
+    volume: 0
+  exitAduioClip:
+    audioClip: {fileID: 8300000, guid: 65968ab583b98e249b212bdae0475ece, type: 3}
+    volume: 1
+  submitAduioClip:
+    audioClip: {fileID: 8300000, guid: 65968ab583b98e249b212bdae0475ece, type: 3}
+    volume: 1
+  imageList: []
+  isVectorOne: 1
+  isRotation: 1
+  multiply: 1.2
+  diction: {x: 0, y: 0, z: 180}
+  targetAlpha: 1
+  originAlpha: 0
+  duration: 1
 --- !u!1 &1802303603904672429
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,8 +827,10 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 65968ab583b98e249b212bdae0475ece, type: 3}
     volume: 1
   imageList: []
-  multiply: 1.2
   isVectorOne: 1
+  isRotation: 0
+  multiply: 1.2
+  diction: {x: 0, y: 0, z: 0}
   targetAlpha: 1
   originAlpha: 0
   duration: 0.5
@@ -1319,8 +1355,10 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 65968ab583b98e249b212bdae0475ece, type: 3}
     volume: 1
   imageList: []
-  multiply: 1.2
   isVectorOne: 1
+  isRotation: 0
+  multiply: 1.2
+  diction: {x: 0, y: 0, z: 0}
   targetAlpha: 1
   originAlpha: 0
   duration: 0.5
@@ -1468,8 +1506,10 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 65968ab583b98e249b212bdae0475ece, type: 3}
     volume: 1
   imageList: []
-  multiply: 1.2
   isVectorOne: 1
+  isRotation: 0
+  multiply: 1.2
+  diction: {x: 0, y: 0, z: 0}
   targetAlpha: 1
   originAlpha: 0
   duration: 0.5
@@ -2857,8 +2897,10 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 65968ab583b98e249b212bdae0475ece, type: 3}
     volume: 1
   imageList: []
-  multiply: 1.2
   isVectorOne: 1
+  isRotation: 0
+  multiply: 1.2
+  diction: {x: 0, y: 0, z: 0}
   targetAlpha: 1
   originAlpha: 0
   duration: 0.5

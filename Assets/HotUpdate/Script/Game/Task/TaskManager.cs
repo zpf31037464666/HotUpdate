@@ -162,27 +162,58 @@ public class TaskManager : PersistentSingleton<TaskManager> ,ISaveable<List<Task
     }
 
 
-    private void Update()
+    private bool isProcessingTasks = false;
+
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Escape) && !isProcessingTasks)
+    //    {
+    //        StartCoroutine(ProcessAddTasks(100));
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.S) && !isProcessingTasks)
+    //    {
+    //        StartCoroutine(ProcessRemoveTasks(100));
+    //    }
+    //}
+
+    public void PrecessAddTaskMethod(int count)
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Debug.Log("测试任务");
-            for (int i = 0;i<100;i++)
-            {
-                AddTask(i);
-            }
-       
-            //AddTask(1);
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            Debug.Log("移除任务");
-            for (int i = 0; i<100; i++)
-            {
-                RemoveTask(i);
-            }
-        }
+        StartCoroutine(ProcessAddTasks(count));
     }
+    private IEnumerator ProcessAddTasks(int count)
+    {
+        isProcessingTasks = true; // 开始处理任务
+
+        Debug.Log("测试任务");
+        for (int i = 0; i < count; i++)
+        {
+            AddTask(i);
+            yield return null; // 等待一帧，允许 UI 更新
+        }
+
+        // 在所有任务添加完成后更新 UI
+        isProcessingTasks = false; // 结束处理任务
+
+        onTaskListChanged?.Invoke(owerTaskList);
+    }
+
+    private IEnumerator ProcessRemoveTasks(int count)
+    {
+        isProcessingTasks = true; // 开始处理任务
+
+        Debug.Log("移除任务");
+        for (int i = 0; i < count; i++)
+        {
+            RemoveTask(i);
+            yield return null; // 等待一帧，允许 UI 更新
+        }
+        // 在所有任务移除完成后更新 UI
+        isProcessingTasks = false; // 结束处理任务
+
+        onTaskListChanged?.Invoke(owerTaskList);
+    }
+
+
     #region SaveData
     private void RegisterSaveData()
     {

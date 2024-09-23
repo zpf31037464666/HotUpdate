@@ -27,12 +27,15 @@ public class FirstEnterGame : PersistentSingleton<FirstEnterGame>, ISaveable<Ini
         if(!initData.isEnter)
         {
             Debug.LogWarning("第一次进游戏");
+            EnentInitScenec();
         }
     }
     public void EnentInitScenec()
     {
         initData.isEnter = true;
         SaveData();
+
+        TaskManager.instance.PrecessAddTaskMethod(100);
     }
 
     private void Update()

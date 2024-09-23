@@ -1,5 +1,8 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +24,7 @@ public class ShopPanel : UIState
 
     private int currentCoins = 100; // 当前金币数量
     private float animatorPersistTime=1f;
+    private float moveDuration = 0.5f; // 移动持续时间
 
     private void Start()
     {
@@ -45,11 +49,26 @@ public class ShopPanel : UIState
     public override void Enter()
     {
         base.Enter();
-
+        EnterAnimator();
         UpdateShopItemBase(ShopItemManager.instance.GetItemsByTag("Character"));
-
         Init();
     }
+    public override void Exit()
+    {
+        rectTransform.DOLocalMove(new Vector2(-Screen.width, 0), moveDuration).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            canvas.enabled = false;
+        });
+    }
+
+    void EnterAnimator()
+    {
+        rectTransform.anchoredPosition = new Vector2(-Screen.width, 0); // 屏幕外的位置
+        Vector2 targetPosition = Vector2.zero; // 屏幕中心（0，0）
+        // 执行移动动画
+        rectTransform.DOLocalMove(targetPosition, moveDuration).SetEase(Ease.Linear);
+    }
+
     void Init()
     {
         genText.text=PlayerDataManager.instance.GetGem().ToString();
