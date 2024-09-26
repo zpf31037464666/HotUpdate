@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,9 @@ public class PlayerInfoPanel : UIState
 
     [SerializeField] private Text SpecialText;
 
+    [Header("Animator set")]
+    private float moveDuration=0.5f;
+
 
     private void Start()
     {
@@ -44,6 +48,27 @@ public class PlayerInfoPanel : UIState
         base.Enter();
 
         UpdateInfo(GameManager.instance.currentPlyaerItemData);
+        EnterAnimator();
+    }
+    public override void Exit()
+    {
+        ExitAimator();
+    }
+
+    private void ExitAimator()
+    {
+        rectTransform.DOLocalMove(new Vector2(0, -Screen.height), moveDuration).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            canvas.enabled = false;
+        });
+    }
+
+    void EnterAnimator()
+    {
+        rectTransform.anchoredPosition = new Vector2(0, Screen.height); // 屏幕外的位置
+        Vector2 targetPosition = Vector2.zero; // 屏幕中心（0，0）
+        // 执行移动动画
+        rectTransform.DOLocalMove(targetPosition, moveDuration).SetEase(Ease.Linear);
     }
 
     void UpdateInfo(PlayerItemData info)

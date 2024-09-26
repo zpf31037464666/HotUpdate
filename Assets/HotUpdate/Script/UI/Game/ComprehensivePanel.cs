@@ -22,6 +22,7 @@ public class ComprehensivePanel : UIState
     {
         gamePlayButton.onClick.AddListener(() =>
         {
+            canvas.enabled = false;
             UIManager.Instance.SwitchPanel(My_UIConst.SelectPlayerPanel);
         });
         taskPaneButton.onClick.AddListener(() =>
@@ -40,6 +41,9 @@ public class ComprehensivePanel : UIState
     {
         base.Enter();
         Init();
+    }
+    public override void Exit()
+    {
     }
     void Init()
     {

@@ -55,12 +55,8 @@ public class ShopPanel : UIState
     }
     public override void Exit()
     {
-        rectTransform.DOLocalMove(new Vector2(-Screen.width, 0), moveDuration).SetEase(Ease.Linear).OnComplete(() =>
-        {
-            canvas.enabled = false;
-        });
+        ExitAimator();
     }
-
     void EnterAnimator()
     {
         rectTransform.anchoredPosition = new Vector2(-Screen.width, 0); // 屏幕外的位置
@@ -68,6 +64,15 @@ public class ShopPanel : UIState
         // 执行移动动画
         rectTransform.DOLocalMove(targetPosition, moveDuration).SetEase(Ease.Linear);
     }
+    private void ExitAimator()
+    {
+        rectTransform.DOLocalMove(new Vector2(-Screen.width, 0), moveDuration).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            canvas.enabled = false;
+        });
+    }
+
+
 
     void Init()
     {

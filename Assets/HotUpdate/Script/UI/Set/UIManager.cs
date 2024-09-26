@@ -106,16 +106,5 @@ public class UIManager : StateMachina
         });
     }
 
-    //private void Update()
-    //{
-    //    if(Input.GetKeyUp(KeyCode.Escape))
-    //    {
-
-
-    //    }
-    //}
-
-
-
 
 }

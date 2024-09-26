@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,9 @@ public class SelectPlayerPanel : UIState
     [SerializeField] private Text descriptText;
     [SerializeField] private Button startButton;
 
+    [Header("Animator Set")]
+    private float moveDuration = 0.5f; // 移动持续时间
+
     private  List<PlayerItemData> playerItemList=null;
     private void Start()
     {
@@ -32,8 +36,30 @@ public class SelectPlayerPanel : UIState
     public override void Enter()
     {
         base.Enter();
+        EnterAnimator();
         Init();
     }
+    public override void Exit()
+    {
+        ExitAimator();
+    }
+
+    private void ExitAimator()
+    {
+        rectTransform.DOLocalMove(new Vector2(0,-Screen.height), moveDuration).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            canvas.enabled = false;
+        });
+    }
+
+    void EnterAnimator()
+    {
+        rectTransform.anchoredPosition = new Vector2(0, Screen.height); // 屏幕外的位置
+        Vector2 targetPosition = Vector2.zero; // 屏幕中心（0，0）
+        // 执行移动动画
+        rectTransform.DOLocalMove(targetPosition, moveDuration).SetEase(Ease.Linear);
+    }
+
 
     void ClearChildPlayerItem()
     {

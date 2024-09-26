@@ -87,6 +87,12 @@ public class BuffManager : PersistentSingleton<BuffManager>
         Debug.LogWarning($"Buff with buffName {buffName} not found.");
         return null; // 如果没有找到，返回 null
     }
+
+    /// <summary>
+    /// 创建新buff
+    /// </summary>
+    /// <param name="buffName"></param>
+    /// <returns></returns>
     public Buff GetNewBuff(string buffName)
     {
         BuffData buffdata = buffdataList.Find(r => r.buffname == buffName);

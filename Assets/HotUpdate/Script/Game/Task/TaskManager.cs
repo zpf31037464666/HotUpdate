@@ -164,17 +164,17 @@ public class TaskManager : PersistentSingleton<TaskManager> ,ISaveable<List<Task
 
     private bool isProcessingTasks = false;
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Escape) && !isProcessingTasks)
-    //    {
-    //        StartCoroutine(ProcessAddTasks(100));
-    //    }
-    //    if (Input.GetKeyDown(KeyCode.S) && !isProcessingTasks)
-    //    {
-    //        StartCoroutine(ProcessRemoveTasks(100));
-    //    }
-    //}
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && !isProcessingTasks)
+        {
+            StartCoroutine(ProcessAddTasks(100));
+        }
+        if (Input.GetKeyDown(KeyCode.S) && !isProcessingTasks)
+        {
+            StartCoroutine(ProcessRemoveTasks(100));
+        }
+    }
 
     public void PrecessAddTaskMethod(int count)
     {

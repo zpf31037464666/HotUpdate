@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +9,9 @@ public class TaskPanel : UIState
 {
     [SerializeField] Button closeButton;
     [SerializeField] private Task_UIAnimatorCotrol task_UIAnimatorCotrol;
+
+    [Header("Animator Set")]
+    [SerializeField] private float moveDuration = 1;
     private void Start()
     {
         closeButton.onClick.AddListener(() =>
@@ -25,6 +29,25 @@ public class TaskPanel : UIState
         base.Enter();
 
         task_UIAnimatorCotrol.UpdateUI(TaskManager.instance.owerTaskList);
+        EnterAnimator();
+    }
+    public override void Exit()
+    {
+        ExitAimator();
+    }
+    void EnterAnimator()
+    {
+        rectTransform.anchoredPosition = new Vector2(-Screen.width, 0); // 屏幕外的位置
+        Vector2 targetPosition = Vector2.zero; // 屏幕中心（0，0）
+        // 执行移动动画
+        rectTransform.DOLocalMove(targetPosition, moveDuration).SetEase(Ease.Linear);
+    }
+    private void ExitAimator()
+    {
+        rectTransform.DOLocalMove(new Vector2(-Screen.width, 0), moveDuration).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            canvas.enabled = false;
+        });
     }
 
     private void OnTaskListChanged(List<Task> list)
